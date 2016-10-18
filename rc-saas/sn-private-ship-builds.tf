@@ -1,5 +1,5 @@
 resource "aws_security_group" "sg_private_ship_builds" {
-  name = "sg_private_ship_builds"
+  name = "sg_private_ship_builds_${var.install_version}"
   description = "Private Subnet for security group builds"
   vpc_id = "${aws_vpc.vpc.id}"
 
@@ -20,7 +20,7 @@ resource "aws_security_group" "sg_private_ship_builds" {
   }
 
   tags {
-    Name = "sg_private_ship_builds"
+    Name = "sg_private_ship_builds_${var.install_version}"
   }
 }
 
@@ -42,6 +42,6 @@ resource "aws_instance" "bld_hosts" {
   }
 
   tags = {
-    Name = "bld_${count.index}"
+    Name = "bld_${count.index}_${var.install_version}"
   }
 }

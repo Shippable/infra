@@ -1,5 +1,5 @@
 resource "aws_security_group" "sg_private_ship_install" {
-  name = "sg_private_ship_install"
+  name = "sg_private_ship_install_${var.install_version}"
   description = "Private Subnet security group for install"
   vpc_id = "${aws_vpc.vpc.id}"
 
@@ -55,7 +55,7 @@ resource "aws_security_group" "sg_private_ship_install" {
   }
 
   tags {
-    Name = "sg_private_ship_install"
+    Name = "sg_private_ship_install_${var.install_version}"
   }
 }
 
@@ -77,7 +77,7 @@ resource "aws_instance" "cs_1" {
   }
 
   tags = {
-    Name = "cs_1"
+    Name = "cs_1_${var.install_version}"
   }
 }
 
@@ -99,7 +99,7 @@ resource "aws_instance" "cs_2" {
   }
 
   tags = {
-    Name = "cs_2"
+    Name = "cs_2_${var.install_version}"
   }
 }
 
@@ -121,7 +121,7 @@ resource "aws_instance" "ms_1" {
   }
 
   tags = {
-    Name = "ms_1"
+    Name = "ms_1_${var.install_version}"
   }
 }
 
@@ -143,6 +143,6 @@ resource "aws_instance" "ms_2" {
   }
 
   tags = {
-    Name = "ms_2"
+    Name = "ms_2_${var.install_version}"
   }
 }

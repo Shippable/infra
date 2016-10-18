@@ -157,6 +157,14 @@ resource "aws_security_group" "sg_public_nat" {
   }
 }
 
+//this is a hack to get around double interpolation issues
+//We need this in provisioner file block down below
+resource "null_resource" "pemfile" {
+  triggers{
+    fileName ="${var.aws_key_filename}"
+  }
+}
+
 # NAT Server
 resource "aws_instance" "in_nat" {
   ami = "${var.ami_us_east_1_nat}"
@@ -167,6 +175,18 @@ resource "aws_instance" "in_nat" {
   subnet_id = "${aws_subnet.sn_public.id}"
   vpc_security_group_ids = [
     "${aws_security_group.sg_public_nat.id}"]
+
+  provisioner "file" {
+    source = "${var.aws_key_filename}"
+    destination = "~/.ssh/${var.aws_key_filename}"
+
+    connection {
+      type = "ssh"
+      user = "ec2-user"
+      private_key = "${file(null_resource.pemfile.triggers.fileName)}"
+      agent = true
+    }
+  }
 
   associate_public_ip_address = true
   source_dest_check = false

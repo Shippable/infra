@@ -79,7 +79,7 @@ variable "ami_us_east_1_nat"{
 }
 
 # this is a ACM certificate for domian *.shippable.com *.qhode.com
-variable "ssl_cert_arn"{
-  default = "arn:aws:acm:us-east-1:752326595591:certificate/e4dc19a2-2858-4d3c-aa4b-071ca7ee7a94"
+variable "acm_cert_arn"{
+  default = "arn:aws:acm:us-east-1:754160106182:certificate/463d13d5-8c80-4110-8bb1-092a8694658f"
   description = "acm cert arn"
 }

@@ -69,7 +69,7 @@ resource "aws_elb" "lb_www" {
     lb_protocol = "ssl"
     instance_port = 50001
     instance_protocol = "tcp"
-    ssl_certificate_id = "${var.ssl_cert_arn}"
+    ssl_certificate_id = "${var.acm_cert_arn}"
   }
 
   health_check {
@@ -100,7 +100,7 @@ resource "aws_elb" "lb_api" {
     lb_protocol = "https"
     instance_port = 50000
     instance_protocol = "http"
-    ssl_certificate_id = "${var.ssl_cert_arn}"
+    ssl_certificate_id = "${var.acm_cert_arn}"
   }
 
   health_check {
@@ -133,7 +133,7 @@ resource "aws_elb" "lb_msg" {
     lb_protocol = "https"
     instance_port = 15672
     instance_protocol = "http"
-    ssl_certificate_id = "${var.ssl_cert_arn}"
+    ssl_certificate_id = "${var.acm_cert_arn}"
   }
 
   listener {
@@ -141,7 +141,7 @@ resource "aws_elb" "lb_msg" {
     lb_protocol = "ssl"
     instance_port = 5672
     instance_protocol = "tcp"
-    ssl_certificate_id = "${var.ssl_cert_arn}"
+    ssl_certificate_id = "${var.acm_cert_arn}"
   }
 
   listener {
@@ -149,7 +149,7 @@ resource "aws_elb" "lb_msg" {
     lb_protocol = "https"
     instance_port = 15672
     instance_protocol = "http"
-    ssl_certificate_id = "${var.ssl_cert_arn}"
+    ssl_certificate_id = "${var.acm_cert_arn}"
   }
 
   health_check {

@@ -4,6 +4,7 @@ export REPO_RESOURCE_NAME="infra-repo"
 
 arch_statefile() {
   TF_FOLDER=$1
+  mkdir -p /build/state/$TF_FOLDER
   pushd "/build/IN/$REPO_RESOURCE_NAME/gitRepo/$TF_FOLDER"
   local state_loc="terraform.tfstate"
   if [ -f "$state_loc" ]; then
@@ -20,7 +21,7 @@ arch_statefile() {
       echo "no previous state file exists. adding tmp file"
       echo "-----------------------------------"
       #this is to guarantee folder existence
-      mkdir -p /build/state/$TF_FOLDER && touch /build/state/$TF_FOLDER/tmp.txt
+      touch /build/state/$TF_FOLDER/tmp.txt
     fi
   fi
   popd

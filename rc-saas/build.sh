@@ -68,8 +68,8 @@ main() {
   eval `ssh-agent -s`
   install_terraform
   create_pemfile
-  #destroy_changes
-  apply_changes
+  destroy_changes
+  #apply_changes
 }
 
 main

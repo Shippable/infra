@@ -5,7 +5,7 @@ resource "aws_vpc" "vpc" {
   cidr_block = "${var.cidr_block}"
   enable_dns_hostnames = true
   tags {
-    Name = "${var.vpc}"
+    Name = "${var.install_version}"
   }
 }
 
@@ -13,7 +13,7 @@ resource "aws_vpc" "vpc" {
 resource "aws_internet_gateway" "ig" {
   vpc_id = "${aws_vpc.vpc.id}"
   tags {
-    Name = "ig"
+    Name = "ig_${var.install_version}"
   }
 }
 
@@ -25,7 +25,7 @@ resource "aws_subnet" "sn_public" {
   cidr_block = "${var.cidr_public_ship}"
   availability_zone = "${var.avl-zone}"
   tags {
-    Name = "sn_public"
+    Name = "sn-public_${var.install_version}"
   }
 }
 
@@ -37,7 +37,7 @@ resource "aws_route_table" "rt_public" {
     gateway_id = "${aws_internet_gateway.ig.id}"
   }
   tags {
-    Name = "rt_public"
+    Name = "rt-public_${var.install_version}"
   }
 }
 
@@ -53,7 +53,7 @@ resource "aws_subnet" "sn_ship_install" {
   cidr_block = "${var.cidr_private_ship_install}"
   availability_zone = "${var.avl-zone}"
   tags {
-    Name = "sn_ship_install"
+    Name = "sn_ship_install_${var.install_version}"
   }
 }
 
@@ -62,10 +62,10 @@ resource "aws_route_table" "rt_ship_install" {
   vpc_id = "${aws_vpc.vpc.id}"
   route {
     cidr_block = "0.0.0.0/0"
-    instance_id = "${aws_instance.in_nat.id}"
+    instance_id = "${aws_instance.nat.id}"
   }
   tags {
-    Name = "rt_ship_install"
+    Name = "rt_ship_install_${var.install_version}"
   }
 }
 
@@ -81,7 +81,7 @@ resource "aws_subnet" "sn_ship_builds" {
   cidr_block = "${var.cidr_private_ship_builds}"
   availability_zone = "${var.avl-zone}"
   tags {
-    Name = "sn_ship_builds"
+    Name = "sn_ship_builds_${var.install_version}"
   }
 }
 
@@ -90,10 +90,10 @@ resource "aws_route_table" "rt_ship_builds" {
   vpc_id = "${aws_vpc.vpc.id}"
   route {
     cidr_block = "0.0.0.0/0"
-    instance_id = "${aws_instance.in_nat.id}"
+    instance_id = "${aws_instance.nat.id}"
   }
   tags {
-    Name = "rt_ship_builds"
+    Name = "rt_ship_builds_${var.install_version}"
   }
 }
 
@@ -107,7 +107,7 @@ resource "aws_route_table_association" "rt_assn_ship_builds" {
 
 # NAT SG
 resource "aws_security_group" "sg_public_nat" {
-  name = "sg_public_nat"
+  name = "sg_public_nat_${var.install_version}"
   description = "Allow traffic to pass from the private subnet to the internet"
 
   ingress {
@@ -153,7 +153,7 @@ resource "aws_security_group" "sg_public_nat" {
   vpc_id = "${aws_vpc.vpc.id}"
 
   tags {
-    Name = "sg_public_nat"
+    Name = "sg_public_nat_${var.install_version}"
   }
 }
 
@@ -166,7 +166,7 @@ resource "null_resource" "pemfile" {
 }
 
 # NAT Server
-resource "aws_instance" "in_nat" {
+resource "aws_instance" "nat" {
   ami = "${var.ami_us_east_1_nat}"
   availability_zone = "${var.avl-zone}"
   instance_type = "${var.in_type_nat}"
@@ -192,13 +192,13 @@ resource "aws_instance" "in_nat" {
   source_dest_check = false
 
   tags = {
-    Name = "in_nat"
+    Name = "nat_${var.install_version}"
   }
 }
 
 # Associate EIP, without this private SN wont work
 resource "aws_eip" "nat" {
-  instance = "${aws_instance.in_nat.id}"
+  instance = "${aws_instance.nat.id}"
   vpc = true
 }
 

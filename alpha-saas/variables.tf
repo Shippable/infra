@@ -30,9 +30,9 @@ variable "aws_key_filename" {
 }
 
 # all variables related to VPC
-variable "vpc" {
-  description = "VPC for the cluster system"
-  default = "vpc_alpha_saas"
+variable "install_version" {
+  description = "version of the infra"
+  default = "alphaSaas"
 }
 
 variable "cidr_block" {

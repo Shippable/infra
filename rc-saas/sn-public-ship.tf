@@ -1,6 +1,6 @@
 # Web Security group
 resource "aws_security_group" "sg_public_lb" {
-  name = "sg_public_lb"
+  name = "sg_public_lb_${var.install_version}"
   description = "LB traffic security group"
   vpc_id = "${aws_vpc.vpc.id}"
 
@@ -49,7 +49,7 @@ resource "aws_security_group" "sg_public_lb" {
       "${var.cidr_private_ship_install}"]
   }
   tags {
-    Name = "sg_public_lb"
+    Name = "sg_public_lb_${var.install_version}"
   }
 }
 
@@ -57,7 +57,7 @@ resource "aws_security_group" "sg_public_lb" {
 
 # WWW Load balancer
 resource "aws_elb" "lb_www" {
-  name = "www"
+  name = "lb-www-${var.install_version}"
   connection_draining = true
   subnets = [
     "${aws_subnet.sn_public.id}"]
@@ -88,7 +88,7 @@ resource "aws_elb" "lb_www" {
 
 //# API Load balancer
 resource "aws_elb" "lb_api" {
-  name = "api"
+  name = "lb-api-${var.install_version}"
   connection_draining = true
   subnets = [
     "${aws_subnet.sn_public.id}"]
@@ -119,7 +119,7 @@ resource "aws_elb" "lb_api" {
 
 # MSG Load balancer
 resource "aws_elb" "lb_msg" {
-  name = "msg"
+  name = "lb-msg-${var.install_version}"
   idle_timeout = 3600
   connection_draining = true
   connection_draining_timeout = 3600

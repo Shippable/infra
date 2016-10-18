@@ -77,7 +77,7 @@ resource "aws_instance" "cs_1" {
   }
 
   tags = {
-    Name = "in_cs_1"
+    Name = "cs_1"
   }
 }
 
@@ -99,7 +99,7 @@ resource "aws_instance" "cs_2" {
   }
 
   tags = {
-    Name = "in_cs_2"
+    Name = "cs_2"
   }
 }
 
@@ -121,7 +121,7 @@ resource "aws_instance" "ms_1" {
   }
 
   tags = {
-    Name = "in_ms_1"
+    Name = "ms_1"
   }
 }
 
@@ -143,6 +143,6 @@ resource "aws_instance" "ms_2" {
   }
 
   tags = {
-    Name = "in_ms_2"
+    Name = "ms_2"
   }
 }

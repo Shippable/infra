@@ -14,12 +14,11 @@ detectEnvChanges() {
   envs=`git diff --name-only $COMMIT_RANGE | sort -u | \
   awk 'BEGIN {FS="/"} {print $1}' | uniq`
 
-  ls -al
   for env in $envs
   do
     if [ env!="/" ]; then
       echo "changed env is $env"
-      ls -al $env
+      ./$env/build.sh
     fi
   done
   popd

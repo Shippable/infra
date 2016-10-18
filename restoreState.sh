@@ -18,7 +18,7 @@ arch_statefile() {
 }
 
 main() {
-  ls -al /build/previousState
+  ls -al /build/previousState/alpha-saas
   arch_statefile alpha-saas
   arch_statefile alpha-server
   arch_statefile rc-saas

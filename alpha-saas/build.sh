@@ -70,7 +70,7 @@ main() {
   create_pemfile
   #destroy_changes
   #rm /build/IN/$REPO_RESOURCE_NAME/gitRepo/$TF_FOLDER/terraform.*
-  #apply_changes
+  apply_changes
 }
 
 main

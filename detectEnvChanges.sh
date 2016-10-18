@@ -8,14 +8,18 @@ detectEnvChanges() {
   '.version.propertyBag.shaData.beforeCommitSha + ".."+ .version.propertyBag.shaData.commitSha')
   echo "Commit Range is" $COMMIT_RANGE
 
+  pushd /build/IN/$REPO_RESOURCE_NAME/gitRepo
+
   echo "detecting changes for this build"
   envs=`git diff --name-only $COMMIT_RANGE | sort -u | \
   awk 'BEGIN {FS="/"} {print $1}' | uniq`
 
+  ls -al
   for env in $envs
   do
-    ls -al /build/IN/$REPO_RESOURCE_NAME/gitRepo/$env
+    ls -al $env
   done
+  popd
 }
 
 main() {

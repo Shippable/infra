@@ -32,7 +32,7 @@ create_pemfile() {
  pushd /build/IN/$REPO_RESOURCE_NAME/gitRepo/$TF_FOLDER
  echo "Extracting AWS PEM"
  echo "-----------------------------------"
- cat ./IN/$RES_AWS_PEM/integration.json  | jq -r '.key' > $KEY_FILE_NAME
+ cat /build/IN/$RES_AWS_PEM/integration.json  | jq -r '.key' > $KEY_FILE_NAME
  chmod 600 $KEY_FILE_NAME
  echo "Completed Extracting AWS PEM"
  echo "-----------------------------------"

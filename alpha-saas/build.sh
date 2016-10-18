@@ -66,10 +66,11 @@ apply_changes() {
 
 main() {
   eval `ssh-agent -s`
-  #install_terraform
-  #create_pemfile
+  install_terraform
+  create_pemfile
   #destroy_changes
   #apply_changes
+  touch /build/IN/$REPO_RESOURCE_NAME/gitRepo/$TF_FOLDER/terraform.tfstate
 }
 
 main

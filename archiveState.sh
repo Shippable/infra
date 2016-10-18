@@ -20,7 +20,7 @@ arch_statefile() {
       echo "no previous state file exists. adding tmp file"
       echo "-----------------------------------"
       #this is to guarantee folder existence
-      touch /build/state/$TF_FOLDER/tmp
+      mkdir -p /build/state/$TF_FOLDER && touch /build/state/$TF_FOLDER/tmp.txt
     fi
   fi
   popd

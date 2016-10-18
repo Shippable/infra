@@ -17,7 +17,10 @@ detectEnvChanges() {
   ls -al
   for env in $envs
   do
-    ls -al $env
+    if [ env!="/" ]; then
+      echo "changed env is $env"
+      ls -al $env
+    fi
   done
   popd
 }

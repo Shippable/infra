@@ -60,7 +60,7 @@ resource "aws_security_group" "sg_private_ship_install" {
 }
 
 # instance CS-1
-resource "aws_instance" "in_cs_1" {
+resource "aws_instance" "cs_1" {
   ami = "${var.ami_us_east_1_ubuntu1404}"
   availability_zone = "${var.avl-zone}"
   instance_type = "${var.in_type_core}"
@@ -82,7 +82,7 @@ resource "aws_instance" "in_cs_1" {
 }
 
 # instance CS-2
-resource "aws_instance" "in_cs_2" {
+resource "aws_instance" "cs_2" {
   ami = "${var.ami_us_east_1_ubuntu1404}"
   availability_zone = "${var.avl-zone}"
   instance_type = "${var.in_type_core}"
@@ -104,7 +104,7 @@ resource "aws_instance" "in_cs_2" {
 }
 
 # instance MS-1
-resource "aws_instance" "in_ms_1" {
+resource "aws_instance" "ms_1" {
   ami = "${var.ami_us_east_1_ubuntu1404}"
   availability_zone = "${var.avl-zone}"
   instance_type = "${var.in_type_core}"
@@ -126,7 +126,7 @@ resource "aws_instance" "in_ms_1" {
 }
 
 # instance MS-2
-resource "aws_instance" "in_ms_2" {
+resource "aws_instance" "ims_2" {
   ami = "${var.ami_us_east_1_ubuntu1404}"
   availability_zone = "${var.avl-zone}"
   instance_type = "${var.in_type_core}"

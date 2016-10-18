@@ -69,7 +69,6 @@ main() {
   install_terraform
   create_pemfile
   #destroy_changes
-  rm /build/IN/$REPO_RESOURCE_NAME/gitRepo/$TF_FOLDER/terraform.tfstate
   apply_changes
 }
 

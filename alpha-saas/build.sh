@@ -68,7 +68,8 @@ main() {
   eval `ssh-agent -s`
   install_terraform
   create_pemfile
-  destroy_changes
+  #destroy_changes
+  rm-rf /build/IN/$REPO_RESOURCE_NAME/gitRepo/$TF_FOLDER/terraform.*
   #apply_changes
 }
 

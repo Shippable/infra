@@ -81,8 +81,8 @@ resource "aws_elb" "lb_www" {
   }
 
   instances = [
-    "${aws_instance.in_ms_1.id}",
-    "${aws_instance.in_ms_2.id}",
+    "${aws_instance.ms_1.id}",
+    "${aws_instance.ms_2.id}",
   ]
 }
 
@@ -112,8 +112,8 @@ resource "aws_elb" "lb_api" {
   }
 
   instances = [
-    "${aws_instance.in_ms_1.id}",
-    "${aws_instance.in_ms_2.id}",
+    "${aws_instance.ms_1.id}",
+    "${aws_instance.ms_2.id}",
   ]
 }
 
@@ -161,5 +161,5 @@ resource "aws_elb" "lb_msg" {
   }
 
   instances = [
-    "${aws_instance.in_cs_2.id}"]
+    "${aws_instance.cs_2.id}"]
 }

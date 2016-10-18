@@ -77,7 +77,7 @@ resource "aws_instance" "cs_1" {
   }
 
   tags = {
-    Name = "in_cs_1"
+    Name = "cs_1"
   }
 }
 
@@ -99,7 +99,7 @@ resource "aws_instance" "cs_2" {
   }
 
   tags = {
-    Name = "in_cs_2"
+    Name = "cs_2"
   }
 }
 
@@ -121,12 +121,12 @@ resource "aws_instance" "ms_1" {
   }
 
   tags = {
-    Name = "in_ms_1"
+    Name = "ms_1"
   }
 }
 
 # instance MS-2
-resource "aws_instance" "ims_2" {
+resource "aws_instance" "ms_2" {
   ami = "${var.ami_us_east_1_ubuntu1404}"
   availability_zone = "${var.avl-zone}"
   instance_type = "${var.in_type_core}"
@@ -143,6 +143,6 @@ resource "aws_instance" "ims_2" {
   }
 
   tags = {
-    Name = "in_ms_2"
+    Name = "ms_2"
   }
 }

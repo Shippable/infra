@@ -69,7 +69,7 @@ main() {
   install_terraform
   create_pemfile
   #destroy_changes
-  rm-rf /build/IN/$REPO_RESOURCE_NAME/gitRepo/$TF_FOLDER/terraform.*
+  rm /build/IN/$REPO_RESOURCE_NAME/gitRepo/$TF_FOLDER/terraform.*
   #apply_changes
 }
 

@@ -39,20 +39,6 @@ resource "aws_security_group" "sg_private_ship_install" {
       "${var.cidr_public_ship}"]
   }
   ingress {
-    from_port = "27017"
-    to_port = "27017"
-    protocol = "tcp"
-    cidr_blocks = [
-      "${var.cidr_public_ship}"]
-  }
-  ingress {
-    from_port = "5432"
-    to_port = "5432"
-    protocol = "tcp"
-    cidr_blocks = [
-      "${var.cidr_public_ship}"]
-  }
-  ingress {
     from_port = "80"
     to_port = "80"
     protocol = "tcp"

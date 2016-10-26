@@ -90,13 +90,11 @@ ENV/
 
 .idea
 .DS_Store
-*.log
 *.swp
 *.swo
 
 *.pem
 terraform.*
-local-alpha-setup.sh
-local-rc-setup.sh
+local-*-setup.sh
 tmpEcs*.config
 tmpTEcs*.config

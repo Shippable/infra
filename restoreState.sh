@@ -22,6 +22,7 @@ main() {
   arch_statefile alpha-server
   arch_statefile rc-saas
   arch_statefile rc-server
+  arch_statefile prod-saas
 }
 
 main

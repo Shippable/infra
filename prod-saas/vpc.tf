@@ -47,67 +47,60 @@
 ////  route_table_id = "${aws_route_table.rt_ship_install.id}"
 ////}
 //
-//#========================== NAT =============================
-//
-//# NAT SG
-//resource "aws_security_group" "sg_public_nat" {
-//  name = "sg_public_nat_${var.install_version}"
-//  description = "Allow traffic to pass from the private subnet to the internet"
-//
-//  ingress {
-//    from_port = 0
-//    to_port = 0
-//    protocol = "-1"
-//    cidr_blocks = [
-//      "${var.cidr_private_ship_install}"
-//    ]
-//  }
-//
-//  ingress {
-//    from_port = 22
-//    to_port = 22
-//    protocol = "tcp"
-//    cidr_blocks = [
-//      "0.0.0.0/0"]
-//  }
-//  ingress {
-//    from_port = -1
-//    to_port = -1
-//    protocol = "icmp"
-//    cidr_blocks = [
-//      "0.0.0.0/0"]
-//  }
-//
-//  egress {
-//    from_port = 22
-//    to_port = 22
-//    protocol = "tcp"
-//    cidr_blocks = [
-//      "${var.cidr_block}"]
-//  }
-//  egress {
-//    from_port = 0
-//    to_port = 0
-//    protocol = "-1"
-//    cidr_blocks = [
-//      "0.0.0.0/0"]
-//  }
-//
-//  vpc_id = "${var.vpc_id}"
-//
-//  tags {
-//    Name = "sg_public_nat_${var.install_version}"
-//  }
-//}
-//
-////this is a hack to get around double interpolation issues
-////We need this in provisioner file block down below
-//resource "null_resource" "pemfile" {
-//  triggers {
-//    fileName = "${var.aws_key_filename}"
-//  }
-//}
-//
+#========================== NAT =============================
+
+# NAT SG
+resource "aws_security_group" "sg_public_nat" {
+  name = "sg_public_nat_${var.install_version}"
+  description = "Allow traffic to pass from the private subnet to the internet"
+
+  ingress {
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+    cidr_blocks = [
+      "${var.cidr_private_ship_install}"
+    ]
+  }
+
+  ingress {
+    from_port = 22
+    to_port = 22
+    protocol = "tcp"
+    cidr_blocks = [
+      "0.0.0.0/0"]
+  }
+
+  egress {
+    from_port = 22
+    to_port = 22
+    protocol = "tcp"
+    cidr_blocks = [
+      "${var.cidr_block}"]
+  }
+  egress {
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+    cidr_blocks = [
+      "0.0.0.0/0"]
+  }
+
+  vpc_id = "${var.vpc_id}"
+
+  tags {
+    Name = "sg_public_nat_${var.install_version}"
+  }
+}
+
+//this is a hack to get around double interpolation issues
+//We need this in provisioner file block down below
+resource "null_resource" "pemfile" {
+  triggers {
+    fileName = "${var.aws_key_filename}"
+  }
+}
+
 //# NAT Server
 //resource "aws_instance" "nat" {
 //  ami = "${var.ami_us_east_1_nat}"

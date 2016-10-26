@@ -93,7 +93,7 @@ resource "aws_instance" "rp" {
 
   provisioner "remote-exec" {
     inline = [
-      "chmod +x setupNGINX.sh && sudo ./setupNGINX.sh"
+      "sudo su root && . setupNGINX.sh"
     ]
 
     connection {

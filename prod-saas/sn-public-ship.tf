@@ -5,6 +5,13 @@ resource "aws_security_group" "sg_public_lb" {
   vpc_id = "${var.vpc_id}"
 
   ingress {
+    from_port = 22
+    to_port = 22
+    protocol = "tcp"
+    cidr_blocks = [
+      "0.0.0.0/0"]
+  }
+  ingress {
     from_port = 80
     to_port = 80
     protocol = "tcp"
@@ -209,4 +216,10 @@ resource "aws_instance" "rp" {
   tags = {
     Name = "rp_${var.install_version}"
   }
+}
+
+# Associate EIP, without this private TF remote wont work
+resource "aws_eip" "rp_eip" {
+  instance = "${aws_instance.rp.id}"
+  vpc = true
 }

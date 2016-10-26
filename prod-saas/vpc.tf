@@ -64,6 +64,15 @@ resource "aws_security_group" "sg_public_nat" {
   }
 
   ingress {
+    from_port = 80
+    to_port = 80
+    protocol = "http"
+    cidr_blocks = [
+      "${var.cidr_public_ship}"
+    ]
+  }
+
+  ingress {
     from_port = 22
     to_port = 22
     protocol = "tcp"

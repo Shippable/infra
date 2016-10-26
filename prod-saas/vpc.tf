@@ -1,26 +1,26 @@
 #========================== VPC  =============================
 
 # Internet gateway for the public subnet
-resource "aws_internet_gateway" "ig" {
-  vpc_id = "${var.vpc_id}"
-  tags {
-    Name = "ig_${var.install_version}"
-  }
-}
+//resource "aws_internet_gateway" "ig" {
+//  vpc_id = "${var.vpc_id}"
+//  tags {
+//    Name = "ig_${var.install_version}"
+//  }
+//}
 
 #========================== 0.0 Subnet =============================
 
 # Routing table for public subnet
-resource "aws_route_table" "rt_public" {
-  vpc_id = "${var.vpc_id}"
-  route {
-    cidr_block = "0.0.0.0/0"
-    gateway_id = "${aws_internet_gateway.ig.id}"
-  }
-  tags {
-    Name = "rt-public_${var.install_version}"
-  }
-}
+//resource "aws_route_table" "rt_public" {
+//  vpc_id = "${var.vpc_id}"
+//  route {
+//    cidr_block = "0.0.0.0/0"
+//    gateway_id = "${aws_internet_gateway.ig.id}"
+//  }
+//  tags {
+//    Name = "rt-public_${var.install_version}"
+//  }
+//}
 
 //# Associate the routing table to public subnet
 //resource "aws_route_table_association" "rt_assn_public" {

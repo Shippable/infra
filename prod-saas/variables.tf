@@ -76,6 +76,12 @@ variable "cidr_private_ship_install" {
   default = "20.0.10.0/24"
 }
 
+variable "in_type_rp" {
+  //make sure it is compatible with AMI, not all AMIs allow all instance types "
+  default = "t2.small"
+  description = "AWS Instance type for Reverse Proxy server"
+}
+
 variable "in_type_core" {
   //make sure it is compatible with AMI, not all AMIs allow all instance types "
   default = "t2.medium"

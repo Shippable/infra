@@ -171,3 +171,42 @@ resource "aws_elb" "lb_msg" {
   instances = [
     "${var.in_msg_id}"]
 }
+
+//this is a hack to get around double interpolation issues
+//We need this in provisioner file block down below
+resource "null_resource" "pemfile" {
+  triggers {
+    fileName = "${var.aws_key_filename}"
+  }
+}
+
+# RP Server
+resource "aws_instance" "rp" {
+  ami = "${var.ami_us_east_1_ubuntu1404}"
+  availability_zone = "${var.avl-zone}"
+  instance_type = "${var.in_type_rp}"
+  key_name = "${var.aws_key_name}"
+
+  subnet_id = "${var.sn_public_ship_id}"
+  vpc_security_group_ids = [
+    "${aws_security_group.sg_public_lb.id}"]
+
+  provisioner "file" {
+    source = "${var.aws_key_filename}"
+    destination = "~/.ssh/${var.aws_key_filename}"
+
+    connection {
+      type = "ssh"
+      user = "ubuntu"
+      private_key = "${file(null_resource.pemfile.triggers.fileName)}"
+      agent = true
+    }
+  }
+
+  associate_public_ip_address = true
+  source_dest_check = false
+
+  tags = {
+    Name = "rp_${var.install_version}"
+  }
+}

@@ -55,7 +55,7 @@ variable "sn_ship_install_id" {
 }
 
 variable "in_msg_id" {
-  description = "Prod NAT Instance ID"
+  description = "Prod MSGBus Instance ID"
   default = "i-a380068e"
 }
 

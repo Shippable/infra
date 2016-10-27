@@ -8,7 +8,9 @@ resource "aws_security_group" "sg_private_ship_builds" {
     to_port = "22"
     protocol = "tcp"
     cidr_blocks = [
-      "${var.cidr_public_ship}"]
+      "${var.cidr_public_ship}",
+      "${var.cidr_private_ship_install}"
+      ]
   }
 
   egress {

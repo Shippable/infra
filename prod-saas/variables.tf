@@ -94,6 +94,12 @@ variable "in_type_nat" {
   description = "AWS Instance type for NAT server"
 }
 
+variable "in_type_db" {
+  //make sure it is compatible with AMI, not all AMIs allow all instance types "
+  default = "m4.2xlarge"
+  description = "AWS Instance type for postgres database"
+}
+
 variable "ami_us_east_1_ubuntu1404"{
   default = "ami-2d39803a"
   description = "AWS AMI for us-east-1 Ubuntu 14.04"

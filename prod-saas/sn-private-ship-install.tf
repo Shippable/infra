@@ -220,3 +220,25 @@ resource "aws_instance" "ms_6" {
     Name = "ms_6_${var.install_version}"
   }
 }
+
+# tempPG
+resource "aws_instance" "tempPG" {
+  ami = "${var.ami_us_east_1_ubuntu1404}"
+  availability_zone = "${var.avl-zone}"
+  instance_type = "${var.in_type_db}"
+  key_name = "${var.aws_key_name}"
+  subnet_id = "${var.sn_ship_install_id}"
+
+  vpc_security_group_ids = [
+    "${aws_security_group.sg_private_ship_install.id}"]
+
+  root_block_device {
+    volume_type = "gp2"
+    volume_size = 500
+    delete_on_termination = true
+  }
+
+  tags = {
+    Name = "testPG_${var.install_version}"
+  }
+}

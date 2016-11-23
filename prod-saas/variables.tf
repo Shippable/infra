@@ -78,7 +78,7 @@ variable "cidr_private_ship_install" {
 
 variable "cidr_private_ship_ecs" {
   description = "Private 0.200 block for old shippable ecs"
-  default = "20.0.200.0/24"
+  default = "20.0.150.0/24"
 }
 
 variable "in_type_rp" {

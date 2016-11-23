@@ -214,7 +214,7 @@ resource "aws_elb" "lb_api" {
     unhealthy_threshold = 5
     timeout = 10
     target = "HTTP:50000/"
-    interval = 5
+    interval = 2
   }
 
   instances = [

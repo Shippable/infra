@@ -8,7 +8,9 @@ resource "aws_security_group" "sg_private_ship_builds" {
     to_port = "22"
     protocol = "tcp"
     cidr_blocks = [
-      "${var.cidr_public_ship}"]
+      "${var.cidr_public_ship}",
+      "${var.cidr_private_ship_install}"
+      ]
   }
 
   egress {
@@ -25,7 +27,7 @@ resource "aws_security_group" "sg_private_ship_builds" {
 }
 
 resource "aws_instance" "bld_hosts" {
-  count = 0
+  count = 1
   ami = "${var.ami_us_east_1_ubuntu1404}"
   availability_zone = "${var.avl-zone}"
   instance_type = "${var.in_type_core}"

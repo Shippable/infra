@@ -88,6 +88,12 @@ variable "in_type_core" {
   description = "AWS Instance type for Core server"
 }
 
+variable "in_type_ms" {
+  //make sure it is compatible with AMI, not all AMIs allow all instance types "
+  default = "m4.large"
+  description = "AWS Instance type for Core server"
+}
+
 variable "in_type_nat" {
   //make sure it is compatible with AMI, not all AMIs allow all instance types "
   default = "t2.medium"

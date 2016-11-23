@@ -93,7 +93,7 @@ resource "aws_instance" "cs_1" {
 resource "aws_instance" "ms_1" {
   ami = "${var.ami_us_east_1_ubuntu1404}"
   availability_zone = "${var.avl-zone}"
-  instance_type = "${var.in_type_core}"
+  instance_type = "${var.in_type_ms}"
   key_name = "${var.aws_key_name}"
   subnet_id = "${var.sn_ship_install_id}"
 
@@ -115,7 +115,7 @@ resource "aws_instance" "ms_1" {
 resource "aws_instance" "ms_2" {
   ami = "${var.ami_us_east_1_ubuntu1404}"
   availability_zone = "${var.avl-zone}"
-  instance_type = "${var.in_type_core}"
+  instance_type = "${var.in_type_ms}"
   key_name = "${var.aws_key_name}"
   subnet_id = "${var.sn_ship_install_id}"
 
@@ -137,7 +137,7 @@ resource "aws_instance" "ms_2" {
 resource "aws_instance" "ms_3" {
   ami = "${var.ami_us_east_1_ubuntu1404}"
   availability_zone = "${var.avl-zone}"
-  instance_type = "${var.in_type_core}"
+  instance_type = "${var.in_type_ms}"
   key_name = "${var.aws_key_name}"
   subnet_id = "${var.sn_ship_install_id}"
 
@@ -159,7 +159,7 @@ resource "aws_instance" "ms_3" {
 resource "aws_instance" "ms_4" {
   ami = "${var.ami_us_east_1_ubuntu1404}"
   availability_zone = "${var.avl-zone}"
-  instance_type = "${var.in_type_core}"
+  instance_type = "${var.in_type_ms}"
   key_name = "${var.aws_key_name}"
   subnet_id = "${var.sn_ship_install_id}"
 
@@ -181,7 +181,7 @@ resource "aws_instance" "ms_4" {
 resource "aws_instance" "ms_5" {
   ami = "${var.ami_us_east_1_ubuntu1404}"
   availability_zone = "${var.avl-zone}"
-  instance_type = "${var.in_type_core}"
+  instance_type = "${var.in_type_ms}"
   key_name = "${var.aws_key_name}"
   subnet_id = "${var.sn_ship_install_id}"
 
@@ -203,7 +203,7 @@ resource "aws_instance" "ms_5" {
 resource "aws_instance" "ms_6" {
   ami = "${var.ami_us_east_1_ubuntu1404}"
   availability_zone = "${var.avl-zone}"
-  instance_type = "${var.in_type_core}"
+  instance_type = "${var.in_type_ms}"
   key_name = "${var.aws_key_name}"
   subnet_id = "${var.sn_ship_install_id}"
 
@@ -218,27 +218,5 @@ resource "aws_instance" "ms_6" {
 
   tags = {
     Name = "ms_6_${var.install_version}"
-  }
-}
-
-# tempPG
-resource "aws_instance" "tempPG" {
-  ami = "${var.ami_us_east_1_ubuntu1404}"
-  availability_zone = "${var.avl-zone}"
-  instance_type = "${var.in_type_db}"
-  key_name = "${var.aws_key_name}"
-  subnet_id = "${var.sn_ship_install_id}"
-
-  vpc_security_group_ids = [
-    "${aws_security_group.sg_private_ship_install.id}"]
-
-  root_block_device {
-    volume_type = "gp2"
-    volume_size = 500
-    delete_on_termination = true
-  }
-
-  tags = {
-    Name = "testPG_${var.install_version}"
   }
 }

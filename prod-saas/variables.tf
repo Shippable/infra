@@ -76,6 +76,11 @@ variable "cidr_private_ship_install" {
   default = "20.0.10.0/24"
 }
 
+variable "cidr_private_ship_ecs" {
+  description = "Private 0.200 block for old shippable ecs"
+  default = "20.0.200.0/24"
+}
+
 variable "in_type_rp" {
   //make sure it is compatible with AMI, not all AMIs allow all instance types "
   default = "t2.small"

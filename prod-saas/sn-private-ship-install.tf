@@ -96,6 +96,7 @@ resource "aws_instance" "ms_1" {
   instance_type = "${var.in_type_ms}"
   key_name = "${var.aws_key_name}"
   subnet_id = "${var.sn_ship_install_id}"
+  ebs_optimized = true
 
   vpc_security_group_ids = [
     "${aws_security_group.sg_private_ship_install.id}"]
@@ -118,6 +119,7 @@ resource "aws_instance" "ms_2" {
   instance_type = "${var.in_type_ms}"
   key_name = "${var.aws_key_name}"
   subnet_id = "${var.sn_ship_install_id}"
+  ebs_optimized = true
 
   vpc_security_group_ids = [
     "${aws_security_group.sg_private_ship_install.id}"]
@@ -140,6 +142,7 @@ resource "aws_instance" "ms_3" {
   instance_type = "${var.in_type_ms}"
   key_name = "${var.aws_key_name}"
   subnet_id = "${var.sn_ship_install_id}"
+  ebs_optimized = true
 
   vpc_security_group_ids = [
     "${aws_security_group.sg_private_ship_install.id}"]
@@ -162,6 +165,7 @@ resource "aws_instance" "ms_4" {
   instance_type = "${var.in_type_ms}"
   key_name = "${var.aws_key_name}"
   subnet_id = "${var.sn_ship_install_id}"
+  ebs_optimized = true
 
   vpc_security_group_ids = [
     "${aws_security_group.sg_private_ship_install.id}"]
@@ -184,6 +188,7 @@ resource "aws_instance" "ms_5" {
   instance_type = "${var.in_type_ms}"
   key_name = "${var.aws_key_name}"
   subnet_id = "${var.sn_ship_install_id}"
+  ebs_optimized = true
 
   vpc_security_group_ids = [
     "${aws_security_group.sg_private_ship_install.id}"]
@@ -206,6 +211,7 @@ resource "aws_instance" "ms_6" {
   instance_type = "${var.in_type_ms}"
   key_name = "${var.aws_key_name}"
   subnet_id = "${var.sn_ship_install_id}"
+  ebs_optimized = true
 
   vpc_security_group_ids = [
     "${aws_security_group.sg_private_ship_install.id}"]

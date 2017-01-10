@@ -80,10 +80,10 @@ resource "aws_elb" "lb_www" {
     interval = 30
   }
 
-  instances = [
-    "${aws_instance.ms_1.id}",
-    "${aws_instance.ms_2.id}",
-  ]
+#  instances = [
+#    "${aws_instance.ms_1.id}",
+#    "${aws_instance.ms_2.id}",
+#  ]
 }
 
 //# API Load balancer
@@ -111,10 +111,10 @@ resource "aws_elb" "lb_api" {
     interval = 30
   }
 
-  instances = [
-    "${aws_instance.ms_1.id}",
-    "${aws_instance.ms_2.id}",
-  ]
+#  instances = [
+#    "${aws_instance.ms_1.id}",
+#    "${aws_instance.ms_2.id}",
+#  ]
 }
 
 # MSG Load balancer

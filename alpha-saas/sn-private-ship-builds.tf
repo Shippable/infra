@@ -27,7 +27,7 @@ resource "aws_security_group" "sg_private_ship_builds" {
 }
 
 resource "aws_instance" "bld_hosts" {
-  count = 0
+  count = 2
   ami = "${var.ami_us_east_1_ubuntu1404}"
   availability_zone = "${var.avl-zone}"
   instance_type = "${var.in_type_core}"
@@ -39,7 +39,7 @@ resource "aws_instance" "bld_hosts" {
 
   root_block_device {
     volume_type = "gp2"
-    volume_size = 30
+    volume_size = 60
     delete_on_termination = true
   }
 

@@ -188,11 +188,7 @@ resource "aws_elb" "lb_app" {
     "${aws_instance.ms_3.id}",
     "${aws_instance.ms_4.id}",
     "${aws_instance.ms_5.id}",
-    "${aws_instance.ms_6.id}",
-    "${aws_instance.ms_7.id}",
-    "${aws_instance.ms_8.id}",
-    "${aws_instance.ms_9.id}",
-    "${aws_instance.ms_10.id}"
+    "${aws_instance.ms_6.id}"
   ]
 }
 
@@ -227,11 +223,7 @@ resource "aws_elb" "lb_api" {
     "${aws_instance.ms_3.id}",
     "${aws_instance.ms_4.id}",
     "${aws_instance.ms_5.id}",
-    "${aws_instance.ms_6.id}",
-    "${aws_instance.ms_7.id}",
-    "${aws_instance.ms_8.id}",
-    "${aws_instance.ms_9.id}",
-    "${aws_instance.ms_10.id}"
+    "${aws_instance.ms_6.id}"
   ]
 }
 

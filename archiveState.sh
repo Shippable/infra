@@ -12,11 +12,11 @@ arch_statefile() {
     echo "-----------------------------------"
     cp -vr terraform.tfstate /build/state/$TF_FOLDER/
   else
-    local previous_statefile_location="/build/previousState/$TF_FOLDER/terraform.tfstate"
+    local previous_statefile_location="$JOB_PREVIOUS_STATE/$TF_FOLDER/terraform.tfstate"
     if [ -f "$previous_statefile_location" ]; then
       echo "previous state file exists, copying"
       echo "-----------------------------------"
-      cp -vr previousState/$TF_FOLDER/terraform.tfstate /build/state/$TF_FOLDER/
+      cp -vr previous_statefile_location /build/state/$TF_FOLDER/
     else
       echo "no previous state file exists. adding tmp file"
       echo "-----------------------------------"

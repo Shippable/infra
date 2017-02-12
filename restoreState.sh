@@ -6,11 +6,11 @@ arch_statefile() {
   TF_FOLDER=$1
   echo "Copying previous state file"
   echo "-----------------------------------"
-  local previous_statefile_location="/build/previousState/$TF_FOLDER/terraform.tfstate"
+  local previous_statefile_location="$JOB_PREVIOUS_STATE/$TF_FOLDER/terraform.tfstate"
   if [ -f "$previous_statefile_location" ]; then
     echo "statefile exists, copying"
     echo "-----------------------------------"
-    cp -vr /build/previousState/$TF_FOLDER/terraform.tfstate /build/IN/$REPO_RESOURCE_NAME/gitRepo/$TF_FOLDER
+    cp -vr previous_statefile_location /build/IN/$REPO_RESOURCE_NAME/gitRepo/$TF_FOLDER
   else
     echo "no previous statefile exists"
     echo "-----------------------------------"

@@ -10,7 +10,7 @@ arch_statefile() {
   if [ -f "$previous_statefile_location" ]; then
     echo "statefile exists, copying"
     echo "-----------------------------------"
-    cp -vr previous_statefile_location /build/IN/$REPO_RESOURCE_NAME/gitRepo/$TF_FOLDER
+    cp -vr $previous_statefile_location /build/IN/$REPO_RESOURCE_NAME/gitRepo/$TF_FOLDER
   else
     echo "no previous statefile exists"
     echo "-----------------------------------"

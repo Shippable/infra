@@ -20,7 +20,7 @@ arch_statefile() {
     if [ -f "$previous_statefile_location" ]; then
       echo "previous state file exists, copying"
       echo "-----------------------------------"
-      cp -vr previous_statefile_location /build/state/$TF_FOLDER/
+      cp -vr $previous_statefile_location /build/state/$TF_FOLDER/
     else
       echo "no previous state file exists. adding tmp file"
       echo "-----------------------------------"

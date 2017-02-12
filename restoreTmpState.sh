@@ -8,7 +8,16 @@ arch_statefile() {
   TF_FOLDER=$1
   echo "Copying previous state file"
   echo "-----------------------------------"
+
+  ls -al $RES_TMP_ST_STATE/$TF_FOLDER
+
+  #cat "$RES_TMP_ST_STATE/$TF_FOLDER/terraform.tfstate"
+
+  mkdir -p /build/state/$TF_FOLDER
+
   cp -vr "$RES_TMP_ST_STATE/$TF_FOLDER/terraform.tfstate" /build/state/$TF_FOLDER
+
+  ls -al /build/state/$TF_FOLDER
 }
 
 main() {

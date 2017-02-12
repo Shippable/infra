@@ -15,7 +15,6 @@ arch_statefile() {
     echo "-----------------------------------"
     cp -vr terraform.tfstate /build/state/$TF_FOLDER/
   else
-    ls -al $JOB_PREVIOUS_STATE/$TF_FOLDER
     local previous_statefile_location="$JOB_PREVIOUS_STATE/$TF_FOLDER/terraform.tfstate"
     if [ -f "$previous_statefile_location" ]; then
       echo "previous state file exists, copying"

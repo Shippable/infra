@@ -1,6 +1,8 @@
 #!/bin/bash -e
 
-export REPO_RESOURCE_NAME="infra_repo"
+export RES_REPO="infra_repo"
+export RES_REPO_UP=$(echo $RES_REPO | awk '{print toupper($0)}')
+export RES_REPO_STATE=$(eval echo "$"$RES_REPO_UP"_STATE") #loc of git repo clone
 
 arch_statefile() {
   TF_FOLDER=$1
@@ -10,7 +12,7 @@ arch_statefile() {
   if [ -f "$previous_statefile_location" ]; then
     echo "statefile exists, copying"
     echo "-----------------------------------"
-    cp -vr $previous_statefile_location /build/IN/$REPO_RESOURCE_NAME/gitRepo/$TF_FOLDER
+    cp -vr $previous_statefile_location "$RES_REPO_STATE/$TF_FOLDER"
   else
     echo "no previous statefile exists"
     echo "-----------------------------------"

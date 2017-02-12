@@ -8,7 +8,7 @@ export RES_REPO_META=$(eval echo "$"$RES_REPO_UP"_META") #loc of git repo clone
 
 detectEnvChanges() {
   echo "Getting commit range for current change set for repo" $REPO_RESOURCE_NAME
-  export COMMIT_RANGE=$(cat $RES_REPO_STATE/version.json | jq -r \
+  export COMMIT_RANGE=$(cat $RES_REPO_META/version.json | jq -r \
   '.version.propertyBag.shaData.beforeCommitSha + ".."+ .version.propertyBag.shaData.commitSha')
   echo "Commit Range is" $COMMIT_RANGE
 

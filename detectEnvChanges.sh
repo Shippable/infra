@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-export REPO_RESOURCE_NAME="infra-repo"
+export REPO_RESOURCE_NAME="infra_repo"
 
 detectEnvChanges() {
   echo "Getting commit range for current change set for repo" $REPO_RESOURCE_NAME

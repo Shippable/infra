@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-export REPO_RESOURCE_NAME="infra-repo"
+export REPO_RESOURCE_NAME="infra_repo"
 
 arch_statefile() {
   TF_FOLDER=$1

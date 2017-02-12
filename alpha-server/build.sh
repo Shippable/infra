@@ -2,7 +2,7 @@
 
 export TF_INSALL_LOCATION=/opt
 export TF_VERSION=0.7.7
-export REPO_RESOURCE_NAME="infra-repo"
+export REPO_RESOURCE_NAME="infra_repo"
 export RES_AWS_CREDS="aws-alpha-access"
 export RES_AWS_PEM="aws-alpha-pem"
 export KEY_FILE_NAME="alpha-us-east-1.pem"

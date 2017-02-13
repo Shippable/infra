@@ -11,7 +11,6 @@ export RES_REPO="infra_repo"
 export RES_AWS_CREDS=$PROV_CONTEXT"_aws_access"
 export RES_AWS_PEM=$PROV_CONTEXT"_aws_pem"
 export KEY_FILE_NAME=$PROV_CONTEXT"-us-east-1.pem"
-export TMP_STATE_LOC="infra_prov"
 
 export RES_REPO_UP=$(echo $RES_REPO | awk '{print toupper($0)}')
 export RES_REPO_STATE=$(eval echo "$"$RES_REPO_UP"_STATE")
@@ -22,9 +21,6 @@ export RES_AWS_PEM_META=$(eval echo "$"$RES_AWS_PEM_UP"_META")
 export RES_AWS_CREDS_UP=$(echo $RES_AWS_CREDS | awk '{print toupper($0)}')
 export RES_AWS_CREDS_META=$(eval echo "$"$RES_AWS_CREDS_UP"_META")
 
-export TMP_STATE_LOC_UP=$(echo $TMP_STATE_LOC | awk '{print toupper($0)}')
-export TMP_STATE_LOC_STATE=$(eval echo "$"$TMP_STATE_LOC_UP"_STATE")
-
 test_context() {
   echo "PROV_CONTEXT=$PROV_CONTEXT"
   echo "PROV_ENV=$PROV_ENV"
@@ -33,7 +29,6 @@ test_context() {
   echo "RES_AWS_PEM=$RES_AWS_PEM"
   echo "KEY_FILE_NAME=$KEY_FILE_NAME"
   echo "TF_FOLDER=$TF_FOLDER"
-  echo "TMP_STATE_LOC=$TMP_STATE_LOC"
 
   echo "RES_REPO_UP=$RES_REPO_UP"
   echo "RES_REPO_STATE=$RES_REPO_STATE"
@@ -41,13 +36,6 @@ test_context() {
   echo "RES_AWS_PEM_META=$RES_AWS_PEM_META"
   echo "RES_AWS_CREDS_UP=$RES_AWS_CREDS_UP"
   echo "RES_AWS_CREDS_META=$RES_AWS_CREDS_META"
-  echo "TMP_STATE_LOC_UP=$TMP_STATE_LOC_UP"
-  echo "TMP_STATE_LOC_STATE=$TMP_STATE_LOC_STATE"
-}
-
-tmp_restore_state(){
-  pushd "$TMP_STATE_LOC_STATE/$TF_FOLDER"
-  cp -vr terraform.tfstate "$RES_REPO_STATE/$TF_FOLDER"
 }
 
 restore_state(){
@@ -124,7 +112,6 @@ apply_changes() {
 main() {
   eval `ssh-agent -s`
   test_context
-  tmp_restore_state
   restore_state
   install_terraform
   create_pemfile

@@ -46,7 +46,7 @@ test_context() {
 }
 
 tmp_restore_state(){
-  pushd "TMP_STATE_LOC_STATE/$TF_FOLDER"
+  pushd "$TMP_STATE_LOC_STATE/$TF_FOLDER"
   cp -vr terraform.tfstate "$RES_REPO_STATE/$TF_FOLDER"
 }
 

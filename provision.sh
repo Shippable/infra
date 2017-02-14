@@ -8,7 +8,7 @@ export PROV_ENV=$2
 export TF_FOLDER="$PROV_CONTEXT-$PROV_ENV"
 
 export RES_REPO="infra_repo"
-export RES_AWS_CREDS=$PROV_CONTEXT"_aws_access"
+export RES_AWS_CREDS="aws_"$PROV_CONTEXT"_access"
 export RES_AWS_PEM="aws_"$PROV_CONTEXT"_pem"
 export KEY_FILE_NAME=$PROV_CONTEXT"-us-east-1.pem"
 

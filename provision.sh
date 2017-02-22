@@ -115,8 +115,8 @@ main() {
   restore_state
   install_terraform
   create_pemfile
-  #destroy_changes
-  apply_changes
+  destroy_changes
+  #apply_changes
 }
 
 main

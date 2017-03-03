@@ -55,6 +55,37 @@ resource "aws_security_group" "sg_public_lb" {
 
 # ========================Load Balancers=======================
 
+# MKTG Load balancer
+resource "aws_elb" "lb_mktg" {
+  name = "lb-mktg-${var.install_version}"
+  connection_draining = true
+  subnets = [
+    "${aws_subnet.sn_public.id}"]
+  security_groups = [
+    "${aws_security_group.sg_public_lb.id}"]
+
+  listener {
+    lb_port = 443
+    lb_protocol = "ssl"
+    instance_port = 50002
+    instance_protocol = "tcp"
+    ssl_certificate_id = "${var.acm_cert_arn}"
+  }
+
+  health_check {
+    healthy_threshold = 2
+    unhealthy_threshold = 2
+    timeout = 10
+    target = "HTTP:50002/"
+    interval = 30
+  }
+
+  instances = [
+    "${aws_instance.ms_3.id}",
+    "${aws_instance.ms_4.id}",
+  ]
+}
+
 # WWW Load balancer
 resource "aws_elb" "lb_www" {
   name = "lb-www-${var.install_version}"

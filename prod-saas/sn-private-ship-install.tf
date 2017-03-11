@@ -25,6 +25,13 @@ resource "aws_security_group" "sg_private_ship_install" {
       "${var.cidr_public_ship}"]
   }
   ingress {
+    from_port = "50002"
+    to_port = "50002"
+    protocol = "tcp"
+    cidr_blocks = [
+      "${var.cidr_public_ship}"]
+  }
+  ingress {
     from_port = "5672"
     to_port = "5672"
     protocol = "tcp"
@@ -232,5 +239,167 @@ resource "aws_instance" "ms_6" {
 
   tags = {
     Name = "ms_6_${var.install_version}"
+  }
+}
+
+# Instances for Docker 1.13 rollout
+
+# instance CS-N-1
+resource "aws_instance" "cs_n_1" {
+  ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
+  availability_zone = "${var.avl-zone}"
+  instance_type = "${var.in_type_core}"
+  key_name = "${var.aws_key_name}"
+  subnet_id = "${var.sn_ship_install_id}"
+
+  vpc_security_group_ids = [
+    "${aws_security_group.sg_private_ship_install.id}"]
+
+  root_block_device {
+    volume_type = "gp2"
+    volume_size = 30
+    delete_on_termination = true
+  }
+
+  tags = {
+    Name = "cs_n_1_${var.install_version}"
+  }
+}
+
+# instance MS-N-1
+resource "aws_instance" "ms_n_1" {
+  ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
+  availability_zone = "${var.avl-zone}"
+  instance_type = "${var.in_type_ms}"
+  key_name = "${var.aws_key_name}"
+  subnet_id = "${var.sn_ship_install_id}"
+  ebs_optimized = true
+
+  vpc_security_group_ids = [
+    "${aws_security_group.sg_private_ship_install.id}"]
+
+  root_block_device {
+    volume_type = "gp2"
+    volume_size = 30
+    delete_on_termination = true
+  }
+
+  tags = {
+    Name = "ms_n_1_${var.install_version}"
+  }
+}
+
+# instance MS-N-2
+resource "aws_instance" "ms_n_2" {
+  ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
+  availability_zone = "${var.avl-zone}"
+  instance_type = "${var.in_type_ms}"
+  key_name = "${var.aws_key_name}"
+  subnet_id = "${var.sn_ship_install_id}"
+  ebs_optimized = true
+
+  vpc_security_group_ids = [
+    "${aws_security_group.sg_private_ship_install.id}"]
+
+  root_block_device {
+    volume_type = "gp2"
+    volume_size = 30
+    delete_on_termination = true
+  }
+
+  tags = {
+    Name = "ms_n_2_${var.install_version}"
+  }
+}
+
+# instance MS-N-3
+resource "aws_instance" "ms_n_3" {
+  ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
+  availability_zone = "${var.avl-zone}"
+  instance_type = "${var.in_type_ms}"
+  key_name = "${var.aws_key_name}"
+  subnet_id = "${var.sn_ship_install_id}"
+  ebs_optimized = true
+
+  vpc_security_group_ids = [
+    "${aws_security_group.sg_private_ship_install.id}"]
+
+  root_block_device {
+    volume_type = "gp2"
+    volume_size = 30
+    delete_on_termination = true
+  }
+
+  tags = {
+    Name = "ms_n_3_${var.install_version}"
+  }
+}
+
+# instance MS-N-4
+resource "aws_instance" "ms_n_4" {
+  ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
+  availability_zone = "${var.avl-zone}"
+  instance_type = "${var.in_type_ms}"
+  key_name = "${var.aws_key_name}"
+  subnet_id = "${var.sn_ship_install_id}"
+  ebs_optimized = true
+
+  vpc_security_group_ids = [
+    "${aws_security_group.sg_private_ship_install.id}"]
+
+  root_block_device {
+    volume_type = "gp2"
+    volume_size = 30
+    delete_on_termination = true
+  }
+
+  tags = {
+    Name = "ms_n_4_${var.install_version}"
+  }
+}
+
+# instance MS-N-5
+resource "aws_instance" "ms_n_5" {
+  ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
+  availability_zone = "${var.avl-zone}"
+  instance_type = "${var.in_type_ms}"
+  key_name = "${var.aws_key_name}"
+  subnet_id = "${var.sn_ship_install_id}"
+  ebs_optimized = true
+
+  vpc_security_group_ids = [
+    "${aws_security_group.sg_private_ship_install.id}"]
+
+  root_block_device {
+    volume_type = "gp2"
+    volume_size = 30
+    delete_on_termination = true
+  }
+
+  tags = {
+    Name = "ms_n_5_${var.install_version}"
+  }
+}
+
+# instance MS-N-6
+resource "aws_instance" "ms_n_6" {
+  ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
+  availability_zone = "${var.avl-zone}"
+  instance_type = "${var.in_type_ms}"
+  key_name = "${var.aws_key_name}"
+  subnet_id = "${var.sn_ship_install_id}"
+  ebs_optimized = true
+
+  vpc_security_group_ids = [
+    "${aws_security_group.sg_private_ship_install.id}"]
+
+  root_block_device {
+    volume_type = "gp2"
+    volume_size = 30
+    delete_on_termination = true
+  }
+
+  tags = {
+    Name = "ms_n_6_${var.install_version}"
   }
 }

@@ -1,8 +1,5 @@
 #!/bin/bash -e
 
-export TF_INSALL_LOCATION=/opt
-export TF_VERSION=0.7.7
-
 export PROV_CONTEXT=$1
 export PROV_ENV=$2
 export TF_FOLDER="$PROV_CONTEXT-$PROV_ENV"
@@ -54,26 +51,6 @@ restore_state(){
   popd
 }
 
-install_terraform() {
-  pushd $TF_INSALL_LOCATION
-  echo "Fetching terraform"
-  echo "-----------------------------------"
-
-  rm -rf $TF_INSALL_LOCATION/terraform
-  mkdir -p $TF_INSALL_LOCATION/terraform
-
-  wget -q https://releases.hashicorp.com/terraform/$TF_VERSION/terraform_"$TF_VERSION"_linux_386.zip
-  apt-get install unzip
-  unzip -o terraform_"$TF_VERSION"_linux_386.zip -d $TF_INSALL_LOCATION/terraform
-  export PATH=$PATH:$TF_INSALL_LOCATION/terraform
-  echo "downloaded terraform successfully"
-  echo "-----------------------------------"
-  
-  local tf_version=$(terraform version)
-  echo "Terraform version: $tf_version"
-  popd
-}
-
 create_pemfile() {
  pushd "$RES_REPO_STATE/$TF_FOLDER"
  echo "Extracting AWS PEM"
@@ -113,7 +90,6 @@ main() {
   eval `ssh-agent -s`
   test_context
   restore_state
-  install_terraform
   create_pemfile
   #destroy_changes
   apply_changes

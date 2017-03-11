@@ -120,11 +120,6 @@ variable "ami_us_east_1_ubuntu1404_20170310"{
   description = "AWS AMI for us-east-1 Ubuntu 14.04 from 2017-03-10"
 }
 
-variable "ami_us_east_1_ubuntu1404_20170310"{
-  default = "ami-2d39803a"
-  description = "AWS AMI for us-east-1 Ubuntu 14.04"
-}
-
 # this is a special ami preconfigured to do NAT
 variable "ami_us_east_1_nat"{
   default = "ami-d2ee95c5"

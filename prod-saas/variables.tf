@@ -35,7 +35,6 @@ variable "install_version" {
   default = "prodSaas"
 }
 
-
 # START all variables related to VPC !!! HARD CODEDED !!!
 # we need to hard code it as we dont want to create it from scratch due to mongo
 
@@ -116,6 +115,16 @@ variable "ami_us_east_1_ubuntu1404"{
   description = "AWS AMI for us-east-1 Ubuntu 14.04"
 }
 
+variable "ami_us_east_1_ubuntu1404_20170310"{
+  default = "ami-49c9295f"
+  description = "AWS AMI for us-east-1 Ubuntu 14.04 from 2017-03-10"
+}
+
+variable "ami_us_east_1_ubuntu1404_20170310"{
+  default = "ami-2d39803a"
+  description = "AWS AMI for us-east-1 Ubuntu 14.04"
+}
+
 # this is a special ami preconfigured to do NAT
 variable "ami_us_east_1_nat"{
   default = "ami-d2ee95c5"
@@ -127,3 +136,10 @@ variable "acm_cert_arn"{
   default = "arn:aws:acm:us-east-1:983672658014:certificate/592e0545-d0a2-4da2-a1fe-c3d7c0e332c0"
   description = "acm cert arn"
 }
+
+variable "acm_cert_arn_20170309"{
+  default = "arn:aws:acm:us-east-1:983672658014:certificate/c35c40e2-9093-429e-a0c6-fc79f53db136"
+  description = "acm cert arn 2017-03-10"
+}
+
+

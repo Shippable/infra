@@ -80,12 +80,6 @@ variable "cidr_private_ship_ecs" {
   default = "20.0.150.0/24"
 }
 
-variable "in_type_rp" {
-  //make sure it is compatible with AMI, not all AMIs allow all instance types "
-  default = "t2.small"
-  description = "AWS Instance type for Reverse Proxy server"
-}
-
 variable "in_type_core" {
   //make sure it is compatible with AMI, not all AMIs allow all instance types "
   default = "t2.medium"
@@ -108,11 +102,6 @@ variable "in_type_db" {
   //make sure it is compatible with AMI, not all AMIs allow all instance types "
   default = "m4.2xlarge"
   description = "AWS Instance type for postgres database"
-}
-
-variable "ami_us_east_1_ubuntu1404"{
-  default = "ami-2d39803a"
-  description = "AWS AMI for us-east-1 Ubuntu 14.04"
 }
 
 variable "ami_us_east_1_ubuntu1404_20170310"{

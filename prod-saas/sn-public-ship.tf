@@ -56,6 +56,68 @@ resource "aws_security_group" "sg_public_lb" {
   }
 }
 
+# RP Server
+resource "aws_instance" "rp" {
+  ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
+  availability_zone = "${var.avl-zone}"
+  instance_type = "${var.in_type_rp}"
+  key_name = "${var.aws_key_name}"
+
+  subnet_id = "${var.sn_public_ship_id}"
+  vpc_security_group_ids = [
+    "${aws_security_group.sg_public_nat.id}"]
+
+  provisioner "file" {
+    source = "setupNGINX.sh"
+    destination = "~/setupNGINX.sh"
+
+    connection {
+      type = "ssh"
+      user = "ubuntu"
+      private_key = "${file(null_resource.pemfile.triggers.fileName)}"
+      agent = true
+    }
+  }
+
+  provisioner "file" {
+    source = "default"
+    destination = "~/default"
+
+    connection {
+      type = "ssh"
+      user = "ubuntu"
+      private_key = "${file(null_resource.pemfile.triggers.fileName)}"
+      agent = true
+    }
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo su root && . setupNGINX.sh"
+    ]
+
+    connection {
+      type = "ssh"
+      user = "ubuntu"
+      private_key = "${var.aws_key_filename}"
+      agent = true
+    }
+  }
+
+  associate_public_ip_address = true
+  source_dest_check = false
+
+  tags = {
+    Name = "rp_${var.install_version}"
+  }
+}
+
+# Associate EIP, without this private TF remote wont work
+resource "aws_eip" "rp_eip" {
+  instance = "${aws_instance.rp.id}"
+  vpc = true
+}
+
 # ========================Load Balancers=======================
 
 # MSG Load balancer

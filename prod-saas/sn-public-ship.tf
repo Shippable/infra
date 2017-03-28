@@ -99,7 +99,7 @@ resource "aws_instance" "rp" {
     connection {
       type = "ssh"
       user = "ubuntu"
-      private_key = "${var.aws_key_filename}"
+      private_key = "${file(null_resource.pemfile.triggers.fileName)}"
       agent = true
     }
   }

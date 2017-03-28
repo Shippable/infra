@@ -91,18 +91,18 @@ resource "aws_instance" "rp" {
     }
   }
 
-  provisioner "remote-exec" {
-    inline = [
-      "sudo su root && . setupNGINX.sh"
-    ]
-
-    connection {
-      type = "ssh"
-      user = "ubuntu"
-      private_key = "${file(null_resource.pemfile.triggers.fileName)}"
-      agent = true
-    }
-  }
+//  provisioner "remote-exec" {
+//    inline = [
+//      "sudo su root && . setupNGINX.sh"
+//    ]
+//
+//    connection {
+//      type = "ssh"
+//      user = "ubuntu"
+//      private_key = "${file(null_resource.pemfile.triggers.fileName)}"
+//      agent = true
+//    }
+//  }
 
   associate_public_ip_address = true
   source_dest_check = false

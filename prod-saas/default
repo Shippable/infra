@@ -1,7 +1,7 @@
 server {
         listen 80 default_server;
         listen [::]:80 default_server ipv6only=on;
-        server_name shippable.com www.shippable.com;
+        server_name shippable.com;
 
-        rewrite        ^ https://app.shippable.com$request_uri? permanent;
+        rewrite        ^ https://www.shippable.com$request_uri? permanent;
 }

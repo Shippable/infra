@@ -169,6 +169,43 @@ resource "aws_elb" "lb_msg" {
 
 # New ELBs for Docker 1.13 rollout
 
+# RP Load balancer
+resource "aws_elb" "lb_rp_n" {
+  name = "lb-rp-n-${var.install_version}"
+  connection_draining = true
+  subnets = [
+    "${var.sn_public_ship_id}"]
+  security_groups = [
+    "${aws_security_group.sg_public_lb.id}"]
+
+  listener {
+    lb_port = 443
+    lb_protocol = "https"
+    instance_port = 80
+    instance_protocol = "http"
+    ssl_certificate_id = "${var.acm_cert_arn_20170309}"
+  }
+
+  listener {
+    lb_port = 80
+    lb_protocol = "http"
+    instance_port = 80
+    instance_protocol = "http"
+  }
+
+  health_check {
+    healthy_threshold = 2
+    unhealthy_threshold = 2
+    timeout = 10
+    target = "TCP:80"
+    interval = 30
+  }
+
+  instances = [
+    "${aws_instance.rp.id}"
+  ]
+}
+
 # WWW Load balancer
 resource "aws_elb" "lb_www_n" {
   name = "lb-www-n-${var.install_version}"

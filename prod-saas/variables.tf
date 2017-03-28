@@ -126,4 +126,8 @@ variable "acm_cert_arn_20170309"{
   description = "acm cert arn 2017-03-10"
 }
 
-
+variable "in_type_rp" {
+  //make sure it is compatible with AMI, not all AMIs allow all instance types "
+  default = "t2.small"
+  description = "AWS Instance type for Reverse Proxy server"
+}

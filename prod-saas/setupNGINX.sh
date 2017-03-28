@@ -21,7 +21,7 @@ startNGINX() {
 main() {
   prepVM
   installNGINX
-  startNGINX
+  #startNGINX
 }
 
 main

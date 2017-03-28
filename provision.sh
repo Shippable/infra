@@ -57,6 +57,7 @@ create_pemfile() {
  echo "-----------------------------------"
  cat "$RES_AWS_PEM_META/integration.json"  | jq -r '.key' > $KEY_FILE_NAME
  chmod 600 $KEY_FILE_NAME
+ ls -al $KEY_FILE_NAME
  echo "Completed Extracting AWS PEM"
  echo "-----------------------------------"
  popd
@@ -74,7 +75,6 @@ destroy_changes() {
 apply_changes() {
   pushd "$RES_REPO_STATE/$TF_FOLDER"
   echo "-----------------------------------"
-  ps -eaf | grep ssh
   which ssh-agent
 
   echo "planning changes"

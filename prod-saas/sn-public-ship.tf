@@ -323,7 +323,7 @@ resource "aws_elb" "lb_api_n" {
 
 # WWW Load balancer
 resource "aws_elb" "lb_b_www" {
-  name = "lb-www-n-${var.install_version}"
+  name = "lb-b-www-${var.install_version}"
   connection_draining = true
   subnets = [
     "${var.sn_public_ship_id}"]
@@ -365,7 +365,7 @@ resource "aws_elb" "lb_b_www" {
 
 # APP Load balancer
 resource "aws_elb" "lb_b_app" {
-  name = "lb-app-n-${var.install_version}"
+  name = "lb-b-app-${var.install_version}"
   connection_draining = true
   subnets = [
     "${var.sn_public_ship_id}"]
@@ -400,7 +400,7 @@ resource "aws_elb" "lb_b_app" {
 
 //# API Load balancer
 resource "aws_elb" "lb_b_api" {
-  name = "lb-api-n-${var.install_version}"
+  name = "lb-b-api-${var.install_version}"
   connection_draining = true
   subnets = [
     "${var.sn_public_ship_id}"]

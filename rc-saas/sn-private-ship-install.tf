@@ -118,8 +118,8 @@ resource "aws_instance" "cs_2" {
   }
 }
 
-# instance MS-1
-resource "aws_instance" "ms_1" {
+# instance MS-3
+resource "aws_instance" "ms_3" {
   ami = "${var.ami_us_east_1_ubuntu1404}"
   availability_zone = "${var.avl-zone}"
   instance_type = "${var.in_type_core}"
@@ -136,12 +136,12 @@ resource "aws_instance" "ms_1" {
   }
 
   tags = {
-    Name = "ms_1_${var.install_version}"
+    Name = "ms_3_${var.install_version}"
   }
 }
 
-# instance MS-2
-resource "aws_instance" "ms_2" {
+# instance MS-4
+resource "aws_instance" "ms_4" {
   ami = "${var.ami_us_east_1_ubuntu1404}"
   availability_zone = "${var.avl-zone}"
   instance_type = "${var.in_type_core}"
@@ -158,6 +158,6 @@ resource "aws_instance" "ms_2" {
   }
 
   tags = {
-    Name = "ms_2_${var.install_version}"
+    Name = "ms_4_${var.install_version}"
   }
 }

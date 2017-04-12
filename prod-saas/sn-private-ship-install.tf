@@ -110,7 +110,7 @@ resource "aws_security_group" "sg_private_ship_install" {
 // resource "aws_instance" "ms_g_1" {
 //   ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
 //   availability_zone = "${var.avl-zone}"
-//   instance_type = "${var.in_type_ms}"
+//   instance_type = "${var.in_type_ms2}"
 //   key_name = "${var.aws_key_name}"
 //   subnet_id = "${var.sn_ship_install_id}"
 //   ebs_optimized = true
@@ -133,7 +133,7 @@ resource "aws_security_group" "sg_private_ship_install" {
 // resource "aws_instance" "ms_g_2" {
 //   ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
 //   availability_zone = "${var.avl-zone}"
-//   instance_type = "${var.in_type_ms}"
+//   instance_type = "${var.in_type_ms2}"
 //   key_name = "${var.aws_key_name}"
 //   subnet_id = "${var.sn_ship_install_id}"
 //   ebs_optimized = true
@@ -156,7 +156,7 @@ resource "aws_security_group" "sg_private_ship_install" {
 // resource "aws_instance" "ms_g_3" {
 //   ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
 //   availability_zone = "${var.avl-zone}"
-//   instance_type = "${var.in_type_ms}"
+//   instance_type = "${var.in_type_ms2}"
 //   key_name = "${var.aws_key_name}"
 //   subnet_id = "${var.sn_ship_install_id}"
 //   ebs_optimized = true
@@ -179,7 +179,7 @@ resource "aws_security_group" "sg_private_ship_install" {
 // resource "aws_instance" "ms_g_4" {
 //   ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
 //   availability_zone = "${var.avl-zone}"
-//   instance_type = "${var.in_type_ms}"
+//   instance_type = "${var.in_type_ms2}"
 //   key_name = "${var.aws_key_name}"
 //   subnet_id = "${var.sn_ship_install_id}"
 //   ebs_optimized = true
@@ -202,7 +202,7 @@ resource "aws_security_group" "sg_private_ship_install" {
 // resource "aws_instance" "ms_g_5" {
 //   ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
 //   availability_zone = "${var.avl-zone}"
-//   instance_type = "${var.in_type_ms}"
+//   instance_type = "${var.in_type_ms2}"
 //   key_name = "${var.aws_key_name}"
 //   subnet_id = "${var.sn_ship_install_id}"
 //   ebs_optimized = true
@@ -225,7 +225,7 @@ resource "aws_security_group" "sg_private_ship_install" {
 // resource "aws_instance" "ms_g_6" {
 //   ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
 //   availability_zone = "${var.avl-zone}"
-//   instance_type = "${var.in_type_ms}"
+//   instance_type = "${var.in_type_ms2}"
 //   key_name = "${var.aws_key_name}"
 //   subnet_id = "${var.sn_ship_install_id}"
 //   ebs_optimized = true

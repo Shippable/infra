@@ -209,7 +209,7 @@ resource "aws_elb" "lb_rp_n" {
 // #GREEN ELBS
 //
 // # WWW Load balancer
-// resource "aws_elb" "lb_www_n" {
+// resource "aws_elb" "lb_g_www" {
 //   name = "lb-www-n-${var.install_version}"
 //   connection_draining = true
 //   subnets = [
@@ -251,7 +251,7 @@ resource "aws_elb" "lb_rp_n" {
 // }
 //
 // # APP Load balancer
-// resource "aws_elb" "lb_app_n" {
+// resource "aws_elb" "lb_g_app" {
 //   name = "lb-app-n-${var.install_version}"
 //   connection_draining = true
 //   subnets = [
@@ -286,7 +286,7 @@ resource "aws_elb" "lb_rp_n" {
 // }
 //
 // //# API Load balancer
-// resource "aws_elb" "lb_api_n" {
+// resource "aws_elb" "lb_g_api" {
 //   name = "lb-api-n-${var.install_version}"
 //   connection_draining = true
 //   subnets = [

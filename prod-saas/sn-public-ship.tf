@@ -118,9 +118,11 @@ resource "aws_eip" "rp_eip" {
   vpc = true
 }
 
-# ========================Load Balancers=======================
+# --------------
+# LOAD BALANCERS
+# --------------
 
-# MSG Load balancer
+# MSG ELB
 resource "aws_elb" "lb_msg" {
   name = "lb-msg-${var.install_version}"
   idle_timeout = 3600
@@ -167,9 +169,7 @@ resource "aws_elb" "lb_msg" {
     "${var.in_msg_id}"]
 }
 
-# New ELBs for Docker 1.13 rollout
-
-# RP Load balancer
+# RP ELB
 resource "aws_elb" "lb_rp_n" {
   name = "lb-rp-n-${var.install_version}"
   connection_draining = true
@@ -206,9 +206,11 @@ resource "aws_elb" "lb_rp_n" {
   ]
 }
 
+# ----------
 # GREEN ELBS
+# ----------
 
-# WWW Load balancer
+# WWW ELB
 resource "aws_elb" "lb_g_www" {
   name = "lb-www-n-${var.install_version}"
   connection_draining = true
@@ -250,7 +252,7 @@ resource "aws_elb" "lb_g_www" {
   ]
 }
 
-# APP Load balancer
+# APP ELB
 resource "aws_elb" "lb_g_app" {
   name = "lb-app-n-${var.install_version}"
   connection_draining = true
@@ -285,7 +287,7 @@ resource "aws_elb" "lb_g_app" {
   ]
 }
 
-# API Load balancer
+# API ELB
 resource "aws_elb" "lb_g_api" {
   name = "lb-api-n-${var.install_version}"
   connection_draining = true
@@ -320,9 +322,11 @@ resource "aws_elb" "lb_g_api" {
   ]
 }
 
+# ---------
 # BLUE ELBS
+# ---------
 
-# WWW Load balancer
+# WWW ELB
 resource "aws_elb" "lb_b_www" {
   name = "lb-b-www-${var.install_version}"
   connection_draining = true
@@ -364,7 +368,7 @@ resource "aws_elb" "lb_b_www" {
   ]
 }
 
-# APP Load balancer
+# APP ELB
 resource "aws_elb" "lb_b_app" {
   name = "lb-b-app-${var.install_version}"
   connection_draining = true
@@ -399,7 +403,7 @@ resource "aws_elb" "lb_b_app" {
   ]
 }
 
-//# API Load balancer
+# API ELB
 resource "aws_elb" "lb_b_api" {
   name = "lb-b-api-${var.install_version}"
   connection_draining = true

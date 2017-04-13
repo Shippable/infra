@@ -82,9 +82,11 @@ resource "aws_security_group" "sg_private_ship_install" {
   }
 }
 
-# Instances for GREEN deployment
+# ---------------
+# GREEN INSTANCES
+# ---------------
 
-# instance CS-G-1
+# CS-G-1 Instance
 resource "aws_instance" "cs_g_1" {
   ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
   availability_zone = "${var.avl-zone}"
@@ -106,7 +108,7 @@ resource "aws_instance" "cs_g_1" {
   }
 }
 
-# instance MS-G-1
+# MS-G-1 Instance
 resource "aws_instance" "ms_g_1" {
   ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
   availability_zone = "${var.avl-zone}"
@@ -129,7 +131,7 @@ resource "aws_instance" "ms_g_1" {
   }
 }
 
-# instance MS-G-2
+# MS-G-2 Instance
 resource "aws_instance" "ms_g_2" {
   ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
   availability_zone = "${var.avl-zone}"
@@ -152,7 +154,7 @@ resource "aws_instance" "ms_g_2" {
   }
 }
 
-# instance MS-G-3
+# MS-G-3 Instance
 resource "aws_instance" "ms_g_3" {
   ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
   availability_zone = "${var.avl-zone}"
@@ -175,7 +177,7 @@ resource "aws_instance" "ms_g_3" {
   }
 }
 
-# instance MS-G-4
+# MS-G-4 Instance
 resource "aws_instance" "ms_g_4" {
   ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
   availability_zone = "${var.avl-zone}"
@@ -198,7 +200,7 @@ resource "aws_instance" "ms_g_4" {
   }
 }
 
-# instance MS-G-5
+# MS-G-5 Instance
 resource "aws_instance" "ms_g_5" {
   ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
   availability_zone = "${var.avl-zone}"
@@ -221,7 +223,7 @@ resource "aws_instance" "ms_g_5" {
   }
 }
 
-# instance MS-G-6
+# MS-G-6 Instance
 resource "aws_instance" "ms_g_6" {
   ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
   availability_zone = "${var.avl-zone}"
@@ -244,8 +246,11 @@ resource "aws_instance" "ms_g_6" {
   }
 }
 
-### BLUE Nodes
-# instance CS-B-1
+# ---------------
+# BLUE INSTANCES
+# ---------------
+
+# CS-B-1 Instance
 resource "aws_instance" "cs_b_1" {
   ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
   availability_zone = "${var.avl-zone}"
@@ -267,7 +272,7 @@ resource "aws_instance" "cs_b_1" {
   }
 }
 
-# instance MS-B-1
+# MS-B-1 Instance
 resource "aws_instance" "ms_b_1" {
   ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
   availability_zone = "${var.avl-zone}"
@@ -290,7 +295,7 @@ resource "aws_instance" "ms_b_1" {
   }
 }
 
-# instance MS-B-2
+# MS-B-2 Instance
 resource "aws_instance" "ms_b_2" {
   ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
   availability_zone = "${var.avl-zone}"
@@ -313,7 +318,7 @@ resource "aws_instance" "ms_b_2" {
   }
 }
 
-# instance MS-B-3
+# MS-B-3 Instance
 resource "aws_instance" "ms_b_3" {
   ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
   availability_zone = "${var.avl-zone}"
@@ -336,7 +341,7 @@ resource "aws_instance" "ms_b_3" {
   }
 }
 
-# instance MS-B-4
+# MS-B-4 Instance
 resource "aws_instance" "ms_b_4" {
   ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
   availability_zone = "${var.avl-zone}"
@@ -359,7 +364,7 @@ resource "aws_instance" "ms_b_4" {
   }
 }
 
-# instance MS-B-5
+# MS-B-5 Instance
 resource "aws_instance" "ms_b_5" {
   ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
   availability_zone = "${var.avl-zone}"
@@ -382,7 +387,7 @@ resource "aws_instance" "ms_b_5" {
   }
 }
 
-# instance MS-B-6
+# MS-B-6 Instance
 resource "aws_instance" "ms_b_6" {
   ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
   availability_zone = "${var.avl-zone}"

@@ -276,7 +276,7 @@ resource "aws_instance" "ms_g_6" {
 // resource "aws_instance" "ms_b_1" {
 //   ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
 //   availability_zone = "${var.avl-zone}"
-//   instance_type = "${var.in_type_ms}"
+//   instance_type = "${var.in_type_ms2}"
 //   key_name = "${var.aws_key_name}"
 //   subnet_id = "${var.sn_ship_install_id}"
 //   ebs_optimized = true
@@ -299,7 +299,7 @@ resource "aws_instance" "ms_g_6" {
 // resource "aws_instance" "ms_b_2" {
 //   ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
 //   availability_zone = "${var.avl-zone}"
-//   instance_type = "${var.in_type_ms}"
+//   instance_type = "${var.in_type_ms2}"
 //   key_name = "${var.aws_key_name}"
 //   subnet_id = "${var.sn_ship_install_id}"
 //   ebs_optimized = true
@@ -322,7 +322,7 @@ resource "aws_instance" "ms_g_6" {
 // resource "aws_instance" "ms_b_3" {
 //   ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
 //   availability_zone = "${var.avl-zone}"
-//   instance_type = "${var.in_type_ms}"
+//   instance_type = "${var.in_type_ms2}"
 //   key_name = "${var.aws_key_name}"
 //   subnet_id = "${var.sn_ship_install_id}"
 //   ebs_optimized = true
@@ -345,7 +345,7 @@ resource "aws_instance" "ms_g_6" {
 // resource "aws_instance" "ms_b_4" {
 //   ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
 //   availability_zone = "${var.avl-zone}"
-//   instance_type = "${var.in_type_ms}"
+//   instance_type = "${var.in_type_ms2}"
 //   key_name = "${var.aws_key_name}"
 //   subnet_id = "${var.sn_ship_install_id}"
 //   ebs_optimized = true
@@ -368,7 +368,7 @@ resource "aws_instance" "ms_g_6" {
 // resource "aws_instance" "ms_b_5" {
 //   ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
 //   availability_zone = "${var.avl-zone}"
-//   instance_type = "${var.in_type_ms}"
+//   instance_type = "${var.in_type_ms2}"
 //   key_name = "${var.aws_key_name}"
 //   subnet_id = "${var.sn_ship_install_id}"
 //   ebs_optimized = true
@@ -391,7 +391,7 @@ resource "aws_instance" "ms_g_6" {
 // resource "aws_instance" "ms_b_6" {
 //   ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
 //   availability_zone = "${var.avl-zone}"
-//   instance_type = "${var.in_type_ms}"
+//   instance_type = "${var.in_type_ms2}"
 //   key_name = "${var.aws_key_name}"
 //   subnet_id = "${var.sn_ship_install_id}"
 //   ebs_optimized = true

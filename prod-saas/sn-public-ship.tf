@@ -212,7 +212,7 @@ resource "aws_elb" "lb_rp_n" {
 
 // # WWW ELB
 // resource "aws_elb" "lb_g_www" {
-//   name = "lb-www-n-${var.install_version}"
+//   name = "lb-g-www-${var.install_version}"
 //   connection_draining = true
 //   subnets = [
 //     "${var.sn_public_ship_id}"]
@@ -254,7 +254,7 @@ resource "aws_elb" "lb_rp_n" {
 //
 // # APP ELB
 // resource "aws_elb" "lb_g_app" {
-//   name = "lb-app-n-${var.install_version}"
+//   name = "lb-g-app-${var.install_version}"
 //   connection_draining = true
 //   subnets = [
 //     "${var.sn_public_ship_id}"]
@@ -289,7 +289,7 @@ resource "aws_elb" "lb_rp_n" {
 //
 // # API ELB
 // resource "aws_elb" "lb_g_api" {
-//   name = "lb-api-n-${var.install_version}"
+//   name = "lb-g-api-${var.install_version}"
 //   connection_draining = true
 //   subnets = [
 //     "${var.sn_public_ship_id}"]

@@ -83,6 +83,9 @@ apply_changes() {
   echo "apply changes"
   echo "-----------------------------------"
   terraform apply -var-file="$RES_AWS_CREDS_META/integration.env"
+  echo "show state"
+  echo "-----------------------------------"
+  cat terraform.tfstate
   popd
 }
 

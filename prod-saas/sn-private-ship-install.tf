@@ -106,6 +106,19 @@ resource "aws_security_group" "sg_private_ship_install" {
 //   tags = {
 //     Name = "cs_g_1_${var.install_version}"
 //   }
+//
+//   provisioner "remote-exec" {
+//     inline = [
+//       "(sudo crontab -l; echo '0 */2 * * * docker service update --force api') | sudo crontab -"
+//     ]
+//
+//     connection {
+//       type = "ssh"
+//       user = "ubuntu"
+//       private_key = "${file(null_resource.pemfile.triggers.fileName)}"
+//       agent = true
+//     }
+//   }
 // }
 //
 // # MS-G-1 Instance
@@ -269,6 +282,19 @@ resource "aws_instance" "cs_b_1" {
 
   tags = {
     Name = "cs_b_1_${var.install_version}"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "(sudo crontab -l; echo '0 */2 * * * docker service update --force api') | sudo crontab -"
+    ]
+
+    connection {
+      type = "ssh"
+      user = "ubuntu"
+      private_key = "${file(null_resource.pemfile.triggers.fileName)}"
+      agent = true
+    }
   }
 }
 

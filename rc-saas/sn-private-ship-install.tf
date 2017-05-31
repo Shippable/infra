@@ -128,9 +128,10 @@ resource "aws_instance" "cs_2" {
 # ---------------
 # BLUE INSTANCES
 # ---------------
+# instance CS-B-1 for swarm master
 
-# instance CS-3 for swarm master
-resource "aws_instance" "cs_3" {
+/**
+resource "aws_instance" "cs_b_1" {
   ami = "${var.ami_us_east_1_ubuntu1404}"
   availability_zone = "${var.avl-zone}"
   instance_type = "${var.in_type_core}"
@@ -147,12 +148,12 @@ resource "aws_instance" "cs_3" {
   }
 
   tags = {
-    Name = "cs_3_${var.install_version}"
+    Name = "cs_b_1_${var.install_version}"
   }
 }
 
-# instance MS-1
-resource "aws_instance" "ms_3" {
+# instance MS-G-1
+resource "aws_instance" "ms_b_1" {
   ami = "${var.ami_us_east_1_ubuntu1404}"
   availability_zone = "${var.avl-zone}"
   instance_type = "${var.in_type_core}"
@@ -169,12 +170,12 @@ resource "aws_instance" "ms_3" {
   }
 
   tags = {
-    Name = "ms_3_${var.install_version}"
+    Name = "ms_b_1_${var.install_version}"
   }
 }
 
-# instance MS-4
-resource "aws_instance" "ms_4" {
+# instance MS-G-2
+resource "aws_instance" "ms_b_2" {
   ami = "${var.ami_us_east_1_ubuntu1404}"
   availability_zone = "${var.avl-zone}"
   instance_type = "${var.in_type_core}"
@@ -191,10 +192,10 @@ resource "aws_instance" "ms_4" {
   }
 
   tags = {
-    Name = "ms_4_${var.install_version}"
+    Name = "ms_b_2_${var.install_version}"
   }
 }
-
+**/
 
 # ---------------
 # GREEN INSTANCES

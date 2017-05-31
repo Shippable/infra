@@ -82,7 +82,7 @@ resource "aws_elb" "lb_mktg" {
 
   instances = [
     "${aws_instance.ms_g_1.id}",
-    "${aws_instance.ms_g_1.id}"
+    "${aws_instance.ms_g_2.id}"
   ]
 }
 
@@ -113,7 +113,7 @@ resource "aws_elb" "lb_www" {
 
   instances = [
     "${aws_instance.ms_g_1.id}",
-    "${aws_instance.ms_g_1.id}"
+    "${aws_instance.ms_g_2.id}"
   ]
 }
 
@@ -144,7 +144,7 @@ resource "aws_elb" "lb_api" {
 
   instances = [
     "${aws_instance.ms_g_1.id}",
-    "${aws_instance.ms_g_1.id}"
+    "${aws_instance.ms_g_2.id}"
   ]
 }
 

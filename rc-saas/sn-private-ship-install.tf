@@ -129,6 +129,7 @@ resource "aws_instance" "cs_2" {
 # BLUE INSTANCES
 # ---------------
 
+# instance CS-B-1
 resource "aws_instance" "cs_b_1" {
   ami = "${var.ami_us_east_1_ubuntu1404}"
   availability_zone = "${var.avl-zone}"

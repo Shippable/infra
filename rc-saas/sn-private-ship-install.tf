@@ -128,9 +128,8 @@ resource "aws_instance" "cs_2" {
 # ---------------
 # BLUE INSTANCES
 # ---------------
-# instance CS-B-1 for swarm master
 
-/**
+# instance CS-B-1
 resource "aws_instance" "cs_b_1" {
   ami = "${var.ami_us_east_1_ubuntu1404}"
   availability_zone = "${var.avl-zone}"
@@ -152,7 +151,7 @@ resource "aws_instance" "cs_b_1" {
   }
 }
 
-# instance MS-G-1
+# instance MS-B-1
 resource "aws_instance" "ms_b_1" {
   ami = "${var.ami_us_east_1_ubuntu1404}"
   availability_zone = "${var.avl-zone}"
@@ -174,7 +173,7 @@ resource "aws_instance" "ms_b_1" {
   }
 }
 
-# instance MS-G-2
+# instance MS-B-2
 resource "aws_instance" "ms_b_2" {
   ami = "${var.ami_us_east_1_ubuntu1404}"
   availability_zone = "${var.avl-zone}"
@@ -195,7 +194,6 @@ resource "aws_instance" "ms_b_2" {
     Name = "ms_b_2_${var.install_version}"
   }
 }
-**/
 
 # ---------------
 # GREEN INSTANCES

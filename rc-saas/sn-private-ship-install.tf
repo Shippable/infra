@@ -103,6 +103,10 @@ resource "aws_instance" "cs_1" {
   }
 }
 
+output "cs_1_ip" {
+  value = "${aws_instance.cs_1.private_ip}"
+}
+
 # instance CS-2
 resource "aws_instance" "cs_2" {
   ami = "${var.ami_us_east_1_ubuntu1404}"
@@ -123,6 +127,10 @@ resource "aws_instance" "cs_2" {
   tags = {
     Name = "cs_2_${var.install_version}"
   }
+}
+
+output "cs_2_ip" {
+  value = "${aws_instance.cs_2.private_ip}"
 }
 
 # ---------------
@@ -151,6 +159,10 @@ resource "aws_instance" "cs_b_1" {
   }
 }
 
+output "cs_b_1_ip" {
+  value = "${aws_instance.cs_b_1.private_ip}"
+}
+
 # instance MS-B-1
 resource "aws_instance" "ms_b_1" {
   ami = "${var.ami_us_east_1_ubuntu1404}"
@@ -173,6 +185,10 @@ resource "aws_instance" "ms_b_1" {
   }
 }
 
+output "ms_b_1_ip" {
+  value = "${aws_instance.ms_b_1.private_ip}"
+}
+
 # instance MS-B-2
 resource "aws_instance" "ms_b_2" {
   ami = "${var.ami_us_east_1_ubuntu1404}"
@@ -193,6 +209,10 @@ resource "aws_instance" "ms_b_2" {
   tags = {
     Name = "ms_b_2_${var.install_version}"
   }
+}
+
+output "ms_b_2_ip" {
+  value = "${aws_instance.ms_b_2.private_ip}"
 }
 
 # ---------------
@@ -221,6 +241,10 @@ resource "aws_instance" "ms_b_2" {
 //   }
 // }
 //
+// output "cs_g_1_ip" {
+//   value = "${aws_instance.cs_g_1.private_ip}"
+// }
+//
 // # instance MS-G-1
 // resource "aws_instance" "ms_g_1" {
 //   ami = "${var.ami_us_east_1_ubuntu1404}"
@@ -243,6 +267,10 @@ resource "aws_instance" "ms_b_2" {
 //   }
 // }
 //
+// output "ms_g_1_ip" {
+//   value = "${aws_instance.ms_g_1.private_ip}"
+// }
+//
 // # instance MS-G-2
 // resource "aws_instance" "ms_g_2" {
 //   ami = "${var.ami_us_east_1_ubuntu1404}"
@@ -263,4 +291,8 @@ resource "aws_instance" "ms_b_2" {
 //   tags = {
 //     Name = "ms_g_2_${var.install_version}"
 //   }
+// }
+//
+// output "ms_g_2_ip" {
+//   value = "${aws_instance.ms_g_2.private_ip}"
 // }

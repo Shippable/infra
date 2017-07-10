@@ -77,6 +77,22 @@ variable "in_type_nat" {
   description = "AWS Instance type for consul server"
 }
 
+variable "in_type_db" {
+  //make sure it is compatible with AMI, not all AMIs allow all instance types "
+  default = "m4.2xlarge"
+  description = "AWS Instance type for database server"
+}
+
+variable "db_username" {
+  description = "Database root username"
+  default = "apiuser"
+}
+
+variable "db_password" {
+  description = "Database root password"
+  default = "testing1234"
+}
+
 variable "ami_us_east_1_ubuntu1404"{
   default = "ami-2d39803a"
   description = "AWS AMI for us-east-1 Ubuntu 14.04"

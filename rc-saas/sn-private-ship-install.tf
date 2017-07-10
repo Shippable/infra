@@ -81,6 +81,22 @@ resource "aws_security_group" "sg_private_ship_install" {
   }
 }
 
+# Database cluster with backup
+resource "aws_db_instance" "ship_db" {
+  name                 = "ship_db_${var.install_version}"
+  allocated_storage    = 10
+  storage_type         = "gp2"
+  engine               = "postgres"
+  engine_version       = "9.5"
+  database_port        = "5432"
+  instance_class       = "${var.in_type_db}"
+  username             = "${var.db_username}"
+  password             = "${var.db_password}"
+  vpc_security_group_ids = ["${aws_security_group.sg_private_ship_install.id}"]
+  db_subnet_group_name = "${aws_db_subnet_group.sng_ship_db.id}"
+  multi_az             = true
+}
+
 # instance CS-1
 resource "aws_instance" "cs_1" {
   ami = "${var.ami_us_east_1_ubuntu1404}"

@@ -17,6 +17,11 @@ variable "avl-zone" {
   default = "us-east-1b"
 }
 
+variable "avl-zone-backup" {
+  description = "availability zone used for the beta backup"
+  default = "us-east-1c"
+}
+
 # this is a keyName for key pairs
 variable "aws_key_name" {
   description = "Key Pair Name used to login to the box"
@@ -48,6 +53,11 @@ variable "cidr_public_ship" {
 variable "cidr_private_ship_install" {
   description = "Private 0.2 block for shippable services"
   default = "80.0.100.0/24"
+}
+
+variable "cidr_private_ship_backup" {
+  description = "Private block for creating database backup"
+  default = "80.0.150.0/24"
 }
 
 variable "cidr_private_ship_builds" {

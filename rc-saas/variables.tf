@@ -93,6 +93,11 @@ variable "db_password" {
   default = "testing1234"
 }
 
+variable "db_storage" {
+  description = "Database storage in gb"
+  default = 200
+}
+
 variable "ami_us_east_1_ubuntu1404"{
   default = "ami-2d39803a"
   description = "AWS AMI for us-east-1 Ubuntu 14.04"

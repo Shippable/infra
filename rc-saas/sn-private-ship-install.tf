@@ -88,7 +88,7 @@ resource "aws_db_instance" "ship_db" {
   storage_type         = "gp2"
   engine               = "postgres"
   engine_version       = "9.5"
-  database_port        = "5432"
+  port                 = "5432"
   instance_class       = "${var.in_type_db}"
   username             = "${var.db_username}"
   password             = "${var.db_password}"

@@ -79,7 +79,7 @@ variable "in_type_nat" {
 
 variable "in_type_db" {
   //make sure it is compatible with AMI, not all AMIs allow all instance types "
-  default = "m4.2xlarge"
+  default = "db.m3.2xlarge"
   description = "AWS Instance type for database server"
 }
 

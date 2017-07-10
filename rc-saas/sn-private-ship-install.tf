@@ -96,6 +96,10 @@ resource "aws_db_instance" "ship_db" {
   vpc_security_group_ids = ["${aws_security_group.sg_private_ship_install.id}"]
   db_subnet_group_name = "${aws_db_subnet_group.sng_ship_db.id}"
   multi_az             = true
+
+  tags {
+    Name = "ship_db_${var.install_version}"
+  }
 }
 
 # instance CS-1

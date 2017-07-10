@@ -75,6 +75,44 @@ resource "aws_route_table_association" "rt_assn_ship_install" {
   route_table_id = "${aws_route_table.rt_ship_install.id}"
 }
 
+#========================== backup subnet ===========================
+resource "aws_subnet" "sn_ship_backup" {
+  vpc_id = "${aws_vpc.vpc.id}"
+  cidr_block = "${var.cidr_private_ship_backup}"
+  availability_zone = "${var.avl-zone-backup}"
+  tags {
+    Name = "sn_ship_backup_${var.install_version}"
+  }
+}
+
+# Routing table for backup subnet
+resource "aws_route_table" "rt_ship_backup" {
+  vpc_id = "${aws_vpc.vpc.id}"
+  route {
+    cidr_block = "0.0.0.0/0"
+    instance_id = "${aws_instance.nat.id}"
+  }
+  tags {
+    Name = "rt_ship_backup_${var.install_version}"
+  }
+}
+
+# Associate the routing table to private subnet
+resource "aws_route_table_association" "rt_assn_ship_backup" {
+  subnet_id = "${aws_subnet.sn_ship_backup.id}"
+  route_table_id = "${aws_route_table.rt_ship_backup.id}"
+}
+
+#========================== database subnet group  ==================
+resource "aws_db_subnet_group" "sng_ship_db" {
+  name       = "sng_ship_db"
+  subnet_ids = ["${aws_subnet.sn_ship_install.id}", "${aws_subnet.sn_ship_backup.id}"]
+
+  tags {
+    Name = "sng_ship_db_${var.install_version}"
+  }
+}
+
 #========================== ship-builds subnet ======================
 resource "aws_subnet" "sn_ship_builds" {
   vpc_id = "${aws_vpc.vpc.id}"

@@ -106,7 +106,7 @@ resource "aws_route_table_association" "rt_assn_ship_backup" {
 #========================== database subnet group  ==================
 resource "aws_db_subnet_group" "sng_ship_db" {
   name       = "sng_ship_db"
-  subnet_ids = ["${var.sn_ship_install}", "${var.sn_ship_backup}"]
+  subnet_ids = ["${aws_subnet.sn_ship_install.id}", "${aws_subnet.sn_ship_backup.id}"]
 
   tags {
     Name = "sng_ship_db_${var.install_version}"

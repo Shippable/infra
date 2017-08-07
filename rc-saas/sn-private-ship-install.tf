@@ -371,5 +371,5 @@ resource "aws_instance" "test_1_u1604" {
 }
 
 output "test_1_u1604" {
-  value = "${aws_instance.test_1_u1404.private_ip}"
+  value = "${aws_instance.test_1_u1604.private_ip}"
 }

@@ -252,7 +252,13 @@ resource "aws_elb" "lb_g_www" {
     "${aws_instance.ms_g_7.id}",
     "${aws_instance.ms_g_8.id}",
     "${aws_instance.ms_g_9.id}",
-    "${aws_instance.ms_g_10.id}"
+    "${aws_instance.ms_g_10.id}",
+    "${aws_instance.ms_g_11.id}",
+    "${aws_instance.ms_g_12.id}",
+    "${aws_instance.ms_g_13.id}",
+    "${aws_instance.ms_g_14.id}",
+    "${aws_instance.ms_g_15.id}",
+    "${aws_instance.ms_g_16.id}"
   ]
 }
 
@@ -291,7 +297,13 @@ resource "aws_elb" "lb_g_app" {
     "${aws_instance.ms_g_7.id}",
     "${aws_instance.ms_g_8.id}",
     "${aws_instance.ms_g_9.id}",
-    "${aws_instance.ms_g_10.id}"
+    "${aws_instance.ms_g_10.id}",
+    "${aws_instance.ms_g_11.id}",
+    "${aws_instance.ms_g_12.id}",
+    "${aws_instance.ms_g_13.id}",
+    "${aws_instance.ms_g_14.id}",
+    "${aws_instance.ms_g_15.id}",
+    "${aws_instance.ms_g_16.id}"
   ]
 }
 
@@ -330,7 +342,13 @@ resource "aws_elb" "lb_g_api" {
     "${aws_instance.ms_g_7.id}",
     "${aws_instance.ms_g_8.id}",
     "${aws_instance.ms_g_9.id}",
-    "${aws_instance.ms_g_10.id}"
+    "${aws_instance.ms_g_10.id}",
+    "${aws_instance.ms_g_11.id}",
+    "${aws_instance.ms_g_12.id}",
+    "${aws_instance.ms_g_13.id}",
+    "${aws_instance.ms_g_14.id}",
+    "${aws_instance.ms_g_15.id}",
+    "${aws_instance.ms_g_16.id}"
   ]
 }
 

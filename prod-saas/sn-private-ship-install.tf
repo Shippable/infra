@@ -385,6 +385,168 @@ output "ms_g_10_ip" {
   value = "${aws_instance.ms_g_10.private_ip}"
 }
 
+# MS-G-11 Instance
+resource "aws_instance" "ms_g_11" {
+  ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
+  availability_zone = "${var.avl-zone}"
+  instance_type = "${var.in_type_ms2}"
+  key_name = "${var.aws_key_name}"
+  subnet_id = "${var.sn_ship_install_id}"
+  ebs_optimized = true
+
+  vpc_security_group_ids = [
+    "${aws_security_group.sg_private_ship_install.id}"]
+
+  root_block_device {
+    volume_type = "gp2"
+    volume_size = 30
+    delete_on_termination = true
+  }
+
+  tags = {
+    Name = "ms_g_11_${var.install_version}"
+  }
+}
+
+output "ms_g_11_ip" {
+  value = "${aws_instance.ms_g_11.private_ip}"
+}
+
+# MS-G-12 Instance
+resource "aws_instance" "ms_g_12" {
+  ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
+  availability_zone = "${var.avl-zone}"
+  instance_type = "${var.in_type_ms2}"
+  key_name = "${var.aws_key_name}"
+  subnet_id = "${var.sn_ship_install_id}"
+  ebs_optimized = true
+
+  vpc_security_group_ids = [
+    "${aws_security_group.sg_private_ship_install.id}"]
+
+  root_block_device {
+    volume_type = "gp2"
+    volume_size = 30
+    delete_on_termination = true
+  }
+
+  tags = {
+    Name = "ms_g_12_${var.install_version}"
+  }
+}
+
+output "ms_g_12_ip" {
+  value = "${aws_instance.ms_g_12.private_ip}"
+}
+
+# MS-G-13 Instance
+resource "aws_instance" "ms_g_13" {
+  ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
+  availability_zone = "${var.avl-zone}"
+  instance_type = "${var.in_type_ms2}"
+  key_name = "${var.aws_key_name}"
+  subnet_id = "${var.sn_ship_install_id}"
+  ebs_optimized = true
+
+  vpc_security_group_ids = [
+    "${aws_security_group.sg_private_ship_install.id}"]
+
+  root_block_device {
+    volume_type = "gp2"
+    volume_size = 30
+    delete_on_termination = true
+  }
+
+  tags = {
+    Name = "ms_g_13_${var.install_version}"
+  }
+}
+
+output "ms_g_13_ip" {
+  value = "${aws_instance.ms_g_13.private_ip}"
+}
+
+# MS-G-14 Instance
+resource "aws_instance" "ms_g_14" {
+  ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
+  availability_zone = "${var.avl-zone}"
+  instance_type = "${var.in_type_ms2}"
+  key_name = "${var.aws_key_name}"
+  subnet_id = "${var.sn_ship_install_id}"
+  ebs_optimized = true
+
+  vpc_security_group_ids = [
+    "${aws_security_group.sg_private_ship_install.id}"]
+
+  root_block_device {
+    volume_type = "gp2"
+    volume_size = 30
+    delete_on_termination = true
+  }
+
+  tags = {
+    Name = "ms_g_14_${var.install_version}"
+  }
+}
+
+output "ms_g_14_ip" {
+  value = "${aws_instance.ms_g_14.private_ip}"
+}
+
+# MS-G-15 Instance
+resource "aws_instance" "ms_g_15" {
+  ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
+  availability_zone = "${var.avl-zone}"
+  instance_type = "${var.in_type_ms2}"
+  key_name = "${var.aws_key_name}"
+  subnet_id = "${var.sn_ship_install_id}"
+  ebs_optimized = true
+
+  vpc_security_group_ids = [
+    "${aws_security_group.sg_private_ship_install.id}"]
+
+  root_block_device {
+    volume_type = "gp2"
+    volume_size = 30
+    delete_on_termination = true
+  }
+
+  tags = {
+    Name = "ms_g_15_${var.install_version}"
+  }
+}
+
+output "ms_g_15_ip" {
+  value = "${aws_instance.ms_g_15.private_ip}"
+}
+
+# MS-G-16 Instance
+resource "aws_instance" "ms_g_16" {
+  ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
+  availability_zone = "${var.avl-zone}"
+  instance_type = "${var.in_type_ms2}"
+  key_name = "${var.aws_key_name}"
+  subnet_id = "${var.sn_ship_install_id}"
+  ebs_optimized = true
+
+  vpc_security_group_ids = [
+    "${aws_security_group.sg_private_ship_install.id}"]
+
+  root_block_device {
+    volume_type = "gp2"
+    volume_size = 30
+    delete_on_termination = true
+  }
+
+  tags = {
+    Name = "ms_g_16_${var.install_version}"
+  }
+}
+
+output "ms_g_16_ip" {
+  value = "${aws_instance.ms_g_16.private_ip}"
+}
+
 # ---------------
 # BLUE INSTANCES
 # ---------------

@@ -32,6 +32,20 @@ resource "aws_security_group" "sg_private_ship_install" {
       "${var.cidr_public_ship}"]
   }
   ingress {
+    from_port = "50004"
+    to_port = "50004"
+    protocol = "tcp"
+    cidr_blocks = [
+      "${var.cidr_public_ship}"]
+  }
+  ingress {
+    from_port = "50005"
+    to_port = "50005"
+    protocol = "tcp"
+    cidr_blocks = [
+      "${var.cidr_public_ship}"]
+  }
+  ingress {
     from_port = "5672"
     to_port = "5672"
     protocol = "tcp"
@@ -551,8 +565,8 @@ output "ms_g_16_ip" {
 # BLUE INSTANCES
 # ---------------
 
-# CS-B-1 Instance
-## resource "aws_instance" "cs_b_1" {
+# CS-B Instance
+## resource "aws_instance" "cs_b" {
 ##   ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
 ##   availability_zone = "${var.avl-zone}"
 ##   instance_type = "${var.in_type_core}"
@@ -569,23 +583,24 @@ output "ms_g_16_ip" {
 ##   }
 ##
 ##   tags = {
-##     Name = "cs_b_1_${var.install_version}"
+##     Name = "cs_b_${var.install_version}"
 ##   }
 ## }
 ##
-## output "cs_b_1_ip" {
-##   value = "${aws_instance.cs_b_1.private_ip}"
+## output "cs_b_ip" {
+##   value = "${aws_instance.cs_b.private_ip}"
 ## }
 ##
-## # MS-B-1 Instance
-## resource "aws_instance" "ms_b_1" {
+## # MS-B-* Instance
+## resource "aws_instance" "ms_b" {
 ##   ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
 ##   availability_zone = "${var.avl-zone}"
-##   instance_type = "${var.in_type_ms2}"
+##   instance_type = "${var.in_type_ms}"
 ##   key_name = "${var.aws_key_name}"
 ##   subnet_id = "${var.sn_ship_install_id}"
 ##   ebs_optimized = true
 ##
+##   count = 6
 ##   vpc_security_group_ids = [
 ##     "${aws_security_group.sg_private_ship_install.id}"]
 ##
@@ -596,243 +611,9 @@ output "ms_g_16_ip" {
 ##   }
 ##
 ##   tags = {
-##     Name = "ms_b_1_${var.install_version}"
+##     Name = "ms_b_${count.index}_${var.install_version}"
 ##   }
 ## }
-## output "ms_b_1_ip" {
-##   value = "${aws_instance.ms_b_1.private_ip}"
-## }
-##
-## # MS-B-2 Instance
-## resource "aws_instance" "ms_b_2" {
-##   ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
-##   availability_zone = "${var.avl-zone}"
-##   instance_type = "${var.in_type_ms2}"
-##   key_name = "${var.aws_key_name}"
-##   subnet_id = "${var.sn_ship_install_id}"
-##   ebs_optimized = true
-##
-##   vpc_security_group_ids = [
-##     "${aws_security_group.sg_private_ship_install.id}"]
-##
-##   root_block_device {
-##     volume_type = "gp2"
-##     volume_size = 30
-##     delete_on_termination = true
-##   }
-##
-##   tags = {
-##     Name = "ms_b_2_${var.install_version}"
-##   }
-## }
-## output "ms_b_2_ip" {
-##   value = "${aws_instance.ms_b_2.private_ip}"
-## }
-##
-## # MS-B-3 Instance
-## resource "aws_instance" "ms_b_3" {
-##   ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
-##   availability_zone = "${var.avl-zone}"
-##   instance_type = "${var.in_type_ms2}"
-##   key_name = "${var.aws_key_name}"
-##   subnet_id = "${var.sn_ship_install_id}"
-##   ebs_optimized = true
-##
-##   vpc_security_group_ids = [
-##     "${aws_security_group.sg_private_ship_install.id}"]
-##
-##   root_block_device {
-##     volume_type = "gp2"
-##     volume_size = 30
-##     delete_on_termination = true
-##   }
-##
-##   tags = {
-##     Name = "ms_b_3_${var.install_version}"
-##   }
-## }
-## output "ms_b_3_ip" {
-##   value = "${aws_instance.ms_b_3.private_ip}"
-## }
-##
-## # MS-B-4 Instance
-## resource "aws_instance" "ms_b_4" {
-##   ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
-##   availability_zone = "${var.avl-zone}"
-##   instance_type = "${var.in_type_ms2}"
-##   key_name = "${var.aws_key_name}"
-##   subnet_id = "${var.sn_ship_install_id}"
-##   ebs_optimized = true
-##
-##   vpc_security_group_ids = [
-##     "${aws_security_group.sg_private_ship_install.id}"]
-##
-##   root_block_device {
-##     volume_type = "gp2"
-##     volume_size = 30
-##     delete_on_termination = true
-##   }
-##
-##   tags = {
-##     Name = "ms_b_4_${var.install_version}"
-##   }
-## }
-## output "ms_b_4_ip" {
-##   value = "${aws_instance.ms_b_4.private_ip}"
-## }
-##
-## # MS-B-5 Instance
-## resource "aws_instance" "ms_b_5" {
-##   ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
-##   availability_zone = "${var.avl-zone}"
-##   instance_type = "${var.in_type_ms2}"
-##   key_name = "${var.aws_key_name}"
-##   subnet_id = "${var.sn_ship_install_id}"
-##   ebs_optimized = true
-##
-##   vpc_security_group_ids = [
-##     "${aws_security_group.sg_private_ship_install.id}"]
-##
-##   root_block_device {
-##     volume_type = "gp2"
-##     volume_size = 30
-##     delete_on_termination = true
-##   }
-##
-##   tags = {
-##     Name = "ms_b_5_${var.install_version}"
-##   }
-## }
-## output "ms_b_5_ip" {
-##   value = "${aws_instance.ms_b_5.private_ip}"
-## }
-##
-## # MS-B-6 Instance
-## resource "aws_instance" "ms_b_6" {
-##   ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
-##   availability_zone = "${var.avl-zone}"
-##   instance_type = "${var.in_type_ms2}"
-##   key_name = "${var.aws_key_name}"
-##   subnet_id = "${var.sn_ship_install_id}"
-##   ebs_optimized = true
-##
-##   vpc_security_group_ids = [
-##     "${aws_security_group.sg_private_ship_install.id}"]
-##
-##   root_block_device {
-##     volume_type = "gp2"
-##     volume_size = 30
-##     delete_on_termination = true
-##   }
-##
-##   tags = {
-##     Name = "ms_b_6_${var.install_version}"
-##   }
-## }
-## output "ms_b_6_ip" {
-##   value = "${aws_instance.ms_b_6.private_ip}"
-## }
-##
-## # MS-B-7 Instance
-## resource "aws_instance" "ms_b_7" {
-##   ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
-##   availability_zone = "${var.avl-zone}"
-##   instance_type = "${var.in_type_ms2}"
-##   key_name = "${var.aws_key_name}"
-##   subnet_id = "${var.sn_ship_install_id}"
-##   ebs_optimized = true
-##
-##   vpc_security_group_ids = [
-##     "${aws_security_group.sg_private_ship_install.id}"]
-##
-##   root_block_device {
-##     volume_type = "gp2"
-##     volume_size = 30
-##     delete_on_termination = true
-##   }
-##
-##   tags = {
-##     Name = "ms_b_7_${var.install_version}"
-##   }
-## }
-## output "ms_b_7_ip" {
-##   value = "${aws_instance.ms_b_7.private_ip}"
-## }
-##
-## # MS-B-8 Instance
-## resource "aws_instance" "ms_b_8" {
-##   ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
-##   availability_zone = "${var.avl-zone}"
-##   instance_type = "${var.in_type_ms2}"
-##   key_name = "${var.aws_key_name}"
-##   subnet_id = "${var.sn_ship_install_id}"
-##   ebs_optimized = true
-##
-##   vpc_security_group_ids = [
-##     "${aws_security_group.sg_private_ship_install.id}"]
-##
-##   root_block_device {
-##     volume_type = "gp2"
-##     volume_size = 30
-##     delete_on_termination = true
-##   }
-##
-##   tags = {
-##     Name = "ms_b_8_${var.install_version}"
-##   }
-## }
-## output "ms_b_8_ip" {
-##   value = "${aws_instance.ms_b_8.private_ip}"
-## }
-##
-## # MS-B-9 Instance
-## resource "aws_instance" "ms_b_9" {
-##   ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
-##   availability_zone = "${var.avl-zone}"
-##   instance_type = "${var.in_type_ms2}"
-##   key_name = "${var.aws_key_name}"
-##   subnet_id = "${var.sn_ship_install_id}"
-##   ebs_optimized = true
-##
-##   vpc_security_group_ids = [
-##     "${aws_security_group.sg_private_ship_install.id}"]
-##
-##   root_block_device {
-##     volume_type = "gp2"
-##     volume_size = 30
-##     delete_on_termination = true
-##   }
-##
-##   tags = {
-##     Name = "ms_b_9_${var.install_version}"
-##   }
-## }
-## output "ms_b_9_ip" {
-##   value = "${aws_instance.ms_b_9.private_ip}"
-## }
-##
-## # MS-B-10 Instance
-## resource "aws_instance" "ms_b_10" {
-##   ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
-##   availability_zone = "${var.avl-zone}"
-##   instance_type = "${var.in_type_ms2}"
-##   key_name = "${var.aws_key_name}"
-##   subnet_id = "${var.sn_ship_install_id}"
-##   ebs_optimized = true
-##
-##   vpc_security_group_ids = [
-##     "${aws_security_group.sg_private_ship_install.id}"]
-##
-##   root_block_device {
-##     volume_type = "gp2"
-##     volume_size = 30
-##     delete_on_termination = true
-##   }
-##
-##   tags = {
-##     Name = "ms_b_10_${var.install_version}"
-##   }
-## }
-## output "ms_b_10_ip" {
-##   value = "${aws_instance.ms_b_10.private_ip}"
+## output "ms_b_addresses" {
+##   value = "${formatlist("instance %v has private ip %v", aws_instance.ms_b.*.id, aws_instance.ms_b.*.private_ip)}"
 ## }

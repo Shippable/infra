@@ -388,18 +388,7 @@ resource "aws_elb" "lb_g_api" {
 ##     interval = 30
 ##   }
 ##
-##   instances = [
-##     "${aws_instance.ms_b_1.id}",
-##     "${aws_instance.ms_b_2.id}",
-##     "${aws_instance.ms_b_3.id}",
-##     "${aws_instance.ms_b_4.id}",
-##     "${aws_instance.ms_b_5.id}",
-##     "${aws_instance.ms_b_6.id}",
-##     "${aws_instance.ms_b_7.id}",
-##     "${aws_instance.ms_b_8.id}",
-##     "${aws_instance.ms_b_9.id}",
-##     "${aws_instance.ms_b_10.id}"
-##   ]
+##   instances = ["${aws_instance.ms_b.*.id}"]
 ## }
 ##
 ## # APP ELB
@@ -427,18 +416,7 @@ resource "aws_elb" "lb_g_api" {
 ##     interval = 5
 ##   }
 ##
-##   instances = [
-##     "${aws_instance.ms_b_1.id}",
-##     "${aws_instance.ms_b_2.id}",
-##     "${aws_instance.ms_b_3.id}",
-##     "${aws_instance.ms_b_4.id}",
-##     "${aws_instance.ms_b_5.id}",
-##     "${aws_instance.ms_b_6.id}",
-##     "${aws_instance.ms_b_7.id}",
-##     "${aws_instance.ms_b_8.id}",
-##     "${aws_instance.ms_b_9.id}",
-##     "${aws_instance.ms_b_10.id}"
-##   ]
+##   instances = ["${aws_instance.ms_b.*.id}"]
 ## }
 ##
 ## # API ELB
@@ -466,16 +444,61 @@ resource "aws_elb" "lb_g_api" {
 ##     interval = 5
 ##   }
 ##
-##   instances = [
-##     "${aws_instance.ms_b_1.id}",
-##     "${aws_instance.ms_b_2.id}",
-##     "${aws_instance.ms_b_3.id}",
-##     "${aws_instance.ms_b_4.id}",
-##     "${aws_instance.ms_b_5.id}",
-##     "${aws_instance.ms_b_6.id}",
-##     "${aws_instance.ms_b_7.id}",
-##     "${aws_instance.ms_b_8.id}",
-##     "${aws_instance.ms_b_9.id}",
-##     "${aws_instance.ms_b_10.id}"
-##   ]
+##   instances = ["${aws_instance.ms_b.*.id}"]
+## }
+
+## # API INT ELB
+## resource "aws_elb" "lb_b_api_int" {
+##   name = "lb-b-api-int-${var.install_version}"
+##   connection_draining = true
+##   subnets = [
+##     "${var.sn_public_ship_id}"]
+##   security_groups = [
+##     "${aws_security_group.sg_public_lb.id}"]
+##
+##   listener {
+##     lb_port = 443
+##     lb_protocol = "https"
+##     instance_port = 50000
+##     instance_protocol = "http"
+##     ssl_certificate_id = "${var.acm_cert_arn_20170309}"
+##   }
+##
+##   health_check {
+##     healthy_threshold = 2
+##     unhealthy_threshold = 5
+##     timeout = 3
+##     target = "HTTP:50000/"
+##     interval = 5
+##   }
+##
+##   instances = ["${aws_instance.ms_b.*.id}"]
+## }
+
+## # API CON ELB
+## resource "aws_elb" "lb_b_api_con" {
+##   name = "lb-b-api-con-${var.install_version}"
+##   connection_draining = true
+##   subnets = [
+##     "${var.sn_public_ship_id}"]
+##   security_groups = [
+##     "${aws_security_group.sg_public_lb.id}"]
+##
+##   listener {
+##     lb_port = 443
+##     lb_protocol = "https"
+##     instance_port = 50000
+##     instance_protocol = "http"
+##     ssl_certificate_id = "${var.acm_cert_arn_20170309}"
+##   }
+##
+##   health_check {
+##     healthy_threshold = 2
+##     unhealthy_threshold = 5
+##     timeout = 3
+##     target = "HTTP:50000/"
+##     interval = 5
+##   }
+##
+##   instances = ["${aws_instance.ms_b.*.id}"]
 ## }

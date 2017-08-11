@@ -79,6 +79,7 @@ apply_changes() {
 
   echo "planning changes"
   echo "-----------------------------------"
+  terraform --version
   terraform plan -var-file="$RES_AWS_CREDS_META/integration.env"
   echo "apply changes"
   echo "-----------------------------------"

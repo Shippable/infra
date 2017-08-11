@@ -459,7 +459,7 @@ resource "aws_elb" "lb_b_api_int" {
   listener {
     lb_port = 443
     lb_protocol = "https"
-    instance_port = 50000
+    instance_port = 50004
     instance_protocol = "http"
     ssl_certificate_id = "${var.acm_cert_arn_20170309}"
   }
@@ -468,7 +468,7 @@ resource "aws_elb" "lb_b_api_int" {
     healthy_threshold = 2
     unhealthy_threshold = 5
     timeout = 3
-    target = "HTTP:50000/"
+    target = "HTTP:50004/"
     interval = 5
   }
 
@@ -487,7 +487,7 @@ resource "aws_elb" "lb_b_api_con" {
   listener {
     lb_port = 443
     lb_protocol = "https"
-    instance_port = 50000
+    instance_port = 50005
     instance_protocol = "http"
     ssl_certificate_id = "${var.acm_cert_arn_20170309}"
   }
@@ -496,7 +496,7 @@ resource "aws_elb" "lb_b_api_con" {
     healthy_threshold = 2
     unhealthy_threshold = 5
     timeout = 3
-    target = "HTTP:50000/"
+    target = "HTTP:50005/"
     interval = 5
   }
 

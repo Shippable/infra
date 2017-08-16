@@ -184,8 +184,8 @@ output "cs_b_1_ip" {
   value = "${aws_instance.cs_b_1.private_ip}"
 }
 
-# instance MS-B-1
-resource "aws_instance" "ms_b_1" {
+# instance MS-B-3
+resource "aws_instance" "ms_b_3" {
   ami = "${var.ami_us_east_1_ubuntu1404}"
   availability_zone = "${var.avl-zone}"
   instance_type = "${var.in_type_core}"
@@ -202,16 +202,16 @@ resource "aws_instance" "ms_b_1" {
   }
 
   tags = {
-    Name = "ms_b_1_${var.install_version}"
+    Name = "ms_b_3_${var.install_version}"
   }
 }
 
-output "ms_b_1_ip" {
-  value = "${aws_instance.ms_b_1.private_ip}"
+output "ms_b_3_ip" {
+  value = "${aws_instance.ms_b_3.private_ip}"
 }
 
-# instance MS-B-2
-resource "aws_instance" "ms_b_2" {
+# instance MS-B-4
+resource "aws_instance" "ms_b_4" {
   ami = "${var.ami_us_east_1_ubuntu1404}"
   availability_zone = "${var.avl-zone}"
   instance_type = "${var.in_type_core}"
@@ -228,12 +228,12 @@ resource "aws_instance" "ms_b_2" {
   }
 
   tags = {
-    Name = "ms_b_2_${var.install_version}"
+    Name = "ms_b_4_${var.install_version}"
   }
 }
 
-output "ms_b_2_ip" {
-  value = "${aws_instance.ms_b_2.private_ip}"
+output "ms_b_4_ip" {
+  value = "${aws_instance.ms_b_4.private_ip}"
 }
 
 # ---------------

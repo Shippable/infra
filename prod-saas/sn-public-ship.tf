@@ -331,7 +331,7 @@ resource "aws_elb" "lb_g_api_int" {
 
 # API CON ELB
 resource "aws_elb" "lb_g_api_con" {
-  name = "lb-b-api-con-${var.install_version}"
+  name = "lb-g-api-con-${var.install_version}"
   connection_draining = true
   subnets = [
     "${var.sn_public_ship_id}"]

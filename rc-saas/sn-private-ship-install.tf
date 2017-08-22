@@ -379,9 +379,7 @@ output "ms_b_4_ip" {
 # ---------------
 
 resource "aws_ebs_volume" "db_migration_volume" {
-  most_recent = true
   size = 30
-  volume_type = "gp2"
   availability_zone = "${var.avl-zone}"
 
   tags = {

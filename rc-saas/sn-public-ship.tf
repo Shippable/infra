@@ -149,7 +149,7 @@ resource "aws_elb" "lb_api" {
 }
 
 # API INT ELB
-resource "aws_elb" "lb_api" {
+resource "aws_elb" "lb_api_int" {
   name = "lb-api-int-${var.install_version}"
   connection_draining = true
   subnets = [
@@ -180,7 +180,7 @@ resource "aws_elb" "lb_api" {
 }
 
 # API CONSOLE ELB
-resource "aws_elb" "lb_api" {
+resource "aws_elb" "lb_api_con" {
   name = "lb-api-con-${var.install_version}"
   connection_draining = true
   subnets = [

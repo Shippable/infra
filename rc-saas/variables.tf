@@ -95,7 +95,7 @@ variable "db_password" {
 
 variable "db_storage" {
   description = "Database storage in gb"
-  default = 200
+  default = 30
 }
 
 variable "ami_us_east_1_ubuntu1404"{

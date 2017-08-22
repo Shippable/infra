@@ -82,25 +82,25 @@ resource "aws_security_group" "sg_private_ship_install" {
 }
 
 # Database cluster with backup
-#resource "aws_db_instance" "ship_db" {
-#  name                 = "ship_db_${var.install_version}"
-#  allocated_storage    = "${var.db_storage}"
-#  storage_type         = "gp2"
-#  engine               = "postgres"
-#  engine_version       = "9.5"
-#  port                 = "5432"
-#  backup_retention_period = 3
-#  instance_class       = "${var.in_type_db}"
-#  username             = "${var.db_username}"
-#  password             = "${var.db_password}"
-#  vpc_security_group_ids = ["${aws_security_group.sg_private_ship_install.id}"]
-#  db_subnet_group_name = "${aws_db_subnet_group.sng_ship_db.id}"
-#  multi_az             = true
-#
-#  tags {
-#    Name = "ship_db_${var.install_version}"
-#  }
-#}
+resource "aws_db_instance" "ship_db" {
+  name                 = "ship_db_${var.install_version}"
+  allocated_storage    = "${var.db_storage}"
+  storage_type         = "gp2"
+  engine               = "postgres"
+  engine_version       = "9.5"
+  port                 = "5432"
+  backup_retention_period = 3
+  instance_class       = "${var.in_type_db}"
+  username             = "${var.db_username}"
+  password             = "${var.db_password}"
+  vpc_security_group_ids = ["${aws_security_group.sg_private_ship_install.id}"]
+  db_subnet_group_name = "${aws_db_subnet_group.sng_ship_db.id}"
+  multi_az             = true
+
+  tags {
+    Name = "ship_db_${var.install_version}"
+  }
+}
 
 # instance CS-1
 resource "aws_instance" "cs_1" {
@@ -323,53 +323,74 @@ output "ms_b_4_ip" {
 # ---------------
 
 # Ubuntu 14.04 instance
-resource "aws_instance" "test_1_u1404" {
-  ami = "${var.ami_us_east_1_ubuntu1404}"
+# resource "aws_instance" "test_1_u1404" {
+#   ami = "${var.ami_us_east_1_ubuntu1404}"
+#   availability_zone = "${var.avl-zone}"
+#   instance_type = "${var.in_type_core}"
+#   key_name = "${var.aws_key_name}"
+#   subnet_id = "${aws_subnet.sn_ship_install.id}"
+#
+#   vpc_security_group_ids = [
+#     "${aws_security_group.sg_private_ship_install.id}"]
+#
+#   root_block_device {
+#     volume_type = "gp2"
+#     volume_size = 50
+#     delete_on_termination = true
+#   }
+#
+#   tags = {
+#     Name = "test_1_u1404_${var.install_version}"
+#   }
+# }
+#
+# output "test_1_u1404" {
+#   value = "${aws_instance.test_1_u1404.private_ip}"
+# }
+#
+# # Ubuntu 16.04 instance
+# resource "aws_instance" "test_1_u1604" {
+#   ami = "${var.ami_us_east_1_ubuntu1604}"
+#   availability_zone = "${var.avl-zone}"
+#   instance_type = "${var.in_type_core}"
+#   key_name = "${var.aws_key_name}"
+#   subnet_id = "${aws_subnet.sn_ship_install.id}"
+#
+#   vpc_security_group_ids = [
+#     "${aws_security_group.sg_private_ship_install.id}"]
+#
+#   root_block_device {
+#     volume_type = "gp2"
+#     volume_size = 50
+#     delete_on_termination = true
+#   }
+#
+#   tags = {
+#     Name = "test_1_u1604_${var.install_version}"
+#   }
+# }
+#
+# output "test_1_u1604" {
+#   value = "${aws_instance.test_1_u1604.private_ip}"
+# }
+
+# ---------------
+# temporary ebs volume for migrating RC db
+# ---------------
+
+resource "aws_ebs_volume" "db_migration_volume" {
+  most_recent = true
+  size = 30
+  volume_type = "gp2"
   availability_zone = "${var.avl-zone}"
-  instance_type = "${var.in_type_core}"
-  key_name = "${var.aws_key_name}"
-  subnet_id = "${aws_subnet.sn_ship_install.id}"
-
-  vpc_security_group_ids = [
-    "${aws_security_group.sg_private_ship_install.id}"]
-
-  root_block_device {
-    volume_type = "gp2"
-    volume_size = 50
-    delete_on_termination = true
-  }
 
   tags = {
-    Name = "test_1_u1404_${var.install_version}"
+    Name = "db_migration_volume_${var.install_version}"
   }
 }
 
-output "test_1_u1404" {
-  value = "${aws_instance.test_1_u1404.private_ip}"
-}
-
-# Ubuntu 16.04 instance
-resource "aws_instance" "test_1_u1604" {
-  ami = "${var.ami_us_east_1_ubuntu1604}"
-  availability_zone = "${var.avl-zone}"
-  instance_type = "${var.in_type_core}"
-  key_name = "${var.aws_key_name}"
-  subnet_id = "${aws_subnet.sn_ship_install.id}"
-
-  vpc_security_group_ids = [
-    "${aws_security_group.sg_private_ship_install.id}"]
-
-  root_block_device {
-    volume_type = "gp2"
-    volume_size = 50
-    delete_on_termination = true
-  }
-
-  tags = {
-    Name = "test_1_u1604_${var.install_version}"
-  }
-}
-
-output "test_1_u1604" {
-  value = "${aws_instance.test_1_u1604.private_ip}"
+resource "aws_volume_attachment" "db_migration_att" {
+  device_name = "/dev/sdh"
+  volume_id = "${aws_ebs_volume.db_migration_volume.id}"
+  instance_id = "${aws_instance.cs_2.id}"
 }

@@ -148,6 +148,68 @@ resource "aws_elb" "lb_api" {
   ]
 }
 
+# API INT ELB
+resource "aws_elb" "lb_api" {
+  name = "lb-api-int-${var.install_version}"
+  connection_draining = true
+  subnets = [
+    "${aws_subnet.sn_public.id}"]
+  security_groups = [
+    "${aws_security_group.sg_public_lb.id}"]
+
+  listener {
+    lb_port = 443
+    lb_protocol = "https"
+    instance_port = 50004
+    instance_protocol = "http"
+    ssl_certificate_id = "${var.acm_cert_arn}"
+  }
+
+  health_check {
+    healthy_threshold = 2
+    unhealthy_threshold = 2
+    timeout = 10
+    target = "HTTP:50004/"
+    interval = 30
+  }
+
+  instances = [
+    "${aws_instance.ms_b_3.id}",
+    "${aws_instance.ms_b_4.id}"
+  ]
+}
+
+# API CONSOLE ELB
+resource "aws_elb" "lb_api" {
+  name = "lb-api-con-${var.install_version}"
+  connection_draining = true
+  subnets = [
+    "${aws_subnet.sn_public.id}"]
+  security_groups = [
+    "${aws_security_group.sg_public_lb.id}"]
+
+  listener {
+    lb_port = 443
+    lb_protocol = "https"
+    instance_port = 50005
+    instance_protocol = "http"
+    ssl_certificate_id = "${var.acm_cert_arn}"
+  }
+
+  health_check {
+    healthy_threshold = 2
+    unhealthy_threshold = 2
+    timeout = 10
+    target = "HTTP:50005/"
+    interval = 30
+  }
+
+  instances = [
+    "${aws_instance.ms_b_3.id}",
+    "${aws_instance.ms_b_4.id}"
+  ]
+}
+
 # MSG Load balancer
 resource "aws_elb" "lb_msg" {
   name = "lb-msg-${var.install_version}"

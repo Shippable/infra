@@ -380,6 +380,7 @@ output "ms_b_4_ip" {
 
 resource "aws_ebs_volume" "db_migration_volume" {
   size = 30
+  type = "gp2"
   availability_zone = "${var.avl-zone}"
 
   tags = {

@@ -83,12 +83,12 @@ variable "in_type_db" {
   description = "AWS Instance type for database server"
 }
 
-variable "db_username" {
+variable "db_root_username" {
   description = "Database root username"
-  default = "apiuser"
+  default = "shiproot"
 }
 
-variable "db_password" {
+variable "db_root_password" {
   description = "Database root password"
   default = "testing1234"
 }

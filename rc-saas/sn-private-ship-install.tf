@@ -105,8 +105,8 @@ resource "aws_db_instance" "ship_db" {
   port                 = "5432"
   backup_retention_period = 3
   instance_class       = "${var.in_type_db}"
-  username             = "${var.db_username}"
-  password             = "${var.db_password}"
+  username             = "${var.db_root_username}"
+  password             = "${var.db_root_password}"
   vpc_security_group_ids = ["${aws_security_group.sg_private_ship_install.id}"]
   db_subnet_group_name = "${aws_db_subnet_group.sng_ship_db.id}"
   multi_az             = true

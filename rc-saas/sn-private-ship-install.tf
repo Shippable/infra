@@ -113,7 +113,7 @@ resource "aws_db_instance" "ship_db" {
   db_subnet_group_name = "${aws_db_subnet_group.sng_ship_db.id}"
   backup_retention_period = 0
   multi_az             = false
-  maintenence_window   = "Sat:04:00-Sat:06:00"
+  maintenance_window   = "Sat:04:00-Sat:06:00"
 
   tags {
     Name = "ship_db_${var.install_version}"
@@ -135,6 +135,7 @@ resource "aws_db_instance" "ship_db" {
 ##   db_subnet_group_name = "${aws_db_subnet_group.sng_ship_db.id}"
 ##   backup_retention_period = 3
 ##   multi_az             = true
+##   maintenance_window   = "Sat:04:00-Sat:06:00"
 ##
 ##   tags {
 ##     Name = "ship_db_${var.install_version}"

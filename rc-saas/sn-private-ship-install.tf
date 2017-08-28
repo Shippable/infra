@@ -99,26 +99,26 @@ resource "aws_security_group" "sg_private_ship_install" {
 # DB settings for one-time migration
 # To be deleted after migration is done
 #######################################
-resource "aws_db_instance" "ship_db" {
-  name                 = "ship_db_${var.install_version}"
-  allocated_storage    = "${var.db_storage}"
-  storage_type         = "gp2"
-  engine               = "postgres"
-  engine_version       = "9.5"
-  port                 = "5432"
-  instance_class       = "${var.in_type_db}"
-  username             = "${var.db_root_username}"
-  password             = "${var.db_root_password}"
-  vpc_security_group_ids = ["${aws_security_group.sg_private_ship_install.id}"]
-  db_subnet_group_name = "${aws_db_subnet_group.sng_ship_db.id}"
-  backup_retention_period = 0
-  multi_az             = false
-  maintenance_window   = "Sat:04:00-Sat:06:00"
-
-  tags {
-    Name = "ship_db_${var.install_version}"
-  }
-}
+## resource "aws_db_instance" "ship_db" {
+##   name                 = "ship_db_${var.install_version}"
+##   allocated_storage    = "${var.db_storage}"
+##   storage_type         = "gp2"
+##   engine               = "postgres"
+##   engine_version       = "9.5"
+##   port                 = "5432"
+##   instance_class       = "${var.in_type_db}"
+##   username             = "${var.db_root_username}"
+##   password             = "${var.db_root_password}"
+##   vpc_security_group_ids = ["${aws_security_group.sg_private_ship_install.id}"]
+##   db_subnet_group_name = "${aws_db_subnet_group.sng_ship_db.id}"
+##   backup_retention_period = 0
+##   multi_az             = false
+##   maintenance_window   = "Sat:04:00-Sat:06:00"
+##
+##   tags {
+##     Name = "ship_db_${var.install_version}"
+##   }
+## }
 
 # Database Cluster
 ## resource "aws_db_instance" "ship_db" {

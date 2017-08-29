@@ -142,6 +142,7 @@ resource "aws_security_group" "sg_private_ship_install" {
 ##   multi_az             = false
 ##   maintenance_window   = "Sat:04:00-Sat:06:00"
 ##   parameter_group_name = "ship-db-pg"
+##   apply_immediately    = true
 ##
 ##   tags {
 ##     Name = "ship_db_${var.install_version}"
@@ -195,6 +196,9 @@ resource "aws_db_instance" "ship_db" {
   multi_az             = true
   maintenance_window   = "Sat:04:00-Sat:06:00"
   parameter_group_name = "ship-db-pg"
+
+  ## should be removed after the migration is done
+  apply_immediately    = true
 
   tags {
     Name = "ship_db_${var.install_version}"

@@ -170,7 +170,7 @@ resource "aws_db_parameter_group" "ship-db-pg" {
 
   parameter {
     name = "synchronous_commit"
-    value = on
+    value = "on"
   }
 
   parameter {

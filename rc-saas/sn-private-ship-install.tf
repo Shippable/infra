@@ -100,7 +100,7 @@ resource "aws_security_group" "sg_private_ship_install" {
 # To be deleted after migration is done
 #######################################
 resource "aws_db_parameter_group" "ship_db_pg_migrate" {
-  name  = "ship_db_pg_migrate"
+  name  = "ship-db-pg"
   family = "postgres9.5"
 
   parameter {

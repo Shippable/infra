@@ -99,7 +99,7 @@ resource "aws_security_group" "sg_private_ship_install" {
 # one-time migration DB settings
 # To be deleted after migration is done
 #######################################
-resource "aws_db_parameter_group" "ship_db_pg_migrate" {
+resource "aws_db_parameter_group" "ship-db-pg" {
   name  = "ship-db-pg-${var.install_version}"
   family = "postgres9.5"
 
@@ -152,7 +152,7 @@ resource "aws_db_instance" "ship_db" {
 # Database configuration and instance settings
 #######################################
 
-## resource "aws_db_parameter_group" "ship_db_pg_migrate" {
+## resource "aws_db_parameter_group" "ship-db-pg" {
 ##   name  = "ship-db-pg-${var.install_version}"
 ##   family = "postgres9.5"
 ##

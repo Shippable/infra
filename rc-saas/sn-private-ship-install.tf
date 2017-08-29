@@ -108,9 +108,11 @@ resource "aws_db_parameter_group" "ship_db_pg_migrate" {
     value = false
   }
 
+  # in kb, set to system memory/16
+  # pgtune generates the same value based on hardware
   parameter {
     name = "maintenance_work_mem"
-    value = "1GB"
+    value = "2097152"
   }
 
   parameter {
@@ -139,7 +141,7 @@ resource "aws_db_instance" "ship_db" {
   backup_retention_period = 0
   multi_az             = false
   maintenance_window   = "Sat:04:00-Sat:06:00"
-  parameter_group_name = "ship_db_pg_migrate"
+  parameter_group_name = "ship-db-pg"
 
   tags {
     Name = "ship_db_${var.install_version}"

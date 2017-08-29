@@ -122,7 +122,7 @@ resource "aws_db_parameter_group" "ship-db-pg" {
 
   parameter {
     name = "checkpoint_timeout"
-    value = "30min"
+    value = "30"
   }
 }
 
@@ -175,7 +175,7 @@ resource "aws_db_instance" "ship_db" {
 ##
 ##   parameter {
 ##     name = "checkpoint_timeout"
-##     value = "30min"
+##     value = "30"
 ##   }
 ## }
 ##

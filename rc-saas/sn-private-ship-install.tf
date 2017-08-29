@@ -100,7 +100,7 @@ resource "aws_security_group" "sg_private_ship_install" {
 # To be deleted after migration is done
 #######################################
 resource "aws_db_parameter_group" "ship-db-pg" {
-  name  = "ship-db-pg-${var.install_version}"
+  name  = "ship-db-pg"
   family = "postgres9.5"
 
   parameter {
@@ -141,7 +141,7 @@ resource "aws_db_instance" "ship_db" {
   backup_retention_period = 0
   multi_az             = false
   maintenance_window   = "Sat:04:00-Sat:06:00"
-  parameter_group_name = "ship-db-pg-${var.install_version}"
+  parameter_group_name = "ship-db-pg"
 
   tags {
     Name = "ship_db_${var.install_version}"
@@ -153,7 +153,7 @@ resource "aws_db_instance" "ship_db" {
 #######################################
 
 ## resource "aws_db_parameter_group" "ship-db-pg" {
-##   name  = "ship-db-pg-${var.install_version}"
+##   name  = "ship-db-pg"
 ##   family = "postgres9.5"
 ##
 ##   parameter {
@@ -194,7 +194,7 @@ resource "aws_db_instance" "ship_db" {
 ##   backup_retention_period = 3
 ##   multi_az             = true
 ##   maintenance_window   = "Sat:04:00-Sat:06:00"
-##   parameter_group_name = "ship-db-pg-${var.install_version}"
+##   parameter_group_name = "ship-db-pg"
 ##
 ##   tags {
 ##     Name = "ship_db_${var.install_version}"

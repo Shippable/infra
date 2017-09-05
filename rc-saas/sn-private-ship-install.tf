@@ -99,8 +99,8 @@ resource "aws_security_group" "sg_private_ship_install" {
 # one-time migration DB settings
 # To be deleted after migration is done
 #######################################
-resource "aws_db_parameter_group" "ship-db-pg" {
-  name  = "ship-db-pg"
+resource "aws_db_parameter_group" "ship-db-pg-migrate" {
+  name  = "ship-db-pg-migrate"
   family = "postgres9.5"
 
   parameter {
@@ -141,7 +141,7 @@ resource "aws_db_instance" "ship_db" {
   backup_retention_period = 0
   multi_az             = false
   maintenance_window   = "Sat:04:00-Sat:06:00"
-  parameter_group_name = "ship-db-pg"
+  parameter_group_name = "ship-db-pg-migrate"
   apply_immediately    = true
 
   tags {

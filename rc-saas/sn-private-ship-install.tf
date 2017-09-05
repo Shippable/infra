@@ -99,33 +99,33 @@ resource "aws_security_group" "sg_private_ship_install" {
 # one-time migration DB settings
 # To be deleted after migration is done
 #######################################
-## resource "aws_db_parameter_group" "ship-db-pg-migrate" {
-##   name  = "ship-db-pg-migrate"
-##   family = "postgres9.5"
-##
-##   parameter {
-##     name = "autovacuum"
-##     value = false
-##   }
-##
-##   # 2 GB. The value should be in KB here
-##   # pgtune generates the same value based on hardware
-##   parameter {
-##     name = "maintenance_work_mem"
-##     value = "2097152"
-##   }
-##
-##   parameter {
-##     name = "synchronous_commit"
-##     value = "off"
-##   }
-##
-##   parameter {
-##     name = "checkpoint_timeout"
-##     value = "30"
-##   }
-## }
-##
+resource "aws_db_parameter_group" "ship-db-pg-migrate" {
+  name  = "ship-db-pg-migrate"
+  family = "postgres9.5"
+
+  parameter {
+    name = "autovacuum"
+    value = false
+  }
+
+  # 2 GB. The value should be in KB here
+  # pgtune generates the same value based on hardware
+  parameter {
+    name = "maintenance_work_mem"
+    value = "2097152"
+  }
+
+  parameter {
+    name = "synchronous_commit"
+    value = "off"
+  }
+
+  parameter {
+    name = "checkpoint_timeout"
+    value = "30"
+  }
+}
+
 ## resource "aws_db_instance" "ship_db" {
 ##   name                 = "ship_db_${var.install_version}"
 ##   allocated_storage    = "${var.db_storage}"

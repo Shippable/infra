@@ -80,7 +80,8 @@ apply_changes() {
   echo "planning changes"
   echo "-----------------------------------"
   terraform --version
-  terraform refresh -var-file="$RES_AWS_CREDS_META/integration.env"
+  terraform taint ship-db-pg
+  #terraform refresh -var-file="$RES_AWS_CREDS_META/integration.env"
   terraform plan -var-file="$RES_AWS_CREDS_META/integration.env"
   echo "apply changes"
   echo "-----------------------------------"

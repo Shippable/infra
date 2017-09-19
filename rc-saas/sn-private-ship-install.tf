@@ -115,10 +115,10 @@ resource "aws_db_parameter_group" "ship-db-prod-pg" {
     value = "4194304"
   }
 
-  parameter {
-    name = "wal_buffers"
-    value = "8192"
-  }
+  ## parameter {
+  ##   name = "wal_buffers"
+  ##   value = "8192"
+  ## }
 
   parameter {
     name = "synchronous_commit"
@@ -204,9 +204,6 @@ resource "aws_db_instance" "ship_db" {
   maintenance_window   = "Sat:04:00-Sat:06:00"
   parameter_group_name = "ship-db-pg"
   final_snapshot_identifier = "ship-db-snapshot"
-
-  ## should be removed after the migration is done
-  # apply_immediately    = true
 
   tags {
     Name = "ship_db_${var.install_version}"

@@ -147,7 +147,9 @@ resource "aws_db_instance" "ship_db_prod" {
   multi_az             = false
   maintenance_window   = "Sat:04:00-Sat:06:00"
   parameter_group_name = "ship-db-prod-pg"
-  apply_immediately    = true
+
+  #uncomment when upgrading
+  #apply_immediately    = false
 
   tags {
     Name = "ship_db_${var.install_version}"

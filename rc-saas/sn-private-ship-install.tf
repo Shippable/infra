@@ -126,11 +126,6 @@ resource "aws_db_parameter_group" "ship-db-prod-pg" {
   }
 
   parameter {
-    name = "checkpoint_segments"
-    value = "256"
-  }
-
-  parameter {
     name = "checkpoint_timeout"
     value = "1800"
   }

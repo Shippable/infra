@@ -536,7 +536,7 @@ output "test_1_u1604" {
 # ---------------
 
 resource "aws_ebs_volume" "db_migration_volume" {
-  size = 30
+  size = 200
   type = "gp2"
   availability_zone = "${var.avl-zone}"
 

@@ -245,23 +245,3 @@ resource "aws_main_route_table_association" "rt_main_ship_install" {
   vpc_id = "${aws_vpc.vpc.id}"
   route_table_id = "${aws_route_table.rt_ship_install.id}"
 }
-
-# ---------------
-# temporary ebs volume for migrating prod db
-# ---------------
-
-resource "aws_ebs_volume" "db_migration_volume_jb" {
-  size = 200
-  type = "gp2"
-  availability_zone = "${var.avl-zone}"
-
-  tags = {
-    Name = "db_migration_volume_jb_${var.install_version}"
-  }
-}
-
-resource "aws_volume_attachment" "db_migration_att_jb" {
-  device_name = "/dev/sdh"
-  volume_id = "${aws_ebs_volume.db_migration_volume_jb.id}"
-  instance_id = "${aws_instance.nat.id}"
-}

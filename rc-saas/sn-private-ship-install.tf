@@ -374,8 +374,8 @@ output "cs_2_ip" {
    value = "${aws_instance.cs_g_1.private_ip}"
  }
 
- # instance MS-G-1
- resource "aws_instance" "ms_g_1" {
+ # instance MS-G-3
+ resource "aws_instance" "ms_g_3" {
    ami = "${var.ami_us_east_1_ubuntu1404}"
    availability_zone = "${var.avl-zone}"
    instance_type = "${var.in_type_core}"
@@ -392,16 +392,16 @@ output "cs_2_ip" {
    }
 
    tags = {
-     Name = "ms_g_1_${var.install_version}"
+     Name = "ms_g_3_${var.install_version}"
    }
  }
 
- output "ms_g_1_ip" {
-   value = "${aws_instance.ms_g_1.private_ip}"
+ output "ms_g_3_ip" {
+   value = "${aws_instance.ms_g_3.private_ip}"
  }
 
- # instance MS-G-2
- resource "aws_instance" "ms_g_2" {
+ # instance MS-G-4
+ resource "aws_instance" "ms_g_4" {
    ami = "${var.ami_us_east_1_ubuntu1404}"
    availability_zone = "${var.avl-zone}"
    instance_type = "${var.in_type_core}"
@@ -418,12 +418,12 @@ output "cs_2_ip" {
    }
 
    tags = {
-     Name = "ms_g_2_${var.install_version}"
+     Name = "ms_g_4_${var.install_version}"
    }
  }
 
- output "ms_g_2_ip" {
-   value = "${aws_instance.ms_g_2.private_ip}"
+ output "ms_g_4_ip" {
+   value = "${aws_instance.ms_g_4.private_ip}"
  }
 
 # ---------------

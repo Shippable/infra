@@ -431,106 +431,106 @@ output "cs_2_ip" {
 # ---------------
 ##
 # Ubuntu 14.04 instance
-resource "aws_instance" "test_1_u1404" {
-  ami = "${var.ami_us_east_1_ubuntu1404}"
-  availability_zone = "${var.avl-zone}"
-  instance_type = "${var.in_type_core}"
-  key_name = "${var.aws_key_name}"
-  subnet_id = "${aws_subnet.sn_ship_install.id}"
-
-  vpc_security_group_ids = [
-    "${aws_security_group.sg_private_ship_install.id}"]
-
-  root_block_device {
-    volume_type = "gp2"
-    volume_size = 50
-    delete_on_termination = true
-  }
-
-  tags = {
-    Name = "test_1_u1404_${var.install_version}"
-  }
-}
-
-output "test_1_u1404" {
-  value = "${aws_instance.test_1_u1404.private_ip}"
-}
-
-resource "aws_instance" "test_2_u1404" {
-  ami = "${var.ami_us_east_1_ubuntu1404}"
-  availability_zone = "${var.avl-zone}"
-  instance_type = "${var.in_type_core}"
-  key_name = "${var.aws_key_name}"
-  subnet_id = "${aws_subnet.sn_ship_install.id}"
-
-  vpc_security_group_ids = [
-    "${aws_security_group.sg_private_ship_install.id}"]
-
-  root_block_device {
-    volume_type = "gp2"
-    volume_size = 50
-    delete_on_termination = true
-  }
-
-  tags = {
-    Name = "test_2_u1404_${var.install_version}"
-  }
-}
-
-output "test_2_u1404" {
-  value = "${aws_instance.test_2_u1404.private_ip}"
-}
-
-# Ubuntu 16.04 instance
-resource "aws_instance" "test_1_u1604" {
-  ami = "${var.ami_us_east_1_ubuntu1604}"
-  availability_zone = "${var.avl-zone}"
-  instance_type = "${var.in_type_core}"
-  key_name = "${var.aws_key_name}"
-  subnet_id = "${aws_subnet.sn_ship_install.id}"
-
-  vpc_security_group_ids = [
-    "${aws_security_group.sg_private_ship_install.id}"]
-
-  root_block_device {
-    volume_type = "gp2"
-    volume_size = 50
-    delete_on_termination = true
-  }
-
-  tags = {
-    Name = "test_1_u1604_${var.install_version}"
-  }
-}
-
-output "test_1_u1604" {
-  value = "${aws_instance.test_1_u1604.private_ip}"
-}
-
-resource "aws_instance" "test_2_u1604" {
-  ami = "${var.ami_us_east_1_ubuntu1604}"
-  availability_zone = "${var.avl-zone}"
-  instance_type = "${var.in_type_core}"
-  key_name = "${var.aws_key_name}"
-  subnet_id = "${aws_subnet.sn_ship_install.id}"
-
-  vpc_security_group_ids = [
-    "${aws_security_group.sg_private_ship_install.id}"]
-
-  root_block_device {
-    volume_type = "gp2"
-    volume_size = 50
-    delete_on_termination = true
-  }
-
-  tags = {
-    Name = "test_2_u1604_${var.install_version}"
-  }
-}
-
-output "test_2_u1604" {
-  value = "${aws_instance.test_2_u1604.private_ip}"
-}
+## resource "aws_instance" "test_1_u1404" {
+##   ami = "${var.ami_us_east_1_ubuntu1404}"
+##   availability_zone = "${var.avl-zone}"
+##   instance_type = "${var.in_type_core}"
+##   key_name = "${var.aws_key_name}"
+##   subnet_id = "${aws_subnet.sn_ship_install.id}"
+##
+##   vpc_security_group_ids = [
+##     "${aws_security_group.sg_private_ship_install.id}"]
+##
+##   root_block_device {
+##     volume_type = "gp2"
+##     volume_size = 50
+##     delete_on_termination = true
+##   }
+##
+##   tags = {
+##     Name = "test_1_u1404_${var.install_version}"
+##   }
+## }
+##
+## output "test_1_u1404" {
+##   value = "${aws_instance.test_1_u1404.private_ip}"
+## }
+##
+## resource "aws_instance" "test_2_u1404" {
+##   ami = "${var.ami_us_east_1_ubuntu1404}"
+##   availability_zone = "${var.avl-zone}"
+##   instance_type = "${var.in_type_core}"
+##   key_name = "${var.aws_key_name}"
+##   subnet_id = "${aws_subnet.sn_ship_install.id}"
+##
+##   vpc_security_group_ids = [
+##     "${aws_security_group.sg_private_ship_install.id}"]
+##
+##   root_block_device {
+##     volume_type = "gp2"
+##     volume_size = 50
+##     delete_on_termination = true
+##   }
+##
+##   tags = {
+##     Name = "test_2_u1404_${var.install_version}"
+##   }
+## }
+##
+## output "test_2_u1404" {
+##   value = "${aws_instance.test_2_u1404.private_ip}"
+## }
+##
+## # Ubuntu 16.04 instance
+## resource "aws_instance" "test_1_u1604" {
+##   ami = "${var.ami_us_east_1_ubuntu1604}"
+##   availability_zone = "${var.avl-zone}"
+##   instance_type = "${var.in_type_core}"
+##   key_name = "${var.aws_key_name}"
+##   subnet_id = "${aws_subnet.sn_ship_install.id}"
+##
+##   vpc_security_group_ids = [
+##     "${aws_security_group.sg_private_ship_install.id}"]
+##
+##   root_block_device {
+##     volume_type = "gp2"
+##     volume_size = 50
+##     delete_on_termination = true
+##   }
+##
+##   tags = {
+##     Name = "test_1_u1604_${var.install_version}"
+##   }
+## }
+##
+## output "test_1_u1604" {
+##   value = "${aws_instance.test_1_u1604.private_ip}"
+## }
+##
+## resource "aws_instance" "test_2_u1604" {
+##   ami = "${var.ami_us_east_1_ubuntu1604}"
+##   availability_zone = "${var.avl-zone}"
+##   instance_type = "${var.in_type_core}"
+##   key_name = "${var.aws_key_name}"
+##   subnet_id = "${aws_subnet.sn_ship_install.id}"
+##
+##   vpc_security_group_ids = [
+##     "${aws_security_group.sg_private_ship_install.id}"]
+##
+##   root_block_device {
+##     volume_type = "gp2"
+##     volume_size = 50
+##     delete_on_termination = true
+##   }
+##
+##   tags = {
+##     Name = "test_2_u1604_${var.install_version}"
+##   }
+## }
+##
+## output "test_2_u1604" {
+##   value = "${aws_instance.test_2_u1604.private_ip}"
+## }
 
 # ---------------
 # temporary ebs volume for migrating RC db

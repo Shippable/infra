@@ -51,27 +51,6 @@ restore_state(){
   popd
 }
 
-create_pemfile() {
- pushd "$RES_REPO_STATE/$TF_FOLDER"
- echo "Extracting AWS PEM"
- echo "-----------------------------------"
- cat "$RES_AWS_PEM_META/integration.json"  | jq -r '.key' > $KEY_FILE_NAME
- chmod 600 $KEY_FILE_NAME
- ls -al $KEY_FILE_NAME
- echo "Completed Extracting AWS PEM"
- echo "-----------------------------------"
- popd
-}
-
-destroy_changes() {
-  pushd "$RES_REPO_STATE/$TF_FOLDER"
-  echo "-----------------------------------"
-  echo "destroy changes"
-  echo "-----------------------------------"
-  terraform destroy -force -var-file="$RES_AWS_CREDS_META/integration.env"
-  popd
-}
-
 plan_changes() {
   pushd "$RES_REPO_STATE/$TF_FOLDER"
   echo "-----------------------------------"
@@ -88,7 +67,6 @@ main() {
   eval `ssh-agent -s`
   test_context
   restore_state
-  create_pemfile
   plan_changes
 }
 

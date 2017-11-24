@@ -100,59 +100,59 @@ resource "aws_security_group" "sg_private_ship_install" {
 # GREEN INSTANCES
 # ---------------
 
-# # CS-G-1 Instance
-# resource "aws_instance" "cs_g_1" {
-#   ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
-#   availability_zone = "${var.avl-zone}"
-#   instance_type = "${var.in_type_core}"
-#   key_name = "${var.aws_key_name}"
-#   subnet_id = "${var.sn_ship_install_id}"
-#
-#   vpc_security_group_ids = [
-#     "${aws_security_group.sg_private_ship_install.id}"]
-#
-#   root_block_device {
-#     volume_type = "gp2"
-#     volume_size = 30
-#     delete_on_termination = true
-#   }
-#
-#   tags = {
-#     Name = "cs_g_1_${var.install_version}"
-#   }
-# }
-#
-# output "cs_g_1_ip" {
-#   value = "${aws_instance.cs_g_1.private_ip}"
-# }
-#
-#
-# MS-G-* Instance
-# resource "aws_instance" "ms_g" {
-#   ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
-#   availability_zone = "${var.avl-zone}"
-#   instance_type = "${var.in_type_ms}"
-#   key_name = "${var.aws_key_name}"
-#   subnet_id = "${var.sn_ship_install_id}"
-#   ebs_optimized = true
-#
-#   count = 6
-#   vpc_security_group_ids = [
-#     "${aws_security_group.sg_private_ship_install.id}"]
-#
-#   root_block_device {
-#     volume_type = "gp2"
-#     volume_size = 30
-#     delete_on_termination = true
-#   }
-#
-#   tags = {
-#     Name = "ms_g_${count.index}_${var.install_version}"
-#   }
-# }
-# output "ms_g_addresses" {
-#   value = "${formatlist("instance %v has private ip %v", aws_instance.ms_g.*.id, aws_instance.ms_g.*.private_ip)}"
-# }
+# CS-G-1 Instance
+resource "aws_instance" "cs_g_1" {
+  ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
+  availability_zone = "${var.avl-zone}"
+  instance_type = "${var.in_type_core}"
+  key_name = "${var.aws_key_name}"
+  subnet_id = "${var.sn_ship_install_id}"
+
+  vpc_security_group_ids = [
+    "${aws_security_group.sg_private_ship_install.id}"]
+
+  root_block_device {
+    volume_type = "gp2"
+    volume_size = 30
+    delete_on_termination = true
+  }
+
+  tags = {
+    Name = "cs_g_1_${var.install_version}"
+  }
+}
+
+output "cs_g_1_ip" {
+  value = "${aws_instance.cs_g_1.private_ip}"
+}
+
+
+MS-G-* Instance
+resource "aws_instance" "ms_g" {
+  ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
+  availability_zone = "${var.avl-zone}"
+  instance_type = "${var.in_type_ms}"
+  key_name = "${var.aws_key_name}"
+  subnet_id = "${var.sn_ship_install_id}"
+  ebs_optimized = true
+
+  count = 6
+  vpc_security_group_ids = [
+    "${aws_security_group.sg_private_ship_install.id}"]
+
+  root_block_device {
+    volume_type = "gp2"
+    volume_size = 30
+    delete_on_termination = true
+  }
+
+  tags = {
+    Name = "ms_g_${count.index}_${var.install_version}"
+  }
+}
+output "ms_g_addresses" {
+  value = "${formatlist("instance %v has private ip %v", aws_instance.ms_g.*.id, aws_instance.ms_g.*.private_ip)}"
+}
 
 # ---------------
 # BLUE INSTANCES

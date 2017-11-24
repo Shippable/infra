@@ -127,7 +127,7 @@ output "cs_g_1_ip" {
 }
 
 
-MS-G-* Instance
+# MS-G-* Instance
 resource "aws_instance" "ms_g" {
   ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
   availability_zone = "${var.avl-zone}"

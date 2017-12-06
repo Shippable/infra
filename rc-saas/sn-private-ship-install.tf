@@ -426,6 +426,33 @@ output "cs_2_ip" {
    value = "${aws_instance.ms_g_4.private_ip}"
  }
 
+ ## CENTOS 7 test-instance
+resource "aws_instance" "test_inst_1_centos_7" {
+  ami = "${var.ami_us_east_1_centos7}"
+  availability_zone = "${var.avl-zone}"
+  instance_type = "${var.in_type_core}"
+  key_name = "${var.aws_key_name}"
+  subnet_id = "${aws_subnet.sn_ship_install.id}"
+  subnet_id = "${aws_subnet.sn_ship_install.id}"
+
+  vpc_security_group_ids = [
+    "${aws_security_group.sg_private_ship_install.id}"]
+
+  root_block_device {
+    volume_type = "gp2"
+    volume_size = 50
+    delete_on_termination = true
+  }
+
+  tags = {
+    Name = "test_inst_1_centos_7_${var.install_version}"
+  }
+}
+
+output "test_inst_1_centos_7" {
+  value = "${aws_instance.test_inst_1_centos_7.private_ip}"
+}
+
 # ---------------
 # temporary ebs volume for migrating RC db
 # ---------------

@@ -78,7 +78,7 @@ output "grisham_dev_instance_bharath92_u1404" {
   value = "${aws_instance.grisham_dev_instance_bharath92_u1404.private_ip}"
 }
 
-resource "aws_instance" "grisham_dev_instance_jatin_19_u1404" {
+resource "aws_instance" "grisham_dev_instance_jatin_11_u1404" {
   ami = "${var.ami_us_east_1_ubuntu1404}"
   availability_zone = "${var.avl-zone}"
   instance_type = "${var.in_type_core}"
@@ -95,12 +95,12 @@ resource "aws_instance" "grisham_dev_instance_jatin_19_u1404" {
   }
 
   tags = {
-    Name = "grisham_dev_instance_jatin_19_u1404_${var.install_version}"
+    Name = "grisham_dev_instance_jatin_11_u1404_${var.install_version}"
   }
 }
 
-output "grisham_dev_instance_jatin_19_u1404" {
-  value = "${aws_instance.grisham_dev_instance_jatin_19_u1404.private_ip}"
+output "grisham_dev_instance_jatin_11_u1404" {
+  value = "${aws_instance.grisham_dev_instance_jatin_11_u1404.private_ip}"
 }
 
 resource "aws_instance" "grisham_dev_instance_ric03uec_u1604" {

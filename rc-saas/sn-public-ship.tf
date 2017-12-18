@@ -244,8 +244,8 @@ resource "aws_elb" "lb_g_mktg" {
   }
 
   instances = [
-    "${aws_instance.ms_g_3.id}",
-    "${aws_instance.ms_g_4.id}"
+    "${aws_instance.ms_g_1.id}",
+    "${aws_instance.ms_g_2.id}"
   ]
 }
 
@@ -275,8 +275,8 @@ resource "aws_elb" "lb_g_www" {
   }
 
   instances = [
-    "${aws_instance.ms_g_3.id}",
-    "${aws_instance.ms_g_4.id}"
+    "${aws_instance.ms_g_1.id}",
+    "${aws_instance.ms_g_2.id}"
   ]
 }
 
@@ -306,8 +306,8 @@ resource "aws_elb" "lb_g_api" {
   }
 
   instances = [
-    "${aws_instance.ms_g_3.id}",
-    "${aws_instance.ms_g_4.id}"
+    "${aws_instance.ms_g_1.id}",
+    "${aws_instance.ms_g_2.id}"
   ]
 }
 
@@ -337,8 +337,8 @@ resource "aws_elb" "lb_g_api_int" {
   }
 
   instances = [
-    "${aws_instance.ms_g_3.id}",
-    "${aws_instance.ms_g_4.id}"
+    "${aws_instance.ms_g_1.id}",
+    "${aws_instance.ms_g_2.id}"
   ]
 }
 
@@ -368,8 +368,8 @@ resource "aws_elb" "lb_g_api_con" {
   }
 
   instances = [
-    "${aws_instance.ms_g_3.id}",
-    "${aws_instance.ms_g_4.id}"
+    "${aws_instance.ms_g_1.id}",
+    "${aws_instance.ms_g_2.id}"
   ]
 }
 

@@ -114,6 +114,11 @@ variable "ami_us_east_1_centos7"{
   description = "AWS AMI for us-east-1 CentOS 7"
 }
 
+variable "ami_us_east_1_rancheros"{
+  default = "ami-03482379"
+  description = "AWS AMI for us-east-1 Rancher OS 1.1.1"
+}
+
 # this is a special ami preconfigured to do NAT
 variable "ami_us_east_1_nat"{
   default = "ami-d2ee95c5"

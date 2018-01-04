@@ -2,6 +2,7 @@ resources:
   - name: rc_saas_state
     type: state
 
+jobs:
   - name: rc_saas_inf_prov
     type: runSh
     steps:

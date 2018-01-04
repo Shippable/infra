@@ -146,7 +146,7 @@ resource "aws_instance" "prod_bld_hosts_x86_ubuntu1404" {
   }
 
   tags = {
-    Name = "bld_${count.index}_${var.install_version}"
+    Name = "prod_bld_x86_ubuntu1404_${count.index}"
   }
 }
 
@@ -168,6 +168,6 @@ resource "aws_instance" "prod_bld_hosts_x86_ubuntu1604" {
   }
 
   tags = {
-    Name = "bld_${count.index}_${var.install_version}"
+    Name = "prod_bld_x86_ubuntu1604_${count.index}"
   }
 }

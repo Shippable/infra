@@ -61,7 +61,7 @@ restore_state(){
 #    echo "No previous state file exists, skipping"
 #    echo "-----------------------------------"
 #  fi
-  popd
+#  popd
 }
 
 create_pemfile() {

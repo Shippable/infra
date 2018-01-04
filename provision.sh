@@ -3,6 +3,7 @@
 export PROV_CONTEXT=$1
 export PROV_ENV=$2
 export TF_FOLDER="$PROV_CONTEXT-$PROV_ENV"
+export RES_STATE=$PROV_CONTEXT"_"$PROV_ENV"_state"
 
 export RES_REPO="infra_repo"
 export RES_AWS_CREDS="aws_v2_"$PROV_CONTEXT"_access"
@@ -26,6 +27,7 @@ test_context() {
   echo "RES_AWS_PEM=$RES_AWS_PEM"
   echo "KEY_FILE_NAME=$KEY_FILE_NAME"
   echo "TF_FOLDER=$TF_FOLDER"
+  echo "RES_STATE=$RES_STATE"
 
   echo "RES_REPO_UP=$RES_REPO_UP"
   echo "RES_REPO_STATE=$RES_REPO_STATE"

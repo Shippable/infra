@@ -19,10 +19,10 @@ jobs:
             - pushd $(shipctl get_resource_state "infra_repo")
             - ./provision.sh rc saas
             - popd
-      - OUT: rc_saas_state
+#      - OUT: rc_saas_state
     on_success:
       - script: echo 'SUCCESS!'
     on_failure:
       - script: echo 'FAILURE!'
     always:
-      - script: /build/IN/infra_repo/gitRepo/archiveProvisionState.sh rc saas
+#      - script: /build/IN/infra_repo/gitRepo/archiveProvisionState.sh rc saas

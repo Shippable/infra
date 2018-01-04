@@ -2,3 +2,27 @@ resources:
   - name: rc_saas_state
     type: state
 
+  - name: rc_saas_inf_prov
+    type: runSh
+    steps:
+      - IN: aws_rc_pem
+        switch: off
+      - IN: aws_v2_rc_access
+        switch: off
+      - IN: rc_saas_state
+        switch: off
+      - IN: infra_repo
+        switch: off
+      - TASK:
+          script:
+             - shipctl copy_file_from_resource_state rc_saas_state terraform.tfstate .
+#            - pushd $(shipctl get_resource_state "infra_repo")
+#            - ./provision.sh rc saas
+#            - popd
+#      - OUT: rc_saas_state
+    on_success:
+      - script: echo 'SUCCESS!'
+    on_failure:
+      - script: echo 'FAILURE!'
+#    always:
+#      - script: /build/IN/infra_repo/gitRepo/archiveProvisionState.sh rc saas

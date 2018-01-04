@@ -26,7 +26,7 @@ arch_statefile() {
     echo "new state file exists, copying"
     echo "-----------------------------------"
     cp -vr terraform.tfstate /build/state
-#    shipctl copy_file_to_resource_state terraform.tfstate $RES_STATE
+    shipctl copy_file_to_resource_state terraform.tfstate $RES_STATE
   else
     # this is a safety measure, if this existed, the above if itself would have
     # yielded a state file
@@ -35,7 +35,7 @@ arch_statefile() {
       echo "previous state file exists, copying $prev_state_loc"
       echo "-----------------------------------"
       cp -vr $prev_state_loc /build/state
-#      shipctl copy_file_to_resource_state $prev_state_loc $RES_STATE
+      shipctl copy_file_to_resource_state $prev_state_loc $RES_STATE
     else
       echo "No previous state file exists at $prev_state_loc, skip copying"
       echo "-----------------------------------"

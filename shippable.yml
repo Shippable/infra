@@ -1,0 +1,4 @@
+resources:
+  - name: rc_saas_state
+    type: state
+

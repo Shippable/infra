@@ -25,7 +25,7 @@ arch_statefile() {
   if [ -f "terraform.tfstate" ]; then
     echo "new state file exists, copying"
     echo "-----------------------------------"
-    cp -vr terraform.tfstate /build/state
+#    cp -vr terraform.tfstate /build/state
     shipctl copy_file_to_resource_state terraform.tfstate $RES_STATE
   else
     # this is a safety measure, if this existed, the above if itself would have
@@ -34,7 +34,7 @@ arch_statefile() {
     if [ -f "$prev_state_loc" ]; then
       echo "previous state file exists, copying $prev_state_loc"
       echo "-----------------------------------"
-      cp -vr $prev_state_loc /build/state
+#      cp -vr $prev_state_loc /build/state
       shipctl copy_file_to_resource_state $prev_state_loc $RES_STATE
     else
       echo "No previous state file exists at $prev_state_loc, skip copying"

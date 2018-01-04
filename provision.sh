@@ -43,7 +43,8 @@ restore_state(){
   if [ -f "terraform.tfstate" ]; then
     echo "Previous state file exists, copying"
     echo "-----------------------------------"
-    cp -vr terraform.tfstate "$RES_REPO_STATE/$TF_FOLDER"
+    shipctl copy_file_from_resource_state rc_saas_state terraform.tfstate "$RES_REPO_STATE/$TF_FOLDER"
+#    cp -vr terraform.tfstate "$RES_REPO_STATE/$TF_FOLDER"
   else
     echo "No previous state file exists, skipping"
     echo "-----------------------------------"
@@ -83,7 +84,7 @@ apply_changes() {
   terraform plan -var-file="$RES_AWS_CREDS_META/integration.env"
   echo "apply changes"
   echo "-----------------------------------"
-  terraform apply -var-file="$RES_AWS_CREDS_META/integration.env"
+#  terraform apply -var-file="$RES_AWS_CREDS_META/integration.env"
   popd
 }
 

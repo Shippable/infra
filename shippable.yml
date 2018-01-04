@@ -16,16 +16,13 @@ jobs:
         switch: off
       - TASK:
           script:
-             - ls -al
-             - shipctl copy_file_from_resource_state rc_saas_state terraform.tfstate .
-             - ls -al
-#            - pushd $(shipctl get_resource_state "infra_repo")
-#            - ./provision.sh rc saas
-#            - popd
-#      - OUT: rc_saas_state
+            - pushd $(shipctl get_resource_state "infra_repo")
+            - ./provision.sh rc saas
+            - popd
+      - OUT: rc_saas_state
     on_success:
       - script: echo 'SUCCESS!'
     on_failure:
       - script: echo 'FAILURE!'
-#    always:
-#      - script: /build/IN/infra_repo/gitRepo/archiveProvisionState.sh rc saas
+    always:
+      - script: /build/IN/infra_repo/gitRepo/archiveProvisionState.sh rc saas

@@ -3,6 +3,7 @@
 export PROV_CONTEXT=$1
 export PROV_ENV=$2
 export TF_FOLDER="$PROV_CONTEXT-$PROV_ENV"
+export RES_STATE=$PROV_CONTEXT"_"$PROV_ENV"_state"
 
 export RES_REPO="infra_repo"
 export RES_REPO_UP=$(echo $RES_REPO | awk '{print toupper($0)}')
@@ -24,6 +25,7 @@ arch_statefile() {
     echo "new state file exists, copying"
     echo "-----------------------------------"
     cp -vr terraform.tfstate /build/state
+    shipctl copy_file_to_resource_state terraform.tfstate $RES_STATE
   else
     # this is a safety measure, if this existed, the above if itself would have
     # yielded a state file
@@ -32,6 +34,7 @@ arch_statefile() {
       echo "previous state file exists, copying $prev_state_loc"
       echo "-----------------------------------"
       cp -vr $prev_state_loc /build/state
+      shipctl copy_file_to_resource_state $prev_state_loc $RES_STATE
     else
       echo "No previous state file exists at $prev_state_loc, skip copying"
       echo "-----------------------------------"

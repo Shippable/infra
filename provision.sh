@@ -41,27 +41,27 @@ restore_state(){
   echo "Copying previous state file"
   echo "-----------------------------------"
 
-#  pushd "$RES_REPO_STATE/$TF_FOLDER"
-#    shipctl copy_file_from_resource_state rc_saas_state terraform.tfstate .
-#    if [ -f "terraform.tfstate" ]; then
-#      echo "Copied prior state file"
-#      echo "-----------------------------------"
-#    else
-#      echo "No previous state file exists, skipping"
-#      echo "-----------------------------------"
-#    fi
-#  popd
-
-  pushd $JOB_PREVIOUS_STATE
-  if [ -f "terraform.tfstate" ]; then
-    echo "Previous state file exists, copying"
-    echo "-----------------------------------"
-    cp -vr terraform.tfstate "$RES_REPO_STATE/$TF_FOLDER"
-  else
-    echo "No previous state file exists, skipping"
-    echo "-----------------------------------"
-  fi
+  pushd "$RES_REPO_STATE/$TF_FOLDER"
+    shipctl copy_file_from_resource_state rc_saas_state terraform.tfstate .
+    if [ -f "terraform.tfstate" ]; then
+      echo "Copied prior state file"
+      echo "-----------------------------------"
+    else
+      echo "No previous state file exists, skipping"
+      echo "-----------------------------------"
+    fi
   popd
+
+#  pushd $JOB_PREVIOUS_STATE
+#  if [ -f "terraform.tfstate" ]; then
+#    echo "Previous state file exists, copying"
+#    echo "-----------------------------------"
+#    cp -vr terraform.tfstate "$RES_REPO_STATE/$TF_FOLDER"
+#  else
+#    echo "No previous state file exists, skipping"
+#    echo "-----------------------------------"
+#  fi
+#  popd
 }
 
 create_pemfile() {
@@ -96,7 +96,7 @@ apply_changes() {
   terraform plan -var-file="$RES_AWS_CREDS_META/integration.env"
   echo "apply changes"
   echo "-----------------------------------"
-  terraform apply -var-file="$RES_AWS_CREDS_META/integration.env"
+#  terraform apply -var-file="$RES_AWS_CREDS_META/integration.env"
   popd
 }
 

@@ -42,7 +42,7 @@ restore_state(){
   echo "-----------------------------------"
 
   pushd "$RES_REPO_STATE/$TF_FOLDER"
-    shipctl copy_file_from_resource_state rc_saas_state terraform.tfstate .
+    shipctl copy_file_from_resource_state $RES_STATE terraform.tfstate .
     if [ -f "terraform.tfstate" ]; then
       echo "Copied prior state file"
       echo "-----------------------------------"

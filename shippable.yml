@@ -5,13 +5,33 @@ resources:
   - name: prod_saas_state
     type: state
 
+  # PEM key for AWS RC account
+  - name: rc_aws_pem
+    type: integration
+    integration: aws-rc-pem
+
+  # CREDS for AWS RC account
+  - name: rc_aws_key
+    type: integration
+    integration: aws_rc_access
+
+  # CREDS for AWS PROD account
+  - name: prod_aws_key
+    type: integration
+    integration: aws_prod_access
+
+  # PEM key for AWS PROD account
+  - name: prod_aws_pem
+    type: integration
+    integration: aws-prod-pem
+
 jobs:
   - name: rc_saas_inf_prov
     type: runSh
     steps:
-      - IN: aws_rc_pem
+      - IN: rc_aws_pem
         switch: off
-      - IN: aws_v2_rc_access
+      - IN: rc_aws_key
         switch: off
       - IN: rc_saas_state
         switch: off
@@ -33,9 +53,9 @@ jobs:
   - name: prod_saas_inf_prov
     type: runSh
     steps:
-      - IN: aws_prod_pem
+      - IN: prod_aws_pem
         switch: off
-      - IN: aws_v2_prod_access
+      - IN: prod_aws_key
         switch: off
       - IN: prod_saas_state
         switch: off

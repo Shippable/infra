@@ -44,7 +44,7 @@ jobs:
       - TASK:
           script:
             - pushd $(shipctl get_resource_state "infra_repo")
-            - ./provision.sh rc saas
+            - ./provision.sh prod saas
             - popd
 #      - OUT: prod_saas_state
     on_success:

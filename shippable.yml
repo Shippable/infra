@@ -1,4 +1,11 @@
 resources:
+  - name: inf_repo
+    type: gitRepo
+    integration: "ric03uec-github"
+    pointer:
+      sourceName: "Shippable/infra"
+      branch: master
+
   - name: rc_saas_state
     type: state
 
@@ -35,11 +42,11 @@ jobs:
         switch: off
       - IN: rc_saas_state
         switch: off
-      - IN: infra_repo
+      - IN: inf_repo
         switch: off
       - TASK:
           script:
-            - pushd $(shipctl get_resource_state "infra_repo")
+            - pushd $(shipctl get_resource_state "inf_repo")
             - ./provision.sh rc saas
             - popd
       - OUT: rc_saas_state
@@ -48,7 +55,7 @@ jobs:
     on_failure:
       - script: echo 'FAILURE!'
     always:
-      - script: /build/IN/infra_repo/gitRepo/archiveProvisionState.sh rc saas
+      - script: /build/IN/inf_repo/gitRepo/archiveProvisionState.sh rc saas
 
   - name: prod_saas_inf_prov
     type: runSh
@@ -59,11 +66,11 @@ jobs:
         switch: off
       - IN: prod_saas_state
         switch: off
-      - IN: infra_repo
+      - IN: inf_repo
         switch: off
       - TASK:
           script:
-            - pushd $(shipctl get_resource_state "infra_repo")
+            - pushd $(shipctl get_resource_state "inf_repo")
             - ./provision.sh prod saas
             - popd
       - OUT: prod_saas_state
@@ -72,4 +79,4 @@ jobs:
     on_failure:
       - script: echo 'FAILURE!'
     always:
-      - script: /build/IN/infra_repo/gitRepo/archiveProvisionState.sh prod saas
+      - script: /build/IN/inf_repo/gitRepo/archiveProvisionState.sh prod saas

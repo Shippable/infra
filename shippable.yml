@@ -46,10 +46,10 @@ jobs:
             - pushd $(shipctl get_resource_state "infra_repo")
             - ./provision.sh prod saas
             - popd
-#      - OUT: prod_saas_state
+      - OUT: prod_saas_state
     on_success:
       - script: echo 'SUCCESS!'
     on_failure:
       - script: echo 'FAILURE!'
-#    always:
-#      - script: /build/IN/infra_repo/gitRepo/archiveProvisionState.sh prod saas
+    always:
+      - script: /build/IN/infra_repo/gitRepo/archiveProvisionState.sh prod saas

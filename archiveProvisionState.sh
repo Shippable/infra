@@ -5,7 +5,7 @@ export PROV_ENV=$2
 export TF_FOLDER="$PROV_CONTEXT-$PROV_ENV"
 export RES_STATE=$PROV_CONTEXT"_"$PROV_ENV"_state"
 
-export RES_REPO="infra_repo"
+export RES_REPO="inf_repo"
 export RES_REPO_UP=$(echo $RES_REPO | awk '{print toupper($0)}')
 export RES_REPO_STATE=$(eval echo "$"$RES_REPO_UP"_STATE") #loc of git repo clone
 

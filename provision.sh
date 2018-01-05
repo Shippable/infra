@@ -6,8 +6,11 @@ export TF_FOLDER="$PROV_CONTEXT-$PROV_ENV"
 export RES_STATE=$PROV_CONTEXT"_"$PROV_ENV"_state"
 
 export RES_REPO="infra_repo"
-export RES_AWS_CREDS="aws_v2_"$PROV_CONTEXT"_access"
-export RES_AWS_PEM="aws_"$PROV_CONTEXT"_pem"
+#export RES_AWS_CREDS="aws_v2_"$PROV_CONTEXT"_access"
+#export RES_AWS_PEM="aws_"$PROV_CONTEXT"_pem"
+export RES_AWS_CREDS=$PROV_CONTEXT"_aws_key"
+export RES_AWS_PEM=$PROV_CONTEXT"_aws_pem"
+
 export KEY_FILE_NAME=$PROV_CONTEXT"-us-east-1.pem"
 
 export RES_REPO_UP=$(echo $RES_REPO | awk '{print toupper($0)}')

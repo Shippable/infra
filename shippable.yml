@@ -2,6 +2,9 @@ resources:
   - name: rc_saas_state
     type: state
 
+  - name: prod_saas_state
+    type: state
+
 jobs:
   - name: rc_saas_inf_prov
     type: runSh
@@ -26,3 +29,27 @@ jobs:
       - script: echo 'FAILURE!'
     always:
       - script: /build/IN/infra_repo/gitRepo/archiveProvisionState.sh rc saas
+
+  - name: prod_saas_inf_prov
+    type: runSh
+    steps:
+      - IN: aws_prod_pem
+        switch: off
+      - IN: aws_v2_prod_access
+        switch: off
+      - IN: prod_saas_state
+        switch: off
+      - IN: infra_repo
+        switch: off
+      - TASK:
+          script:
+            - pushd $(shipctl get_resource_state "infra_repo")
+            - ./provision.sh rc saas
+            - popd
+#      - OUT: prod_saas_state
+    on_success:
+      - script: echo 'SUCCESS!'
+    on_failure:
+      - script: echo 'FAILURE!'
+#    always:
+#      - script: /build/IN/infra_repo/gitRepo/archiveProvisionState.sh prod saas

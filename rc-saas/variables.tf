@@ -67,7 +67,7 @@ variable "cidr_private_ship_builds" {
 
 variable "in_type_core" {
   //make sure it is compatible with AMI, not all AMIs allow all instance types "
-  default = "t2.medium"
+  default = "c4.large"
   description = "AWS Instance type for consul server"
 }
 

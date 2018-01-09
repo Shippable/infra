@@ -378,7 +378,7 @@ output "cs_2_ip" {
  resource "aws_instance" "ms_g_3" {
    ami = "${var.ami_us_east_1_ubuntu1404}"
    availability_zone = "${var.avl-zone}"
-   instance_type = "${var.in_type_core}"
+   instance_type = "${var.in_type_ms}"
    key_name = "${var.aws_key_name}"
    subnet_id = "${aws_subnet.sn_ship_install.id}"
 
@@ -404,7 +404,7 @@ output "cs_2_ip" {
  resource "aws_instance" "ms_g_4" {
    ami = "${var.ami_us_east_1_ubuntu1404}"
    availability_zone = "${var.avl-zone}"
-   instance_type = "${var.in_type_core}"
+   instance_type = "${var.in_type_ms}"
    key_name = "${var.aws_key_name}"
    subnet_id = "${aws_subnet.sn_ship_install.id}"
 

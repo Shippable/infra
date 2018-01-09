@@ -52,7 +52,57 @@ resource "aws_security_group" "sg_private_ship_builds" {
 #  value = "${aws_instance.test_inst_1_centos_7_rituraj.private_ip}"
 #}
 
-## Ubuntu 14.04 test-instance
+## Ubuntu 14.04 test-instances
+resource "aws_instance" "grisham_test_instance_bharath92_u1604" {
+  ami = "${var.ami_us_east_1_ubuntu1604}"
+  availability_zone = "${var.avl-zone}"
+  instance_type = "${var.in_type_core}"
+  key_name = "${var.aws_key_name}"
+  subnet_id = "${aws_subnet.sn_ship_install.id}"
+
+  vpc_security_group_ids = [
+    "${aws_security_group.sg_private_ship_install.id}"]
+
+  root_block_device {
+    volume_type = "gp2"
+    volume_size = 50
+    delete_on_termination = true
+  }
+
+  tags = {
+    Name = "grisham_test_instance_bharath92_u1604_${var.install_version}"
+  }
+}
+
+output "grisham_test_instance_bharath92_u1604" {
+  value = "${aws_instance.grisham_test_instance_bharath92_u1604.private_ip}"
+}
+
+resource "aws_instance" "grisham_test_instance_bharath92_centos7" {
+  ami = "${var.ami_us_east_1_centos7}"
+  availability_zone = "${var.avl-zone}"
+  instance_type = "${var.in_type_core}"
+  key_name = "${var.aws_key_name}"
+  subnet_id = "${aws_subnet.sn_ship_install.id}"
+
+  vpc_security_group_ids = [
+    "${aws_security_group.sg_private_ship_install.id}"]
+
+  root_block_device {
+    volume_type = "gp2"
+    volume_size = 50
+    delete_on_termination = true
+  }
+
+  tags = {
+    Name = "grisham_test_instance_bharath92_centos7_${var.install_version}"
+  }
+}
+
+output "grisham_test_instance_bharath92_centos7" {
+  value = "${aws_instance.grisham_test_instance_bharath92_centos7.private_ip}"
+}
+
 resource "aws_instance" "grisham_dev_instance_bharath92_u1404" {
   ami = "${var.ami_us_east_1_ubuntu1404}"
   availability_zone = "${var.avl-zone}"

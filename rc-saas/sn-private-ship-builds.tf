@@ -217,7 +217,7 @@ resource "aws_instance" "drydock_dev_instance_niranjan_u1404" {
   root_block_device {
     volume_type = "io1"
     volume_size = 50
-    iops: "2500"
+    iops = "2500"
     delete_on_termination = true
   }
 

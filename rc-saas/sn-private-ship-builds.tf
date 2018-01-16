@@ -203,6 +203,33 @@ output "grisham_dev_instance_jatin_u1404" {
   value = "${aws_instance.grisham_dev_instance_jatin_u1404.private_ip}"
 }
 
+## machine to build drydock images. use provisioned IOPS
+resource "aws_instance" "drydock_dev_instance_niranjan_u1404" {
+  ami = "${var.ami_us_east_1_ubuntu1404}"
+  availability_zone = "${var.avl-zone}"
+  instance_type = "${var.in_type_ms}"
+  key_name = "${var.aws_key_name}"
+  subnet_id = "${aws_subnet.sn_ship_install.id}"
+
+  vpc_security_group_ids = [
+    "${aws_security_group.sg_private_ship_install.id}"]
+
+  root_block_device {
+    volume_type = "io1"
+    volume_size = 50
+    iops: "2500"
+    delete_on_termination = true
+  }
+
+  tags = {
+    Name = "drydock_dev_instance_niranjan_u1404_${var.install_version}"
+  }
+}
+
+output "drydock_dev_instance_niranjan_u1404" {
+  value = "${aws_instance.drydock_dev_instance_niranjan_u1404.private_ip}"
+}
+
 ## resource "aws_instance" "test_instance_ric03uec_rancherOS" {
 ##   ami = "${var.ami_us_east_1_rancheros}"
 ##   availability_zone = "${var.avl-zone}"

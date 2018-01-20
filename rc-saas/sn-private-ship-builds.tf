@@ -230,27 +230,24 @@ output "drydock_dev_instance_2_niranjan_u1404" {
   value = "${aws_instance.drydock_dev_instance_2_niranjan_u1404.private_ip}"
 }
 
-## resource "aws_instance" "test_instance_ric03uec_rancherOS" {
-##   ami = "${var.ami_us_east_1_rancheros}"
-##   availability_zone = "${var.avl-zone}"
-##   instance_type = "${var.in_type_core}"
-##   key_name = "${var.aws_key_name}"
-##   subnet_id = "${aws_subnet.sn_ship_install.id}"
-##
-##   vpc_security_group_ids = [
-##     "${aws_security_group.sg_private_ship_install.id}"]
-##
-##   root_block_device {
-##     volume_type = "gp2"
-##     volume_size = 50
-##     delete_on_termination = true
-##   }
-##
-##   tags = {
-##     Name = "test_instance_ric03uec_rancherOS${var.install_version}"
-##   }
-## }
-##
-## output "test_instance_ric03uec_rancherOS" {
-##   value = "${aws_instance.test_instance_ric03uec_rancherOS.private_ip}"
-## }
+resource "aws_instance" "grisham_rancher_poc_bharath92" {
+  ami = "${var.ami_us_east_1_rancheros}"
+  availability_zone = "${var.avl-zone}"
+  instance_type = "${var.in_type_core}"
+  key_name = "${var.aws_key_name}"
+  subnet_id = "${aws_subnet.sn_ship_install.id}"
+  vpc_security_group_ids = [
+   "${aws_security_group.sg_private_ship_install.id}"]
+  root_block_device {
+   volume_type = "gp2"
+   volume_size = 50
+   delete_on_termination = true
+  }
+  tags = {
+   Name = "grisham_rancher_poc_bharath92_${var.install_version}"
+  }
+}
+
+output "grisham_rancher_poc_bharath92" {
+  value = "${aws_instance.grisham_rancher_poc_bharath92.private_ip}"
+}

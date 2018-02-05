@@ -35,7 +35,7 @@ resource "aws_instance" "test_instance_centos_7_rituraj" {
   subnet_id = "${aws_subnet.sn_ship_install.id}"
 
   vpc_security_group_ids = [
-    "${aws_security_group.sg_private_ship_install.id}"]
+    "${aws_security_group.sg_private_ship_builds.id}"]
 
   root_block_device {
     volume_type = "gp2"
@@ -61,7 +61,7 @@ resource "aws_instance" "grisham_test_instance_rituraj_u1604" {
   subnet_id = "${aws_subnet.sn_ship_install.id}"
 
   vpc_security_group_ids = [
-    "${aws_security_group.sg_private_ship_install.id}"]
+    "${aws_security_group.sg_private_ship_builds.id}"]
 
   root_block_device {
     volume_type = "gp2"
@@ -86,7 +86,7 @@ resource "aws_instance" "grisham_dev_instance_ric03uec_u1404" {
   subnet_id = "${aws_subnet.sn_ship_install.id}"
 
   vpc_security_group_ids = [
-    "${aws_security_group.sg_private_ship_install.id}"]
+    "${aws_security_group.sg_private_ship_builds.id}"]
 
   root_block_device {
     volume_type = "gp2"
@@ -111,7 +111,7 @@ resource "aws_instance" "grisham_dev_instance_ric03uec_u1604" {
   subnet_id = "${aws_subnet.sn_ship_install.id}"
 
   vpc_security_group_ids = [
-    "${aws_security_group.sg_private_ship_install.id}"]
+    "${aws_security_group.sg_private_ship_builds.id}"]
 
   root_block_device {
     volume_type = "gp2"

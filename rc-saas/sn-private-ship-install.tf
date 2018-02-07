@@ -426,32 +426,6 @@ output "cs_2_ip" {
    value = "${aws_instance.ms_g_4.private_ip}"
  }
 
-# instance MS-G-5
-resource "aws_instance" "ms_g_5" {
-  ami = "${var.ami_us_east_1_ubuntu1404}"
-  availability_zone = "${var.avl-zone}"
-  instance_type = "${var.in_type_ms}"
-  key_name = "${var.aws_key_name}"
-  subnet_id = "${aws_subnet.sn_ship_install.id}"
-
-  vpc_security_group_ids = [
-   "${aws_security_group.sg_private_ship_install.id}"]
-
-  root_block_device {
-   volume_type = "gp2"
-   volume_size = 100
-   delete_on_termination = true
-  }
-
-  tags = {
-   Name = "ms_g_5_${var.install_version}"
-  }
-}
-
-output "ms_g_5_ip" {
-  value = "${aws_instance.ms_g_5.private_ip}"
-}
-
 # ---------------
 # temporary ebs volume for migrating RC db
 # ---------------

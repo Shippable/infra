@@ -102,6 +102,32 @@ output "grisham_test_instance_centos_7_bharath92" {
   value = "${aws_instance.grisham_test_instance_centos_7_bharath92.private_ip}"
 }
 
+#CentOS 7 test-instance
+resource "aws_instance" "test_instance_centos_7_rituraj" {
+  ami = "${var.ami_us_east_1_centos7}"
+  availability_zone = "${var.avl-zone}"
+  instance_type = "${var.in_type_core}"
+  key_name = "${var.aws_key_name}"
+  subnet_id = "${aws_subnet.sn_ship_install.id}"
+
+  vpc_security_group_ids = [
+   "${aws_security_group.sg_private_ship_builds.id}"]
+
+  root_block_device {
+    volume_type = "gp2"
+    volume_size = 50
+    delete_on_termination = true
+  }
+
+  tags = {
+    Name = "test_instance_centos_7_rituraj"
+  }
+}
+
+output "test_instance_centos_7_rituraj" {
+  value = "${aws_instance.test_instance_centos_7_rituraj.private_ip}"
+}
+
 # Ubuntu 14.04 test-instance
 resource "aws_instance" "grisham_test_instance_bharath92_u1404" {
  ami = "${var.ami_us_east_1_ubuntu1404}"

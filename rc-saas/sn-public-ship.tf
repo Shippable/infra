@@ -219,203 +219,203 @@ resource "aws_elb" "lb_b_api_con" {
 # ----------
 
 #MKTG Load balancer
-resource "aws_elb" "lb_g_mktg" {
-  name = "lb-g-mktg-${var.install_version}"
-  connection_draining = true
-  subnets = [
-    "${aws_subnet.sn_public.id}"]
-  security_groups = [
-    "${aws_security_group.sg_public_lb.id}"]
-
-  listener {
-    lb_port = 443
-    lb_protocol = "ssl"
-    instance_port = 50002
-    instance_protocol = "tcp"
-    ssl_certificate_id = "${var.acm_cert_arn}"
-  }
-
-  health_check {
-    healthy_threshold = 2
-    unhealthy_threshold = 2
-    timeout = 10
-    target = "HTTP:50002/"
-    interval = 30
-  }
-
-  instances = [
-    "${aws_instance.ms_g_3.id}",
-    "${aws_instance.ms_g_4.id}"
-  ]
-}
-
-# WWW Load balancer
-resource "aws_elb" "lb_g_www" {
-  name = "lb-g-www-${var.install_version}"
-  connection_draining = true
-  subnets = [
-    "${aws_subnet.sn_public.id}"]
-  security_groups = [
-    "${aws_security_group.sg_public_lb.id}"]
-
-  listener {
-    lb_port = 443
-    lb_protocol = "ssl"
-    instance_port = 50001
-    instance_protocol = "tcp"
-    ssl_certificate_id = "${var.acm_cert_arn}"
-  }
-
-  health_check {
-    healthy_threshold = 2
-    unhealthy_threshold = 2
-    timeout = 10
-    target = "HTTP:50001/"
-    interval = 30
-  }
-
-  instances = [
-    "${aws_instance.ms_g_3.id}",
-    "${aws_instance.ms_g_4.id}"
-  ]
-}
-
-# API Load balancer
-resource "aws_elb" "lb_g_api" {
-  name = "lb-g-api-${var.install_version}"
-  connection_draining = true
-  subnets = [
-    "${aws_subnet.sn_public.id}"]
-  security_groups = [
-    "${aws_security_group.sg_public_lb.id}"]
-
-  listener {
-    lb_port = 443
-    lb_protocol = "https"
-    instance_port = 50000
-    instance_protocol = "http"
-    ssl_certificate_id = "${var.acm_cert_arn}"
-  }
-
-  health_check {
-    healthy_threshold = 2
-    unhealthy_threshold = 2
-    timeout = 10
-    target = "HTTP:50000/"
-    interval = 30
-  }
-
-  instances = [
-    "${aws_instance.ms_g_3.id}",
-    "${aws_instance.ms_g_4.id}"
-  ]
-}
-
-# API INT ELB
-resource "aws_elb" "lb_g_api_int" {
-  name = "lb-g-api-int-${var.install_version}"
-  connection_draining = true
-  subnets = [
-    "${aws_subnet.sn_public.id}"]
-  security_groups = [
-    "${aws_security_group.sg_public_lb.id}"]
-
-  listener {
-    lb_port = 443
-    lb_protocol = "https"
-    instance_port = 50004
-    instance_protocol = "http"
-    ssl_certificate_id = "${var.acm_cert_arn}"
-  }
-
-  health_check {
-    healthy_threshold = 2
-    unhealthy_threshold = 2
-    timeout = 10
-    target = "HTTP:50004/"
-    interval = 30
-  }
-
-  instances = [
-    "${aws_instance.ms_g_3.id}",
-    "${aws_instance.ms_g_4.id}"
-  ]
-}
-
-#API CONSOLE ELB
-resource "aws_elb" "lb_g_api_con" {
-  name = "lb-g-api-con-${var.install_version}"
-  connection_draining = true
-  subnets = [
-    "${aws_subnet.sn_public.id}"]
-  security_groups = [
-    "${aws_security_group.sg_public_lb.id}"]
-
-  listener {
-    lb_port = 443
-    lb_protocol = "https"
-    instance_port = 50005
-    instance_protocol = "http"
-    ssl_certificate_id = "${var.acm_cert_arn}"
-  }
-
-  health_check {
-    healthy_threshold = 2
-    unhealthy_threshold = 2
-    timeout = 10
-    target = "HTTP:50005/"
-    interval = 30
-  }
-
-  instances = [
-    "${aws_instance.ms_g_3.id}",
-    "${aws_instance.ms_g_4.id}"
-  ]
-}
-
-# MSG Load balancer
-resource "aws_elb" "lb_msg" {
-  name = "lb-msg-${var.install_version}"
-  idle_timeout = 3600
-  connection_draining = true
-  connection_draining_timeout = 3600
-  subnets = [
-    "${aws_subnet.sn_public.id}"]
-  security_groups = [
-    "${aws_security_group.sg_public_lb.id}"]
-
-  listener {
-    lb_port = 443
-    lb_protocol = "https"
-    instance_port = 15672
-    instance_protocol = "http"
-    ssl_certificate_id = "${var.acm_cert_arn}"
-  }
-
-  listener {
-    lb_port = 5671
-    lb_protocol = "ssl"
-    instance_port = 5672
-    instance_protocol = "tcp"
-    ssl_certificate_id = "${var.acm_cert_arn}"
-  }
-
-  listener {
-    lb_port = 15671
-    lb_protocol = "https"
-    instance_port = 15672
-    instance_protocol = "http"
-    ssl_certificate_id = "${var.acm_cert_arn}"
-  }
-
-  health_check {
-    healthy_threshold = 2
-    unhealthy_threshold = 2
-    timeout = 10
-    target = "HTTP:15672/"
-    interval = 30
-  }
-
-  instances = [
-    "${aws_instance.cs_2.id}"]
-}
+## resource "aws_elb" "lb_g_mktg" {
+##   name = "lb-g-mktg-${var.install_version}"
+##   connection_draining = true
+##   subnets = [
+##     "${aws_subnet.sn_public.id}"]
+##   security_groups = [
+##     "${aws_security_group.sg_public_lb.id}"]
+##
+##   listener {
+##     lb_port = 443
+##     lb_protocol = "ssl"
+##     instance_port = 50002
+##     instance_protocol = "tcp"
+##     ssl_certificate_id = "${var.acm_cert_arn}"
+##   }
+##
+##   health_check {
+##     healthy_threshold = 2
+##     unhealthy_threshold = 2
+##     timeout = 10
+##     target = "HTTP:50002/"
+##     interval = 30
+##   }
+##
+##   instances = [
+##     "${aws_instance.ms_g_3.id}",
+##     "${aws_instance.ms_g_4.id}"
+##   ]
+## }
+##
+## # WWW Load balancer
+## resource "aws_elb" "lb_g_www" {
+##   name = "lb-g-www-${var.install_version}"
+##   connection_draining = true
+##   subnets = [
+##     "${aws_subnet.sn_public.id}"]
+##   security_groups = [
+##     "${aws_security_group.sg_public_lb.id}"]
+##
+##   listener {
+##     lb_port = 443
+##     lb_protocol = "ssl"
+##     instance_port = 50001
+##     instance_protocol = "tcp"
+##     ssl_certificate_id = "${var.acm_cert_arn}"
+##   }
+##
+##   health_check {
+##     healthy_threshold = 2
+##     unhealthy_threshold = 2
+##     timeout = 10
+##     target = "HTTP:50001/"
+##     interval = 30
+##   }
+##
+##   instances = [
+##     "${aws_instance.ms_g_3.id}",
+##     "${aws_instance.ms_g_4.id}"
+##   ]
+## }
+##
+## # API Load balancer
+## resource "aws_elb" "lb_g_api" {
+##   name = "lb-g-api-${var.install_version}"
+##   connection_draining = true
+##   subnets = [
+##     "${aws_subnet.sn_public.id}"]
+##   security_groups = [
+##     "${aws_security_group.sg_public_lb.id}"]
+##
+##   listener {
+##     lb_port = 443
+##     lb_protocol = "https"
+##     instance_port = 50000
+##     instance_protocol = "http"
+##     ssl_certificate_id = "${var.acm_cert_arn}"
+##   }
+##
+##   health_check {
+##     healthy_threshold = 2
+##     unhealthy_threshold = 2
+##     timeout = 10
+##     target = "HTTP:50000/"
+##     interval = 30
+##   }
+##
+##   instances = [
+##     "${aws_instance.ms_g_3.id}",
+##     "${aws_instance.ms_g_4.id}"
+##   ]
+## }
+##
+## # API INT ELB
+## resource "aws_elb" "lb_g_api_int" {
+##   name = "lb-g-api-int-${var.install_version}"
+##   connection_draining = true
+##   subnets = [
+##     "${aws_subnet.sn_public.id}"]
+##   security_groups = [
+##     "${aws_security_group.sg_public_lb.id}"]
+##
+##   listener {
+##     lb_port = 443
+##     lb_protocol = "https"
+##     instance_port = 50004
+##     instance_protocol = "http"
+##     ssl_certificate_id = "${var.acm_cert_arn}"
+##   }
+##
+##   health_check {
+##     healthy_threshold = 2
+##     unhealthy_threshold = 2
+##     timeout = 10
+##     target = "HTTP:50004/"
+##     interval = 30
+##   }
+##
+##   instances = [
+##     "${aws_instance.ms_g_3.id}",
+##     "${aws_instance.ms_g_4.id}"
+##   ]
+## }
+##
+## #API CONSOLE ELB
+## resource "aws_elb" "lb_g_api_con" {
+##   name = "lb-g-api-con-${var.install_version}"
+##   connection_draining = true
+##   subnets = [
+##     "${aws_subnet.sn_public.id}"]
+##   security_groups = [
+##     "${aws_security_group.sg_public_lb.id}"]
+##
+##   listener {
+##     lb_port = 443
+##     lb_protocol = "https"
+##     instance_port = 50005
+##     instance_protocol = "http"
+##     ssl_certificate_id = "${var.acm_cert_arn}"
+##   }
+##
+##   health_check {
+##     healthy_threshold = 2
+##     unhealthy_threshold = 2
+##     timeout = 10
+##     target = "HTTP:50005/"
+##     interval = 30
+##   }
+##
+##   instances = [
+##     "${aws_instance.ms_g_3.id}",
+##     "${aws_instance.ms_g_4.id}"
+##   ]
+## }
+##
+## # MSG Load balancer
+## resource "aws_elb" "lb_msg" {
+##   name = "lb-msg-${var.install_version}"
+##   idle_timeout = 3600
+##   connection_draining = true
+##   connection_draining_timeout = 3600
+##   subnets = [
+##     "${aws_subnet.sn_public.id}"]
+##   security_groups = [
+##     "${aws_security_group.sg_public_lb.id}"]
+##
+##   listener {
+##     lb_port = 443
+##     lb_protocol = "https"
+##     instance_port = 15672
+##     instance_protocol = "http"
+##     ssl_certificate_id = "${var.acm_cert_arn}"
+##   }
+##
+##   listener {
+##     lb_port = 5671
+##     lb_protocol = "ssl"
+##     instance_port = 5672
+##     instance_protocol = "tcp"
+##     ssl_certificate_id = "${var.acm_cert_arn}"
+##   }
+##
+##   listener {
+##     lb_port = 15671
+##     lb_protocol = "https"
+##     instance_port = 15672
+##     instance_protocol = "http"
+##     ssl_certificate_id = "${var.acm_cert_arn}"
+##   }
+##
+##   health_check {
+##     healthy_threshold = 2
+##     unhealthy_threshold = 2
+##     timeout = 10
+##     target = "HTTP:15672/"
+##     interval = 30
+##   }
+##
+##   instances = [
+##     "${aws_instance.cs_2.id}"]
+## }

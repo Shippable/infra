@@ -76,32 +76,6 @@ output "shared_pool_x86_u1604_01" {
   value = "${aws_instance.shared_pool_x86_u1604_01.private_ip}"
 }
 
-# CENTOS 7 test-instance
-resource "aws_instance" "grisham_test_instance_centos_7_bharath92" {
-  ami = "${var.ami_us_east_1_centos7}"
-  availability_zone = "${var.avl-zone}"
-  instance_type = "${var.in_type_core}"
-  key_name = "${var.aws_key_name}"
-  subnet_id = "${aws_subnet.sn_ship_install.id}"
-
-  vpc_security_group_ids = [
-   "${aws_security_group.sg_private_ship_builds.id}"]
-
-  root_block_device {
-    volume_type = "gp2"
-    volume_size = 50
-    delete_on_termination = true
-  }
-
-  tags = {
-    Name = "grisham_test_instance_centos_7_bharath92"
-  }
-}
-
-output "grisham_test_instance_centos_7_bharath92" {
-  value = "${aws_instance.grisham_test_instance_centos_7_bharath92.private_ip}"
-}
-
 #CentOS 7 test-instance
 resource "aws_instance" "test_instance_centos_7_rituraj" {
   ami = "${var.ami_us_east_1_centos7}"
@@ -128,50 +102,48 @@ output "test_instance_centos_7_rituraj" {
   value = "${aws_instance.test_instance_centos_7_rituraj.private_ip}"
 }
 
-# Ubuntu 14.04 test-instance
-resource "aws_instance" "grisham_test_instance_bharath92_u1404" {
- ami = "${var.ami_us_east_1_ubuntu1404}"
- availability_zone = "${var.avl-zone}"
- instance_type = "${var.in_type_core}"
- key_name = "${var.aws_key_name}"
- subnet_id = "${aws_subnet.sn_public.id}"
- vpc_security_group_ids = [
+resource "aws_instance" "rancher_poc_bharath92" {
+  ami = "${var.ami_us_east_1_rancheros}"
+  availability_zone = "${var.avl-zone}"
+  instance_type = "${var.in_type_core}"
+  key_name = "${var.aws_key_name}"
+  subnet_id = "${aws_subnet.sn_ship_install.id}"
+  vpc_security_group_ids = [
    "${aws_security_group.sg_private_ship_builds.id}"]
- root_block_device {
+  root_block_device {
    volume_type = "gp2"
    volume_size = 50
    delete_on_termination = true
- }
- tags = {
-   Name = "grisham_test_instance_bharath92_u1404_${var.install_version}"
- }
+  }
+  tags = {
+   Name = "rancher_poc_bharath92_${var.install_version}"
+  }
 }
 
-output "grisham_test_instance_bharath92_u1404" {
- value = "${aws_instance.grisham_test_instance_bharath92_u1404.private_ip}"
+output "rancher_poc_bharath92" {
+  value = "${aws_instance.rancher_poc_bharath92.private_ip}"
 }
 
-# Ubuntu 16.04 test-instance
-resource "aws_instance" "grisham_test_instance_bharath92_u1604" {
- ami = "${var.ami_us_east_1_ubuntu1604}"
- availability_zone = "${var.avl-zone}"
- instance_type = "${var.in_type_core}"
- key_name = "${var.aws_key_name}"
- subnet_id = "${aws_subnet.sn_public.id}"
- vpc_security_group_ids = [
+resource "aws_instance" "rancher_poc_ric03uec" {
+  ami = "${var.ami_us_east_1_rancheros}"
+  availability_zone = "${var.avl-zone}"
+  instance_type = "${var.in_type_core}"
+  key_name = "${var.aws_key_name}"
+  subnet_id = "${aws_subnet.sn_ship_install.id}"
+  vpc_security_group_ids = [
    "${aws_security_group.sg_private_ship_builds.id}"]
- root_block_device {
+  root_block_device {
    volume_type = "gp2"
    volume_size = 50
    delete_on_termination = true
- }
- tags = {
-   Name = "grisham_test_instance_bharath92_u1604_${var.install_version}"
- }
+  }
+  tags = {
+   Name = "rancher_poc_ric03uec_${var.install_version}"
+  }
 }
 
-output "grisham_test_instance_bharath92_u1604" {
- value = "${aws_instance.grisham_test_instance_bharath92_u1604.private_ip}"
+output "rancher_poc_ric03uec" {
+  value = "${aws_instance.rancher_poc_ric03uec.private_ip}"
 }
 
 ## CENTOS 7 test-instance

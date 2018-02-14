@@ -102,7 +102,7 @@ output "test_instance_centos_7_rituraj" {
   value = "${aws_instance.test_instance_centos_7_rituraj.private_ip}"
 }
 
-resource "aws_instance" "rancher_poc_bharath92" {
+resource "aws_instance" "rancher_dev_bharath92" {
   ami = "${var.ami_us_east_1_rancheros}"
   availability_zone = "${var.avl-zone}"
   instance_type = "${var.in_type_core}"
@@ -116,12 +116,12 @@ resource "aws_instance" "rancher_poc_bharath92" {
    delete_on_termination = true
   }
   tags = {
-   Name = "rancher_poc_bharath92_${var.install_version}"
+   Name = "rancher_dev_bharath92_${var.install_version}"
   }
 }
 
-output "rancher_poc_bharath92" {
-  value = "${aws_instance.rancher_poc_bharath92.private_ip}"
+output "rancher_dev_bharath92" {
+  value = "${aws_instance.rancher_dev_bharath92.private_ip}"
 }
 
 resource "aws_instance" "rancher_poc_ric03uec" {

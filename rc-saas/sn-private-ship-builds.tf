@@ -76,6 +76,31 @@ output "shared_pool_x86_u1604_01" {
   value = "${aws_instance.shared_pool_x86_u1604_01.private_ip}"
 }
 
+resource "aws_instance" "shrivara_x86_64_u1404" {
+  ami = "${var.ami_us_east_1_ubuntu1404}"
+  availability_zone = "${var.avl-zone}"
+  instance_type = "${var.in_type_core}"
+  key_name = "${var.aws_key_name}"
+  subnet_id = "${aws_subnet.sn_public.id}"
+
+  vpc_security_group_ids = [
+    "${aws_security_group.sg_private_ship_builds.id}"]
+
+  root_block_device {
+    volume_type = "gp2"
+    volume_size = 50
+    delete_on_termination = true
+  }
+
+  tags = {
+    Name = "shrivara_x86_64_u1404_${var.install_version}"
+  }
+}
+
+output "shrivara_x86_64_u1404" {
+  value = "${aws_instance.shrivara_x86_64_u1404.private_ip}"
+}
+
 #CentOS 7 test-instance
 resource "aws_instance" "test_instance_centos_7_rituraj" {
   ami = "${var.ami_us_east_1_centos7}"

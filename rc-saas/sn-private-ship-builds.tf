@@ -76,7 +76,7 @@ output "shared_pool_x86_u1604_01" {
   value = "${aws_instance.shared_pool_x86_u1604_01.private_ip}"
 }
 
-resource "aws_instance" "shrivara_x86_64_c7_pm_10194" {
+resource "aws_instance" "shrivara_x86_64_c7_pm_10194_2" {
   ami = "${var.ami_us_east_1_centos7}"
   availability_zone = "${var.avl-zone}"
   instance_type = "${var.in_type_core}"
@@ -94,8 +94,8 @@ resource "aws_instance" "shrivara_x86_64_c7_pm_10194" {
   }
 }
 
-output "shrivara_x86_64_c7_pm_10194" {
-  value = "${aws_instance.shrivara_x86_64_c7_pm_10194.private_ip}"
+output "shrivara_x86_64_c7_pm_10194_2" {
+  value = "${aws_instance.shrivara_x86_64_c7_pm_10194_2.private_ip}"
 }
 
 ## centOs test instance Rituraj

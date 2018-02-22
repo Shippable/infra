@@ -85,7 +85,7 @@ resource "aws_instance" "shrivara_x86_64_c7_pm_10194_2" {
 
   vpc_security_group_ids = [
     "${aws_security_group.sg_private_ship_builds.id}"
-    ]
+  ]
 
   root_block_device {
     volume_type = "gp2"
@@ -96,6 +96,28 @@ resource "aws_instance" "shrivara_x86_64_c7_pm_10194_2" {
 
 output "shrivara_x86_64_c7_pm_10194_2" {
   value = "${aws_instance.shrivara_x86_64_c7_pm_10194_2.private_ip}"
+}
+
+resource "aws_instance" "shrivara_x86_64_c7_pm_10194_build" {
+  ami = "${var.ami_us_east_1_centos7}"
+  availability_zone = "${var.avl-zone}"
+  instance_type = "${var.in_type_core}"
+  key_name = "${var.aws_key_name}"
+  subnet_id = "${aws_subnet.sn_public.id}"
+
+  vpc_security_group_ids = [
+    "${aws_security_group.sg_private_ship_builds.id}"
+  ]
+
+  root_block_device {
+    volume_type = "gp2"
+    volume_size = 50
+    delete_on_termination = true
+  }
+}
+
+output "shrivara_x86_64_c7_pm_10194_build" {
+  value = "${aws_instance.shrivara_x86_64_c7_pm_10194_build.private_ip}"
 }
 
 ## centOs test instance Rituraj

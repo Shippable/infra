@@ -201,7 +201,7 @@ output "rituraj_x86_64_c7" {
 ##   value = "${aws_instance.grisham_dev_instance_ric03uec_u1404_01.private_ip}"
 ## }
 ##
-resource "aws_instance" "grisham_dev_instance_ric03uec_u1604" {
+resource "aws_instance" "test_instance_ric03uec_u1604" {
   ami = "${var.ami_us_east_1_ubuntu1604}"
   availability_zone = "${var.avl-zone}"
   instance_type = "${var.in_type_core}"
@@ -218,12 +218,12 @@ resource "aws_instance" "grisham_dev_instance_ric03uec_u1604" {
   }
 
   tags = {
-    Name = "grisham_dev_instance_ric03uec_u1604_${var.install_version}"
+    Name = "test_instance_ric03uec_u1604_${var.install_version}"
   }
 }
 
-output "grisham_dev_instance_ric03uec_u1604" {
-  value = "${aws_instance.grisham_dev_instance_ric03uec_u1604.private_ip}"
+output "test_instance_ric03uec_u1604" {
+  value = "${aws_instance.test_instance_ric03uec_u1604.private_ip}"
 }
 
 resource "aws_instance" "test_instance_centos_7_ric03uec" {

@@ -71,6 +71,12 @@ variable "in_type_core" {
   description = "AWS Instance type for consul server"
 }
 
+variable "in_type_small" {
+  //make sure it is compatible with AMI, not all AMIs allow all instance types "
+  default = "t2.small"
+  description = "AWS Instance type for consul server"
+}
+
 variable "in_type_ms" {
   default = "c4.large"
   description = "AWS Instance type for MS machines"

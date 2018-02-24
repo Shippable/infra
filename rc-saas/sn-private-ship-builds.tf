@@ -179,7 +179,7 @@ output "rituraj_x86_64_c7" {
 resource "aws_instance" "grisham_dev_instance_ric03uec_u1404_01" {
   ami = "${var.ami_us_east_1_ubuntu1404}"
   availability_zone = "${var.avl-zone}"
-  instance_type = "${var.in_type_core}"
+  instance_type = "${var.in_type_small}"
   key_name = "${var.aws_key_name}"
   subnet_id = "${aws_subnet.sn_public.id}"
 

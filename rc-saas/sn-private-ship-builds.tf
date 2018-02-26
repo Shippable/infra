@@ -301,3 +301,47 @@ resource "aws_instance" "chaitanya_u1404" {
 output "chaitanya_u1404" {
   value = "${aws_instance.chaitanya_u1404.private_ip}"
 }
+
+resource "aws_instance" "shrivara_x86_64_c7_admiral" {
+  ami = "${var.ami_us_east_1_centos7}"
+  availability_zone = "${var.avl-zone}"
+  instance_type = "${var.in_type_core}"
+  key_name = "${var.aws_key_name}"
+  subnet_id = "${aws_subnet.sn_public.id}"
+
+  vpc_security_group_ids = [
+    "${aws_security_group.sg_private_ship_builds.id}"
+  ]
+
+  root_block_device {
+    volume_type = "gp2"
+    volume_size = 50
+    delete_on_termination = true
+  }
+}
+
+output "shrivara_x86_64_c7_admiral" {
+  value = "${aws_instance.shrivara_x86_64_c7_admiral.private_ip}"
+}
+
+resource "aws_instance" "shrivara_x86_64_c7_db" {
+  ami = "${var.ami_us_east_1_centos7}"
+  availability_zone = "${var.avl-zone}"
+  instance_type = "${var.in_type_core}"
+  key_name = "${var.aws_key_name}"
+  subnet_id = "${aws_subnet.sn_public.id}"
+
+  vpc_security_group_ids = [
+    "${aws_security_group.sg_private_ship_builds.id}"
+  ]
+
+  root_block_device {
+    volume_type = "gp2"
+    volume_size = 50
+    delete_on_termination = true
+  }
+}
+
+output "shrivara_x86_64_c7_db" {
+  value = "${aws_instance.shrivara_x86_64_c7_db.private_ip}"
+}

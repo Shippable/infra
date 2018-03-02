@@ -101,58 +101,6 @@ output "admiral_test_u1604_bharath92" {
   value = "${aws_instance.admiral_test_u1604_bharath92.private_ip}"
 }
 
-## centOs test instance Rituraj
-resource "aws_instance" "rituraj_x86_64_c7" {
-  ami = "${var.ami_us_east_1_centos7}"
-  availability_zone = "${var.avl-zone}"
-  instance_type = "${var.in_type_core}"
-  key_name = "${var.aws_key_name}"
-  subnet_id = "${aws_subnet.sn_public.id}"
-
-  vpc_security_group_ids = [
-    "${aws_security_group.sg_private_ship_builds.id}"]
-
-  root_block_device {
-    volume_type = "gp2"
-    volume_size = 50
-    delete_on_termination = true
-  }
-
-  tags = {
-    Name = "rituraj_x86_64_c7_${var.install_version}"
-  }
-}
-
-output "rituraj_x86_64_c7" {
-  value = "${aws_instance.rituraj_x86_64_c7.private_ip}"
-}
-
-## centOS test instance Niranjan
-resource "aws_instance" "niranjan_x86_64_c7" {
-  ami = "${var.ami_us_east_1_centos7}"
-  availability_zone = "${var.avl-zone}"
-  instance_type = "${var.in_type_core}"
-  key_name = "${var.aws_key_name}"
-  subnet_id = "${aws_subnet.sn_public.id}"
-
-  vpc_security_group_ids = [
-    "${aws_security_group.sg_private_ship_builds.id}"]
-
-  root_block_device {
-    volume_type = "gp2"
-    volume_size = 50
-    delete_on_termination = true
-  }
-
-  tags = {
-    Name = "niranjan_x86_64_c7_${var.install_version}"
-  }
-}
-
-output "niranjan_x86_64_c7" {
-  value = "${aws_instance.niranjan_x86_64_c7.private_ip}"
-}
-
 ## resource "aws_instance" "rancher_dev_bharath92" {
 ##   ami = "${var.ami_us_east_1_rancheros}"
 ##   availability_zone = "${var.avl-zone}"
@@ -275,29 +223,4 @@ resource "aws_instance" "test_instance_centos_7_ric03uec" {
 
 output "test_instance_centos_7_ric03uec" {
   value = "${aws_instance.test_instance_centos_7_ric03uec.private_ip}"
-}
-
-resource "aws_instance" "chaitanya_u1404" {
-  ami = "${var.ami_us_east_1_ubuntu1404}"
-  availability_zone = "${var.avl-zone}"
-  instance_type = "${var.in_type_core}"
-  key_name = "${var.aws_key_name}"
-  subnet_id = "${aws_subnet.sn_public.id}"
-
-  vpc_security_group_ids = [
-    "${aws_security_group.sg_private_ship_builds.id}"]
-
-  root_block_device {
-    volume_type = "gp2"
-    volume_size = 50
-    delete_on_termination = true
-  }
-
-  tags = {
-    Name = "chaitanya_u1404_${var.install_version}"
-  }
-}
-
-output "chaitanya_u1404" {
-  value = "${aws_instance.chaitanya_u1404.private_ip}"
 }

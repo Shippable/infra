@@ -99,7 +99,7 @@ apply_changes() {
   terraform plan -var-file="$RES_AWS_CREDS_META/integration.env"
   echo "apply changes"
   echo "-----------------------------------"
-  #terraform apply -var-file="$RES_AWS_CREDS_META/integration.env"
+  terraform apply -var-file="$RES_AWS_CREDS_META/integration.env"
   popd
 }
 

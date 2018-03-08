@@ -218,7 +218,7 @@ resource "aws_elb" "lb_b_api_con" {
 # GREEN ELBS
 # ----------
 
-MKTG Load balancer
+# MKTG Load balancer
 resource "aws_elb" "lb_g_mktg" {
   name = "lb-g-mktg-${var.install_version}"
   connection_draining = true

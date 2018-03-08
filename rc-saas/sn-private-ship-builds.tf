@@ -183,8 +183,8 @@ resource "aws_instance" "niranjan_test_swarm_u1404" {
   subnet_id = "${aws_subnet.sn_ship_install.id}"
 
   vpc_security_group_ids = [
-    "${aws_security_group.sg_private_ship_install.id}"]
-]
+    "${aws_security_group.sg_private_ship_install.id}"
+    ]
 
   root_block_device {
     volume_type = "gp2"

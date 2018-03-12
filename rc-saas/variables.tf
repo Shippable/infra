@@ -131,6 +131,11 @@ variable "ami_us_east_1_centos7"{
   description = "AWS AMI for us-east-1 CentOS 7"
 }
 
+variable "ami_us_east_1_rhel7"{
+  default = "ami-26ebbc5c"
+  description = "AWS AMI for us-east-1 RHEL 7"
+}
+
 variable "ami_us_east_1_rancheros"{
   default = "ami-03482379"
   description = "AWS AMI for us-east-1 Rancher OS 1.1.1"

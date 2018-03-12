@@ -3,6 +3,17 @@ resource "aws_security_group" "sg_private_ship_builds" {
   description = "Private Subnet for security group builds"
   vpc_id = "${aws_vpc.vpc.id}"
 
+  # For Windows RDP access
+  ingress {
+    from_port = "3389"
+    to_port   = "3389"
+    protocol  = "tcp"
+
+    cidr_blocks = [
+      "0.0.0.0/0"
+    ]
+  }
+
   ingress {
     from_port = "22"
     to_port = "22"

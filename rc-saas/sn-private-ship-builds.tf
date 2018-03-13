@@ -162,7 +162,7 @@ output "admiral_test_u1604_bharath92" {
 #}
 
 ## RHEL 7 test instance Rituraj
-resource "aws_instance" "rituraj_x86_64_rhel7" {
+resource "aws_instance" "rituraj_x86_64_rhel7_new" {
   ami = "${var.ami_us_east_1_rhel7}"
   availability_zone = "${var.avl-zone}"
   instance_type = "${var.in_type_core}"
@@ -179,16 +179,16 @@ resource "aws_instance" "rituraj_x86_64_rhel7" {
   }
 
   tags = {
-    Name = "rituraj_x86_64_rhel7"
+    Name = "rituraj_x86_64_rhel7_new"
   }
 }
 
-output "rituraj_x86_64_rhel7" {
-  value = "${aws_instance.rituraj_x86_64_rhel7.private_ip}"
+output "rituraj_x86_64_rhel7_new" {
+  value = "${aws_instance.rituraj_x86_64_rhel7_new.private_ip}"
 }
 
 ## RHEL 7 test instance Rituraj
-resource "aws_instance" "rituraj_x86_64_rhel7_test" {
+resource "aws_instance" "rituraj_x86_64_rhel7_test_new" {
   ami = "${var.ami_us_east_1_rhel7}"
   availability_zone = "${var.avl-zone}"
   instance_type = "${var.in_type_core}"
@@ -205,12 +205,12 @@ resource "aws_instance" "rituraj_x86_64_rhel7_test" {
   }
 
   tags = {
-    Name = "rituraj_x86_64_rhel7_test"
+    Name = "rituraj_x86_64_rhel7_test_new"
   }
 }
 
-output "rituraj_x86_64_rhel7_test" {
-  value = "${aws_instance.rituraj_x86_64_rhel7_test.private_ip}"
+output "rituraj_x86_64_rhel7_test_new" {
+  value = "${aws_instance.rituraj_x86_64_rhel7_test_new.private_ip}"
 }
 
 resource "aws_instance" "grisham_dev_instance_ric03uec_u1404_01" {

@@ -268,7 +268,7 @@ output "cs_2_ip" {
 
 # instance MS-B-1
 resource "aws_instance" "ms_b_1" {
-  ami = "${var.ami_us_east_1_ubuntu1404}"
+  ami = "${var.ami_us_east_1_ubuntu1604}"
   availability_zone = "${var.avl-zone}"
   instance_type = "${var.in_type_core}"
   key_name = "${var.aws_key_name}"
@@ -294,7 +294,7 @@ output "ms_b_1_ip" {
 
 # instance MS-B-2
 resource "aws_instance" "ms_b_2" {
-  ami = "${var.ami_us_east_1_ubuntu1404}"
+  ami = "${var.ami_us_east_1_ubuntu1604}"
   availability_zone = "${var.avl-zone}"
   instance_type = "${var.in_type_core}"
   key_name = "${var.aws_key_name}"

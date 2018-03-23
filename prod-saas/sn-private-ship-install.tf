@@ -134,7 +134,7 @@ output "ms_g_addresses" {
 
 ## # MS-B-* Instance
 ## resource "aws_instance" "ms_b" {
-##  ami = "${var.ami_us_east_1_ubuntu1404_20170310}"
+##  ami = "${var.ami_us_east_1_ubuntu1604}"
 ##  availability_zone = "${var.avl-zone}"
 ##  instance_type = "${var.in_type_ms_box}"
 ##  key_name = "${var.aws_key_name}"

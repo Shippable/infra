@@ -82,6 +82,11 @@ variable "in_type_ms" {
   description = "AWS Instance type for MS machines"
 }
 
+variable "in_type_ms_x" {
+  default = "c4.xlarge"
+  description = "AWS Instance type for onebox RC machine"
+}
+
 variable "in_type_bld" {
   //make sure it is compatible with AMI, not all AMIs allow all instance types "
   default = "c3.large"

@@ -236,31 +236,31 @@ output "cs_1_ip" {
   value = "${aws_instance.cs_1.private_ip}"
 }
 
-# instance CS-2
-resource "aws_instance" "cs_2" {
-  ami = "${var.ami_us_east_1_ubuntu1404}"
-  availability_zone = "${var.avl-zone}"
-  instance_type = "${var.in_type_core}"
-  key_name = "${var.aws_key_name}"
-  subnet_id = "${aws_subnet.sn_ship_install.id}"
+# # instance CS-2
+# resource "aws_instance" "cs_2" {
+#   ami = "${var.ami_us_east_1_ubuntu1404}"
+#   availability_zone = "${var.avl-zone}"
+#   instance_type = "${var.in_type_core}"
+#   key_name = "${var.aws_key_name}"
+#   subnet_id = "${aws_subnet.sn_ship_install.id}"
 
-  vpc_security_group_ids = [
-    "${aws_security_group.sg_private_ship_install.id}"]
+#   vpc_security_group_ids = [
+#     "${aws_security_group.sg_private_ship_install.id}"]
 
-  root_block_device {
-    volume_type = "gp2"
-    volume_size = 30
-    delete_on_termination = true
-  }
+#   root_block_device {
+#     volume_type = "gp2"
+#     volume_size = 30
+#     delete_on_termination = true
+#   }
 
-  tags = {
-    Name = "cs_2_${var.install_version}"
-  }
-}
+#   tags = {
+#     Name = "cs_2_${var.install_version}"
+#   }
+# }
 
-output "cs_2_ip" {
-  value = "${aws_instance.cs_2.private_ip}"
-}
+# output "cs_2_ip" {
+#   value = "${aws_instance.cs_2.private_ip}"
+# }
 
 # ---------------
 # BLUE INSTANCES
@@ -388,8 +388,8 @@ resource "aws_ebs_volume" "db_migration_volume" {
   }
 }
 
-resource "aws_volume_attachment" "db_migration_att" {
-  device_name = "/dev/sdh"
-  volume_id = "${aws_ebs_volume.db_migration_volume.id}"
-  instance_id = "${aws_instance.cs_2.id}"
-}
+# resource "aws_volume_attachment" "db_migration_att" {
+#   device_name = "/dev/sdh"
+#   volume_id = "${aws_ebs_volume.db_migration_volume.id}"
+#   instance_id = "${aws_instance.cs_2.id}"
+# }

@@ -79,9 +79,9 @@ resource "aws_elb" "lb_b_mktg" {
   health_check {
     healthy_threshold = 2
     unhealthy_threshold = 2
-    timeout = 10
+    timeout = 3
     target = "HTTP:50002/"
-    interval = 30
+    interval = 5
   }
 
   instances = [
@@ -110,9 +110,9 @@ resource "aws_elb" "lb_b_www" {
   health_check {
     healthy_threshold = 2
     unhealthy_threshold = 2
-    timeout = 10
+    timeout = 3
     target = "HTTP:50001/"
-    interval = 30
+    interval = 5
   }
 
   instances = [
@@ -141,9 +141,9 @@ resource "aws_elb" "lb_b_api" {
   health_check {
     healthy_threshold = 2
     unhealthy_threshold = 2
-    timeout = 10
+    timeout = 3
     target = "HTTP:50000/"
-    interval = 30
+    interval = 5
   }
 
   instances = [
@@ -172,9 +172,9 @@ resource "aws_elb" "lb_b_api_int" {
   health_check {
     healthy_threshold = 2
     unhealthy_threshold = 2
-    timeout = 10
+    timeout = 3
     target = "HTTP:50004/"
-    interval = 30
+    interval = 5
   }
 
   instances = [
@@ -203,9 +203,9 @@ resource "aws_elb" "lb_b_api_con" {
   health_check {
     healthy_threshold = 2
     unhealthy_threshold = 2
-    timeout = 10
+    timeout = 3
     target = "HTTP:50005/"
-    interval = 30
+    interval = 5
   }
 
   instances = [
@@ -238,9 +238,9 @@ resource "aws_elb" "lb_g_mktg" {
  health_check {
    healthy_threshold = 2
    unhealthy_threshold = 2
-   timeout = 10
+   timeout = 3
    target = "HTTP:50002/"
-   interval = 30
+   interval = 5
  }
 
  instances = [
@@ -268,9 +268,9 @@ resource "aws_elb" "lb_g_www" {
  health_check {
    healthy_threshold = 2
    unhealthy_threshold = 2
-   timeout = 10
+   timeout = 3
    target = "HTTP:50001/"
-   interval = 30
+   interval = 5
  }
 
  instances = [
@@ -298,9 +298,9 @@ resource "aws_elb" "lb_g_api" {
  health_check {
    healthy_threshold = 2
    unhealthy_threshold = 2
-   timeout = 10
+   timeout = 3
    target = "HTTP:50000/"
-   interval = 30
+   interval = 5
  }
 
  instances = [
@@ -328,9 +328,9 @@ resource "aws_elb" "lb_g_api_int" {
  health_check {
    healthy_threshold = 2
    unhealthy_threshold = 2
-   timeout = 10
+   timeout = 3
    target = "HTTP:50004/"
-   interval = 30
+   interval = 5
  }
 
  instances = [
@@ -358,9 +358,9 @@ resource "aws_elb" "lb_g_api_con" {
  health_check {
    healthy_threshold = 2
    unhealthy_threshold = 2
-   timeout = 10
+   timeout = 3
    target = "HTTP:50005/"
-   interval = 30
+   interval = 5
  }
 
  instances = [
@@ -406,9 +406,9 @@ resource "aws_elb" "lb_msg" {
   health_check {
     healthy_threshold = 2
     unhealthy_threshold = 2
-    timeout = 10
+    timeout = 3
     target = "HTTP:15672/"
-    interval = 30
+    interval = 5
   }
 
   instances = [

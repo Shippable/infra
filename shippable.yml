@@ -45,11 +45,6 @@ jobs:
       - IN: inf_repo
         switch: off
       - TASK:
-          runtime:
-            container: true
-            options:
-              imageName: drydock/u16
-              imageTag: master
           script:
             - pushd $(shipctl get_resource_state "inf_repo")
             - ./provision.sh rc saas

@@ -136,56 +136,56 @@ output "admiral_test_u1604_bharath92" {
 
 
 ## CENTOS 7 test-instance
-##resource "aws_instance" "test_instance_centos_7_rituraj_1" {
-##  ami = "${var.ami_us_east_1_centos7}"
-##  availability_zone = "${var.avl-zone}"
-##  instance_type = "${var.in_type_core}"
-##  key_name = "${var.aws_key_name}"
-##  subnet_id = "${aws_subnet.sn_ship_install.id}"
-##
-##  vpc_security_group_ids = [
-##   "${aws_security_group.sg_private_ship_builds.id}"]
-##
-##  root_block_device {
-##    volume_type = "gp2"
-##    volume_size = 50
-##    delete_on_termination = true
-##  }
-##
-##  tags = {
-##    Name = "test_instance_centos_7_rituraj_1"
-##  }
-##}
-##
-##output "test_instance_centos_7_rituraj_1" {
-##  value = "${aws_instance.test_instance_centos_7_rituraj_1.private_ip}"
-##}
-##
-#### RHEL 7 test instance Rituraj
-##resource "aws_instance" "rituraj_x86_64_rhel7_new_1" {
-##  ami = "${var.ami_us_east_1_rhel7}"
-##  availability_zone = "${var.avl-zone}"
-##  instance_type = "${var.in_type_core}"
-##  key_name = "${var.aws_key_name}"
-##  subnet_id = "${aws_subnet.sn_public.id}"
-##
-##  vpc_security_group_ids = [
-##    "${aws_security_group.sg_private_ship_builds.id}"]
-##
-##  root_block_device {
-##    volume_type = "gp2"
-##    volume_size = 50
-##    delete_on_termination = true
-##  }
-##
-##  tags = {
-##    Name = "rituraj_x86_64_rhel7_new_1"
-##  }
-##}
-##
-##output "rituraj_x86_64_rhel7_new_1" {
-##  value = "${aws_instance.rituraj_x86_64_rhel7_new_1.private_ip}"
-##}
+resource "aws_instance" "test_instance_centos_7_rituraj_test_td_1" {
+  ami = "${var.ami_us_east_1_centos7}"
+  availability_zone = "${var.avl-zone}"
+  instance_type = "${var.in_type_core}"
+  key_name = "${var.aws_key_name}"
+  subnet_id = "${aws_subnet.sn_ship_install.id}"
+
+  vpc_security_group_ids = [
+   "${aws_security_group.sg_private_ship_builds.id}"]
+
+  root_block_device {
+    volume_type = "gp2"
+    volume_size = 50
+    delete_on_termination = true
+  }
+
+  tags = {
+    Name = "test_instance_centos_7_rituraj_test_td_1"
+  }
+}
+
+output "test_instance_centos_7_rituraj_test_td_1" {
+  value = "${aws_instance.test_instance_centos_7_rituraj_test_td_1.private_ip}"
+}
+
+## RHEL 7 test instance Rituraj
+resource "aws_instance" "rituraj_x86_64_rhel7_new_test_td_1" {
+  ami = "${var.ami_us_east_1_rhel7}"
+  availability_zone = "${var.avl-zone}"
+  instance_type = "${var.in_type_core}"
+  key_name = "${var.aws_key_name}"
+  subnet_id = "${aws_subnet.sn_public.id}"
+
+  vpc_security_group_ids = [
+    "${aws_security_group.sg_private_ship_builds.id}"]
+
+  root_block_device {
+    volume_type = "gp2"
+    volume_size = 50
+    delete_on_termination = true
+  }
+
+  tags = {
+    Name = "rituraj_x86_64_rhel7_new_test_td_1"
+  }
+}
+
+output "rituraj_x86_64_rhel7_new_test_td_1" {
+  value = "${aws_instance.rituraj_x86_64_rhel7_new_test_td_1.private_ip}"
+}
 
 resource "aws_instance" "test_instance_ric03uec_u1604" {
   ami = "${var.ami_us_east_1_ubuntu1604}"

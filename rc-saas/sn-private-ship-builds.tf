@@ -87,10 +87,10 @@ output "shared_pool_x86_u1604_01" {
   value = "${aws_instance.shared_pool_x86_u1604_01.private_ip}"
 }
 
-resource "aws_instance" "admiral_test_u1604_bharath92" {
+resource "aws_instance" "drydock_builder" {
   ami = "${var.ami_us_east_1_ubuntu1604}"
   availability_zone = "${var.avl-zone}"
-  instance_type = "${var.in_type_core}"
+  instance_type = "${var.in_type_bld}"
   key_name = "${var.aws_key_name}"
   subnet_id = "${aws_subnet.sn_public.id}"
 
@@ -104,13 +104,42 @@ resource "aws_instance" "admiral_test_u1604_bharath92" {
   }
 
   tags = {
-    Name = "admiral_test_u1604_bharath92_${var.install_version}"
+    Name = "drydock_builder_${var.install_version}"
   }
 }
 
-output "admiral_test_u1604_bharath92" {
-  value = "${aws_instance.admiral_test_u1604_bharath92.private_ip}"
+output "drydock_builder" {
+  value = "${aws_instance.drydock_builder.private_ip}"
 }
+
+########################################################################
+############################# user instances ###########################
+########################################################################
+
+## resource "aws_instance" "admiral_test_u1604_bharath92" {
+##   ami = "${var.ami_us_east_1_ubuntu1604}"
+##   availability_zone = "${var.avl-zone}"
+##   instance_type = "${var.in_type_core}"
+##   key_name = "${var.aws_key_name}"
+##   subnet_id = "${aws_subnet.sn_public.id}"
+##
+##   vpc_security_group_ids = [
+##     "${aws_security_group.sg_private_ship_builds.id}"]
+##
+##   root_block_device {
+##     volume_type = "gp2"
+##     volume_size = 100
+##     delete_on_termination = true
+##   }
+##
+##   tags = {
+##     Name = "admiral_test_u1604_bharath92_${var.install_version}"
+##   }
+## }
+##
+## output "admiral_test_u1604_bharath92" {
+##   value = "${aws_instance.admiral_test_u1604_bharath92.private_ip}"
+## }
 
 ## resource "aws_instance" "rancher_dev_bharath92" {
 ##   ami = "${var.ami_us_east_1_rancheros}"
@@ -187,80 +216,80 @@ output "rituraj_x86_64_rhel7_new_test_td_1" {
   value = "${aws_instance.rituraj_x86_64_rhel7_new_test_td_1.private_ip}"
 }
 
-resource "aws_instance" "test_instance_ric03uec_u1604" {
-  ami = "${var.ami_us_east_1_ubuntu1604}"
-  availability_zone = "${var.avl-zone}"
-  instance_type = "${var.in_type_core}"
-  key_name = "${var.aws_key_name}"
-  subnet_id = "${aws_subnet.sn_public.id}"
+## resource "aws_instance" "test_instance_ric03uec_u1604" {
+##   ami = "${var.ami_us_east_1_ubuntu1604}"
+##   availability_zone = "${var.avl-zone}"
+##   instance_type = "${var.in_type_core}"
+##   key_name = "${var.aws_key_name}"
+##   subnet_id = "${aws_subnet.sn_public.id}"
+##
+##   vpc_security_group_ids = [
+##     "${aws_security_group.sg_private_ship_builds.id}"]
+##
+##   root_block_device {
+##     volume_type = "gp2"
+##     volume_size = 50
+##     delete_on_termination = true
+##   }
+##
+##   tags = {
+##     Name = "test_instance_ric03uec_u1604_${var.install_version}"
+##   }
+## }
+##
+## output "test_instance_ric03uec_u1604" {
+##   value = "${aws_instance.test_instance_ric03uec_u1604.private_ip}"
+## }
 
-  vpc_security_group_ids = [
-    "${aws_security_group.sg_private_ship_builds.id}"]
-
-  root_block_device {
-    volume_type = "gp2"
-    volume_size = 50
-    delete_on_termination = true
-  }
-
-  tags = {
-    Name = "test_instance_ric03uec_u1604_${var.install_version}"
-  }
-}
-
-output "test_instance_ric03uec_u1604" {
-  value = "${aws_instance.test_instance_ric03uec_u1604.private_ip}"
-}
-
-resource "aws_instance" "test_instance_ric03uec_u1404" {
-  ami = "${var.ami_us_east_1_ubuntu1404}"
-  availability_zone = "${var.avl-zone}"
-  instance_type = "${var.in_type_core}"
-  key_name = "${var.aws_key_name}"
-  subnet_id = "${aws_subnet.sn_public.id}"
-
-  vpc_security_group_ids = [
-    "${aws_security_group.sg_private_ship_builds.id}"]
-
-  root_block_device {
-    volume_type = "gp2"
-    volume_size = 100
-    delete_on_termination = true
-  }
-
-  tags = {
-    Name = "test_instance_ric03uec_u1404_${var.install_version}"
-  }
-}
-
-output "test_instance_ric03uec_u1404" {
-  value = "${aws_instance.test_instance_ric03uec_u1404.private_ip}"
-}
-
-resource "aws_instance" "test_instance_centos_7_ric03uec" {
-  ami = "${var.ami_us_east_1_centos7}"
-  availability_zone = "${var.avl-zone}"
-  instance_type = "${var.in_type_core}"
-  key_name = "${var.aws_key_name}"
-  subnet_id = "${aws_subnet.sn_ship_install.id}"
-
-  vpc_security_group_ids = [
-   "${aws_security_group.sg_private_ship_builds.id}"]
-
-  root_block_device {
-    volume_type = "gp2"
-    volume_size = 50
-    delete_on_termination = true
-  }
-
-  tags = {
-    Name = "test_instance_centos_7_ric03uec"
-  }
-}
-
-output "test_instance_centos_7_ric03uec" {
-  value = "${aws_instance.test_instance_centos_7_ric03uec.private_ip}"
-}
+## resource "aws_instance" "test_instance_ric03uec_u1404" {
+##   ami = "${var.ami_us_east_1_ubuntu1404}"
+##   availability_zone = "${var.avl-zone}"
+##   instance_type = "${var.in_type_core}"
+##   key_name = "${var.aws_key_name}"
+##   subnet_id = "${aws_subnet.sn_public.id}"
+##
+##   vpc_security_group_ids = [
+##     "${aws_security_group.sg_private_ship_builds.id}"]
+##
+##   root_block_device {
+##     volume_type = "gp2"
+##     volume_size = 100
+##     delete_on_termination = true
+##   }
+##
+##   tags = {
+##     Name = "test_instance_ric03uec_u1404_${var.install_version}"
+##   }
+## }
+##
+## output "test_instance_ric03uec_u1404" {
+##   value = "${aws_instance.test_instance_ric03uec_u1404.private_ip}"
+## }
+##
+## resource "aws_instance" "test_instance_centos_7_ric03uec" {
+##   ami = "${var.ami_us_east_1_centos7}"
+##   availability_zone = "${var.avl-zone}"
+##   instance_type = "${var.in_type_core}"
+##   key_name = "${var.aws_key_name}"
+##   subnet_id = "${aws_subnet.sn_ship_install.id}"
+##
+##   vpc_security_group_ids = [
+##    "${aws_security_group.sg_private_ship_builds.id}"]
+##
+##   root_block_device {
+##     volume_type = "gp2"
+##     volume_size = 50
+##     delete_on_termination = true
+##   }
+##
+##   tags = {
+##     Name = "test_instance_centos_7_ric03uec"
+##   }
+## }
+##
+## output "test_instance_centos_7_ric03uec" {
+##   value = "${aws_instance.test_instance_centos_7_ric03uec.private_ip}"
+## }
 
 ## resource "aws_instance" "test_instance_rituraj_u1604" {
 ##   ami = "${var.ami_us_east_1_ubuntu1604}"

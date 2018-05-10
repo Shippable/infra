@@ -1,7 +1,7 @@
 resources:
   - name: inf_repo
     type: gitRepo
-    integration: "ric03uec-github"
+    integration: "avinci_gh"
     pointer:
       sourceName: "Shippable/infra"
       branch: master

@@ -92,7 +92,9 @@ apply_changes() {
   pushd "$RES_REPO_STATE/$TF_FOLDER"
   echo "-----------------------------------"
   which ssh-agent
-
+  echo "initializing terraform"
+  echo "-----------------------------------"
+  terraform init
   echo "planning changes"
   echo "-----------------------------------"
   terraform --version

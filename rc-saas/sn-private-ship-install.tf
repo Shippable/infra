@@ -326,7 +326,7 @@ output "cs_1_ip" {
 resource "aws_instance" "ms_g_1" {
  ami = "${var.ami_us_east_1_ubuntu1604}"
  availability_zone = "${var.avl-zone}"
- instance_type = "${var.in_type_ms_4x}"
+ instance_type = "${var.in_type_ms_x}"
  key_name = "${var.aws_key_name}"
  subnet_id = "${aws_subnet.sn_ship_install.id}"
 

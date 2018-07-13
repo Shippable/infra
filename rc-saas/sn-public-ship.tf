@@ -59,8 +59,9 @@ resource "aws_elb" "lb_bbs" {
  connection_draining = true
  subnets = [
    "${aws_subnet.sn_public.id}"]
-   security_groups = [
-   "${aws_security_group.sg_public_lb.id}"]
+ security_groups = [
+   "${aws_security_group.sg_public_bbs.id}"
+  ]
 
  listener {
    lb_port = 22

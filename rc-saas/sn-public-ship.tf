@@ -55,7 +55,7 @@ resource "aws_security_group" "sg_public_lb" {
 
 # BBS Load balancer
 resource "aws_elb" "lb_bbs" {
- name = "lb-g-mktg-${var.install_version}"
+ name = "lb-bbs-${var.install_version}"
  connection_draining = true
  subnets = [
    "${aws_subnet.sn_public.id}"]

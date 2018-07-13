@@ -67,7 +67,6 @@ resource "aws_elb" "lb_bbs" {
    lb_protocol = "tcp"
    instance_port = 7999
    instance_protocol = "tcp"
-   ssl_certificate_id = "${var.acm_cert_arn}"
  }
 
  listener {

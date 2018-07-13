@@ -35,13 +35,12 @@ resource "aws_security_group" "sg_public_bbs" {
       "0.0.0.0/0"]
   }
 
-  ## Only allow ssh from public subnet so that this is accessible from jumpbox
   ingress {
     from_port = "22"
     to_port = "22"
     protocol = "tcp"
     cidr_blocks = [
-      "${var.cidr_public_ship}"]
+      "0.0.0.0/0"]
   }
 
   ## Allow all outbound traffic

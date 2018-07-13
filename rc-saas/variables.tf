@@ -77,6 +77,11 @@ variable "in_type_small" {
   description = "AWS Instance type for consul server"
 }
 
+variable "in_type_scm" {
+  default = "t2.large"
+  description = "AWS Instance type for SCM machines"
+}
+
 variable "in_type_ms" {
   default = "c4.large"
   description = "AWS Instance type for MS machines"

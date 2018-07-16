@@ -53,44 +53,6 @@ resource "aws_security_group" "sg_public_lb" {
   }
 }
 
-# BBS Load balancer
-resource "aws_elb" "lb_bbs" {
- name = "lb-bbs-${var.install_version}"
- connection_draining = true
- subnets = [
-   "${aws_subnet.sn_public.id}"]
- security_groups = [
-   "${aws_security_group.sg_public_bbs.id}"
-  ]
-
- listener {
-   lb_port = 22
-   lb_protocol = "tcp"
-   instance_port = 7999
-   instance_protocol = "tcp"
- }
-
- listener {
-   lb_port = 443
-   lb_protocol = "https"
-   instance_port = 7990
-   instance_protocol = "http"
-   ssl_certificate_id = "${var.acm_cert_arn}"
- }
-
- health_check {
-   healthy_threshold = 2
-   unhealthy_threshold = 2
-   timeout = 3
-   target = "HTTP:7990/status"
-   interval = 5
- }
-
- instances = [
-   "${aws_instance.rcbbs-2.id}"
- ]
-}
-
 # ========================Load Balancers=======================
 
 # ----------

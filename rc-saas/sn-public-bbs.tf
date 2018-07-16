@@ -1,28 +1,20 @@
-resource "aws_security_group" "sg_public_bbs" {
-  name = "sg_public_bbs_${var.install_version}"
-  description = "BBS traffic security group"
+resource "aws_security_group" "sg_public_lb_bbs" {
+  name = "sg_public_lb_bbs_${var.install_version}"
+  description = "BBS ELB security group"
   vpc_id = "${aws_vpc.vpc.id}"
-
-  ingress {
-    from_port = 7990
-    to_port = 7990
-    protocol = "tcp"
-    cidr_blocks = [
-      "0.0.0.0/0"]
-  }
-
-  ingress {
-    from_port = 7999
-    to_port = 7999
-    protocol = "tcp"
-    cidr_blocks = [
-      "0.0.0.0/0"]
-  }
 
   ingress {
     from_port = -1
     to_port = -1
     protocol = "icmp"
+    cidr_blocks = [
+      "0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port = 80
+    to_port = 80
+    protocol = "tcp"
     cidr_blocks = [
       "0.0.0.0/0"]
   }
@@ -53,27 +45,44 @@ resource "aws_security_group" "sg_public_bbs" {
   }
 
   tags {
-    Name = "sg_public_bbs_${var.install_version}"
+    Name = "sg_public_lb_bbs_${var.install_version}"
   }
 }
 
-resource "aws_instance" "rcbbs-2" {
-  ami = "${var.ami_us_east_1_ubuntu1604}"
-  availability_zone = "${var.avl-zone}"
-  instance_type = "${var.in_type_scm}"
-  key_name = "${var.aws_key_name}"
-  subnet_id = "${aws_subnet.sn_public.id}"
+# BBS Load balancer
+resource "aws_elb" "lb_bbs" {
+ name = "lb-bbs-${var.install_version}"
+ connection_draining = true
+ subnets = [
+   "${aws_subnet.sn_public.id}"]
+ security_groups = [
+   "${aws_security_group.sg_public_bbs.id}"
+  ]
 
-  vpc_security_group_ids = [
-    "${aws_security_group.sg_public_bbs.id}"]
+ listener {
+   lb_port = 22
+   lb_protocol = "tcp"
+   instance_port = 7999
+   instance_protocol = "tcp"
+ }
 
-  root_block_device {
-    volume_type = "gp2"
-    volume_size = 30
-    delete_on_termination = true
-  }
+ listener {
+   lb_port = 443
+   lb_protocol = "https"
+   instance_port = 7990
+   instance_protocol = "http"
+   ssl_certificate_id = "${var.acm_cert_arn}"
+ }
 
-  tags = {
-    Name = "rcbbs_2_${var.install_version}"
-  }
+ health_check {
+   healthy_threshold = 2
+   unhealthy_threshold = 2
+   timeout = 3
+   target = "HTTP:7990/status"
+   interval = 5
+ }
+
+ instances = [
+   "${aws_instance.rcbbs-2.id}"
+ ]
 }

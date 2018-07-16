@@ -56,7 +56,8 @@ resource "aws_elb" "lb_bbs" {
  subnets = [
    "${aws_subnet.sn_public.id}"]
  security_groups = [
-   "${aws_security_group.sg_public_bbs.id}"
+   "${aws_security_group.sg_public_bbs.id}",
+   "${aws_security_group.sg_public_lb_bbs.id}"
   ]
 
  listener {

@@ -11,30 +11,30 @@ resource "aws_security_group" "sg_public_bbs" {
       "0.0.0.0/0"]
   }
 
-  ingress {
-    from_port = 7990
-    to_port = 7990
-    protocol = "tcp"
-    cidr_blocks = [
-      "0.0.0.0/0"]
-  }
-
-  ingress {
-    from_port = 7999
-    to_port = 7999
-    protocol = "tcp"
-    cidr_blocks = [
-      "0.0.0.0/0"]
-  }
-
-  ingress {
-    from_port = "22"
-    to_port = "22"
-    protocol = "tcp"
-    cidr_blocks = [
-      "0.0.0.0/0"]
-  }
-
+##   ingress {
+##     from_port = 7990
+##     to_port = 7990
+##     protocol = "tcp"
+##     cidr_blocks = [
+##       "0.0.0.0/0"]
+##   }
+##
+##   ingress {
+##     from_port = 7999
+##     to_port = 7999
+##     protocol = "tcp"
+##     cidr_blocks = [
+##       "0.0.0.0/0"]
+##   }
+##
+##  ingress {
+##    from_port = "22"
+##    to_port = "22"
+##    protocol = "tcp"
+##    cidr_blocks = [
+##      "0.0.0.0/0"]
+##  }
+##
   ## Allow all outbound traffic
   egress {
     from_port = 0
@@ -47,6 +47,39 @@ resource "aws_security_group" "sg_public_bbs" {
   tags {
     Name = "sg_public_bbs_${var.install_version}"
   }
+}
+
+## allow ssh only traffic from nat security group
+resource "aws_security_group_rule" "allow_nat_ssh" {
+  type            = "ingress"
+  from_port       = 22
+  to_port         = 22
+  protocol        = "tcp"
+
+  security_group_id = "${aws_security_group.sg_public_bbs.id}"
+  source_security_group_id = "${aws_security_group.sg_public_nat.id}"
+}
+
+## allow http traffic from lb on port 7990
+resource "aws_security_group_rule" "allow_lb_https_bbs" {
+  type            = "ingress"
+  from_port       = 7990
+  to_port         = 7990
+  protocol        = "tcp"
+
+  security_group_id = "${aws_security_group.sg_public_bbs.id}"
+  source_security_group_id = "${aws_security_group.sg_public_lb_bbs.id}"
+}
+
+## allow ssh traffic from lb on port 7999
+resource "aws_security_group_rule" "allow_lb_ssh_bbs" {
+  type            = "ingress"
+  from_port       = 7999
+  to_port         = 7999
+  protocol        = "tcp"
+
+  security_group_id = "${aws_security_group.sg_public_bbs.id}"
+  source_security_group_id = "${aws_security_group.sg_public_lb_bbs.id}"
 }
 
 resource "aws_instance" "rcbbs-2" {

@@ -11,30 +11,6 @@ resource "aws_security_group" "sg_public_bbs" {
       "0.0.0.0/0"]
   }
 
-##   ingress {
-##     from_port = 7990
-##     to_port = 7990
-##     protocol = "tcp"
-##     cidr_blocks = [
-##       "0.0.0.0/0"]
-##   }
-##
-##   ingress {
-##     from_port = 7999
-##     to_port = 7999
-##     protocol = "tcp"
-##     cidr_blocks = [
-##       "0.0.0.0/0"]
-##   }
-##
-##  ingress {
-##    from_port = "22"
-##    to_port = "22"
-##    protocol = "tcp"
-##    cidr_blocks = [
-##      "0.0.0.0/0"]
-##  }
-##
   ## Allow all outbound traffic
   egress {
     from_port = 0

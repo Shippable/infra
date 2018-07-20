@@ -333,6 +333,7 @@ resource "aws_elb" "lb_rp_n" {
 ## resource "aws_elb" "lb_g_api_con" {
 ##   name = "lb-g-api-con-${var.install_version}"
 ##   connection_draining = true
+##   idle_timeout = 300
 ##   subnets = [
 ##     "${var.sn_public_ship_id}"]
 ##   security_groups = [
@@ -484,6 +485,7 @@ resource "aws_elb" "lb_b_api_int" {
 resource "aws_elb" "lb_b_api_con" {
  name = "lb-b-api-con-${var.install_version}"
  connection_draining = true
+ idle_timeout = 300
  subnets = [
    "${var.sn_public_ship_id}"]
  security_groups = [

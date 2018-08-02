@@ -33,7 +33,8 @@ resource "aws_security_group" "sg_public_admiral_setup" {
     to_port = "22"
     protocol = "tcp"
     cidr_blocks = [
-      "0.0.0.0/0"]
+      "0.0.0.0/0",
+      "${var.cidr_public_ship}"]
   }
 
   ingress {

@@ -50,6 +50,11 @@ variable "cidr_public_ship" {
   default = "80.0.0.0/24"
 }
 
+variable "cidr_public_admiral_setup" {
+  description = "Public .50.0 block for admiral machines"
+  default = "80.0.50.0/24"
+}
+
 variable "cidr_private_ship_install" {
   description = "Private 0.2 block for shippable services"
   default = "80.0.100.0/24"

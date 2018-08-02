@@ -2,6 +2,7 @@ resource "aws_subnet" "sn_admiral_setup" {
   vpc_id = "${aws_vpc.vpc.id}"
   cidr_block = "${var.cidr_public_admiral_setup}"
   availability_zone = "${var.avl-zone}"
+  map_public_ip_on_launch = true
   tags {
     Name = "sn_admiral_setup_${var.install_version}"
   }

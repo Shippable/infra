@@ -217,7 +217,7 @@ output "drydock_builder" {
 ##}
 
 # ric03uec: x86/64 Ubuntu 16.04 Instances
-resource "aws_instance" "test_instance_ric03uec_u1604" {
+resource "aws_instance" "test_ric03uec_u1604" {
   ami = "${var.ami_us_east_1_ubuntu1604}"
   availability_zone = "${var.avl-zone}"
   instance_type = "${var.in_type_core}"
@@ -235,16 +235,16 @@ resource "aws_instance" "test_instance_ric03uec_u1604" {
   }
 
   tags = {
-    Name = "test_instance_ric03uec_u1604_${count.index}_${var.install_version}"
+    Name = "test_ric03uec_u1604_${count.index}_${var.install_version}"
   }
 }
 
-output "test_instance_ric03uec_u1604" {
-  value = "${formatlist("instance %v has private ip %v", aws_instance.test_instance_ric03uec_u1604.*.id, aws_instance.test_instance_ric03uec_u1604.*.private_ip)}"
+output "test_ric03uec_u1604" {
+  value = "${formatlist("instance %v has private ip %v", aws_instance.test_ric03uec_u1604.*.id, aws_instance.test_ric03uec_u1604.*.private_ip)}"
 }
 
 # ric03uec: x86/64 Ubuntu 14.04 Instances
-resource "aws_instance" "test_instance_ric03uec_u1404" {
+resource "aws_instance" "test_ric03uec_u1404" {
   ami = "${var.ami_us_east_1_ubuntu1404}"
   availability_zone = "${var.avl-zone}"
   instance_type = "${var.in_type_core}"
@@ -262,16 +262,16 @@ resource "aws_instance" "test_instance_ric03uec_u1404" {
   }
 
   tags = {
-    Name = "test_instance_ric03uec_u1404_${count.index}_${var.install_version}"
+    Name = "test_ric03uec_u1404_${count.index}_${var.install_version}"
   }
 }
 
-output "test_instance_ric03uec_u1404" {
-  value = "${formatlist("instance %v has private ip %v", aws_instance.test_instance_ric03uec_u1404.*.id, aws_instance.test_instance_ric03uec_u1404.*.private_ip)}"
+output "test_ric03uec_u1404" {
+  value = "${formatlist("instance %v has private ip %v", aws_instance.test_ric03uec_u1404.*.id, aws_instance.test_ric03uec_u1404.*.private_ip)}"
 }
 
 # ric03uec: x86/64 Centos 7 Instances
-resource "aws_instance" "test_instance_ric03uec_centos7" {
+resource "aws_instance" "test_ric03uec_centos7" {
   ami = "${var.ami_us_east_1_centos7}"
   availability_zone = "${var.avl-zone}"
   instance_type = "${var.in_type_core}"
@@ -289,12 +289,12 @@ resource "aws_instance" "test_instance_ric03uec_centos7" {
   }
 
   tags = {
-    Name = "test_instance_ric03uec_centos7_${count.index}_${var.install_version}"
+    Name = "test_ric03uec_centos7_${count.index}_${var.install_version}"
   }
 }
 
-output "test_instance_ric03uec_centos7" {
-  value = "${formatlist("instance %v has private ip %v", aws_instance.test_instance_ric03uec_centos7.*.id, aws_instance.test_instance_ric03uec_centos7.*.private_ip)}"
+output "test_ric03uec_centos7" {
+  value = "${formatlist("instance %v has private ip %v", aws_instance.test_ric03uec_centos7.*.id, aws_instance.test_ric03uec_centos7.*.private_ip)}"
 }
 
 ## resource "aws_instance" "test_instance_rituraj_u1604" {

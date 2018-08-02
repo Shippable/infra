@@ -8,6 +8,32 @@ resource "aws_subnet" "sn_admiral_setup" {
   }
 }
 
+# Internet gateway for the public subnet
+resource "aws_internet_gateway" "ig_admiral_setup" {
+  vpc_id = "${aws_vpc.vpc.id}"
+  tags {
+    Name = "ig_admiral_setup_${var.install_version}"
+  }
+}
+
+# Routing table for admiral subnet
+resource "aws_route_table" "rt_admiral_setup" {
+  vpc_id = "${aws_vpc.vpc.id}"
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = "${aws_internet_gateway.ig_admiral_setup.id}"
+  }
+  tags {
+    Name = "rt_admiral_setup_${var.install_version}"
+  }
+}
+
+# Associate the routing table to admiral subnet
+resource "aws_route_table_association" "rt_assn_admiral" {
+  subnet_id = "${aws_subnet.sn_admiral_setup.id}"
+  route_table_id = "${aws_route_table.rt_admiral_setup.id}"
+}
+
 resource "aws_security_group" "sg_public_admiral_setup" {
   name = "sg_public_admiral_setup_${var.install_version}"
   description = "admiral security group"

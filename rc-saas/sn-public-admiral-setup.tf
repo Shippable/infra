@@ -61,6 +61,14 @@ resource "aws_security_group" "sg_public_admiral_setup" {
   }
 
   ingress {
+    from_port = "2377"
+    to_port = "2377"
+    protocol = "tcp"
+    cidr_blocks = [
+      "0.0.0.0/0"]
+  }
+
+  ingress {
     from_port = "5432"
     to_port = "5432"
     protocol = "tcp"

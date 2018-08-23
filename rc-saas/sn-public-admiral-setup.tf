@@ -218,7 +218,7 @@ output "admiral_ric03uec_u1404" {
 }
 
 # ric03uec: x86/64 Centos 7 Instances
-resource "aws_instance" "test_ric03uec_centos7" {
+resource "aws_instance" "admiral_ric03uec_centos7" {
   ami = "${var.ami_us_east_1_centos7}"
   availability_zone = "${var.avl-zone}"
   instance_type = "${var.in_type_core}"
@@ -236,10 +236,10 @@ resource "aws_instance" "test_ric03uec_centos7" {
   }
 
   tags = {
-    Name = "test_ric03uec_centos7_${count.index}_${var.install_version}"
+    Name = "admiral_ric03uec_centos7_${count.index}_${var.install_version}"
   }
 }
 
-output "test_ric03uec_centos7" {
-  value = "${formatlist("instance %v has private ip %v", aws_instance.test_ric03uec_centos7.*.id, aws_instance.test_ric03uec_centos7.*.private_ip)}"
+output "admiral_ric03uec_centos7" {
+  value = "${formatlist("instance %v has private ip %v", aws_instance.admiral_ric03uec_centos7.*.id, aws_instance.admiral_ric03uec_centos7.*.private_ip)}"
 }

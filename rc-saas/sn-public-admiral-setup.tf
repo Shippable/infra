@@ -271,3 +271,30 @@ output "admiral_ric03uec_u1604" {
 ## output "admiral_ric03uec_rhel7" {
 ##   value = "${formatlist("instance %v has private ip %v", aws_instance.admiral_ric03uec_rhel7.*.id, aws_instance.admiral_ric03uec_rhel7.*.private_ip)}"
 ## }
+
+## ric03uec:  x86/64 WindowsServer
+resource "aws_instance" "admiral_ric03uec_win16" {
+  ami = "${var.ami_us_east_1_win16}"
+  availability_zone = "${var.avl-zone}"
+  instance_type = "${var.in_type_bld}"
+  key_name = "${var.aws_key_name}"
+  subnet_id = "${aws_subnet.sn_admiral_setup.id}"
+
+  count = 1
+  vpc_security_group_ids = [
+    "${aws_security_group.sg_public_admiral_setup.id}"]
+
+  root_block_device {
+    volume_type = "gp2"
+    volume_size = 100
+    delete_on_termination = true
+  }
+
+  tags = {
+    Name = "admiral_ric03uec_win16_${count.index}_${var.install_version}"
+  }
+}
+
+output "admiral_ric03uec_win16" {
+  value = "${formatlist("instance %v has private ip %v", aws_instance.admiral_ric03uec_win16.*.id, aws_instance.admiral_ric03uec_win16.*.private_ip)}"
+}

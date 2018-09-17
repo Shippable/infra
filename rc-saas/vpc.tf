@@ -58,7 +58,7 @@ resource "aws_subnet" "sn_ship_install" {
   }
 }
 
-Routing table for private subnet
+# Routing table for private subnet
 resource "aws_route_table" "rt_ship_install" {
   vpc_id = "${aws_vpc.vpc.id}"
   route {
@@ -86,7 +86,7 @@ resource "aws_subnet" "sn_ship_backup" {
   }
 }
 
-Routing table for backup subnet
+# Routing table for backup subnet
 resource "aws_route_table" "rt_ship_backup" {
   vpc_id = "${aws_vpc.vpc.id}"
   route {
@@ -124,7 +124,7 @@ resource "aws_subnet" "sn_ship_builds" {
   }
 }
 
-Routing table for private subnet
+# Routing table for private subnet
 resource "aws_route_table" "rt_ship_builds" {
   vpc_id = "${aws_vpc.vpc.id}"
   route {

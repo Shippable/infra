@@ -58,23 +58,23 @@ resource "aws_subnet" "sn_ship_install" {
   }
 }
 
-# Routing table for private subnet
-# resource "aws_route_table" "rt_ship_install" {
-#   vpc_id = "${aws_vpc.vpc.id}"
-#   route {
-#     cidr_block = "0.0.0.0/0"
-#     instance_id = "${aws_instance.nat.id}"
-#   }
-#   tags {
-#     Name = "rt_ship_install_${var.install_version}"
-#   }
-# }
+Routing table for private subnet
+resource "aws_route_table" "rt_ship_install" {
+  vpc_id = "${aws_vpc.vpc.id}"
+  route {
+    cidr_block = "0.0.0.0/0"
+    instance_id = "${aws_instance.nat2.id}"
+  }
+  tags {
+    Name = "rt_ship_install_${var.install_version}"
+  }
+}
 
-# # Associate the routing table to private subnet
-# resource "aws_route_table_association" "rt_assn_ship_install" {
-#   subnet_id = "${aws_subnet.sn_ship_install.id}"
-#   route_table_id = "${aws_route_table.rt_ship_install.id}"
-# }
+# Associate the routing table to private subnet
+resource "aws_route_table_association" "rt_assn_ship_install" {
+  subnet_id = "${aws_subnet.sn_ship_install.id}"
+  route_table_id = "${aws_route_table.rt_ship_install.id}"
+}
 
 #========================== backup subnet ===========================
 resource "aws_subnet" "sn_ship_backup" {
@@ -86,23 +86,23 @@ resource "aws_subnet" "sn_ship_backup" {
   }
 }
 
-# Routing table for backup subnet
-# resource "aws_route_table" "rt_ship_backup" {
-#   vpc_id = "${aws_vpc.vpc.id}"
-#   route {
-#     cidr_block = "0.0.0.0/0"
-#     instance_id = "${aws_instance.nat.id}"
-#   }
-#   tags {
-#     Name = "rt_ship_backup_${var.install_version}"
-#   }
-# }
+Routing table for backup subnet
+resource "aws_route_table" "rt_ship_backup" {
+  vpc_id = "${aws_vpc.vpc.id}"
+  route {
+    cidr_block = "0.0.0.0/0"
+    instance_id = "${aws_instance.nat2.id}"
+  }
+  tags {
+    Name = "rt_ship_backup_${var.install_version}"
+  }
+}
 
-# # Associate the routing table to private subnet
-# resource "aws_route_table_association" "rt_assn_ship_backup" {
-#   subnet_id = "${aws_subnet.sn_ship_backup.id}"
-#   route_table_id = "${aws_route_table.rt_ship_backup.id}"
-# }
+# Associate the routing table to private subnet
+resource "aws_route_table_association" "rt_assn_ship_backup" {
+  subnet_id = "${aws_subnet.sn_ship_backup.id}"
+  route_table_id = "${aws_route_table.rt_ship_backup.id}"
+}
 
 #========================== database subnet group  ==================
 resource "aws_db_subnet_group" "sng_ship_db" {
@@ -124,23 +124,23 @@ resource "aws_subnet" "sn_ship_builds" {
   }
 }
 
-# Routing table for private subnet
-# resource "aws_route_table" "rt_ship_builds" {
-#   vpc_id = "${aws_vpc.vpc.id}"
-#   route {
-#     cidr_block = "0.0.0.0/0"
-#     instance_id = "${aws_instance.nat.id}"
-#   }
-#   tags {
-#     Name = "rt_ship_builds_${var.install_version}"
-#   }
-# }
+Routing table for private subnet
+resource "aws_route_table" "rt_ship_builds" {
+  vpc_id = "${aws_vpc.vpc.id}"
+  route {
+    cidr_block = "0.0.0.0/0"
+    instance_id = "${aws_instance.nat2.id}"
+  }
+  tags {
+    Name = "rt_ship_builds_${var.install_version}"
+  }
+}
 
-# # Associate the routing table to private subnet
-# resource "aws_route_table_association" "rt_assn_ship_builds" {
-#   subnet_id = "${aws_subnet.sn_ship_builds.id}"
-#   route_table_id = "${aws_route_table.rt_ship_builds.id}"
-# }
+# Associate the routing table to private subnet
+resource "aws_route_table_association" "rt_assn_ship_builds" {
+  subnet_id = "${aws_subnet.sn_ship_builds.id}"
+  route_table_id = "${aws_route_table.rt_ship_builds.id}"
+}
 
 #========================== NAT =============================
 
@@ -205,39 +205,39 @@ resource "null_resource" "pemfile" {
 }
 
 # NAT Server
-# resource "aws_instance" "nat" {
-#   ami = "${var.ami_us_east_1_nat}"
-#   availability_zone = "${var.avl-zone}"
-#   instance_type = "${var.in_type_nat}"
-#   key_name = "${var.aws_key_name}"
+resource "aws_instance" "nat2" {
+  ami = "${var.ami_us_east_1_nat}"
+  availability_zone = "${var.avl-zone}"
+  instance_type = "${var.in_type_nat}"
+  key_name = "${var.aws_key_name}"
 
-#   subnet_id = "${aws_subnet.sn_public.id}"
-#   vpc_security_group_ids = [
-#     "${aws_security_group.sg_public_nat.id}"]
+  subnet_id = "${aws_subnet.sn_public.id}"
+  vpc_security_group_ids = [
+    "${aws_security_group.sg_public_nat.id}"]
 
-#   provisioner "file" {
-#     source = "${var.aws_key_filename}"
-#     destination = "~/.ssh/${var.aws_key_filename}"
+  provisioner "file" {
+    source = "${var.aws_key_filename}"
+    destination = "~/.ssh/${var.aws_key_filename}"
 
-#     connection {
-#       type = "ssh"
-#       user = "ec2-user"
-#       private_key = "${file(null_resource.pemfile.triggers.fileName)}"
-#       agent = true
-#     }
-#   }
+    connection {
+      type = "ssh"
+      user = "ec2-user"
+      private_key = "${file(null_resource.pemfile.triggers.fileName)}"
+      agent = true
+    }
+  }
 
-#   associate_public_ip_address = true
-#   source_dest_check = false
+  associate_public_ip_address = true
+  source_dest_check = false
 
-#   tags = {
-#     Name = "nat_${var.install_version}"
-#   }
-# }
+  tags = {
+    Name = "nat_${var.install_version}"
+  }
+}
 
 # # Associate EIP, without this private SN wont work
  resource "aws_eip" "nat" {
-#   instance = "${aws_instance.nat.id}"
+   instance = "${aws_instance.nat2.id}"
    vpc = true
  }
 

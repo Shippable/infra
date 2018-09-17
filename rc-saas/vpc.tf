@@ -205,41 +205,41 @@ resource "null_resource" "pemfile" {
 }
 
 # NAT Server
-resource "aws_instance" "nat" {
-  ami = "${var.ami_us_east_1_nat}"
-  availability_zone = "${var.avl-zone}"
-  instance_type = "${var.in_type_nat}"
-  key_name = "${var.aws_key_name}"
+# resource "aws_instance" "nat" {
+#   ami = "${var.ami_us_east_1_nat}"
+#   availability_zone = "${var.avl-zone}"
+#   instance_type = "${var.in_type_nat}"
+#   key_name = "${var.aws_key_name}"
 
-  subnet_id = "${aws_subnet.sn_public.id}"
-  vpc_security_group_ids = [
-    "${aws_security_group.sg_public_nat.id}"]
+#   subnet_id = "${aws_subnet.sn_public.id}"
+#   vpc_security_group_ids = [
+#     "${aws_security_group.sg_public_nat.id}"]
 
-  provisioner "file" {
-    source = "${var.aws_key_filename}"
-    destination = "~/.ssh/${var.aws_key_filename}"
+#   provisioner "file" {
+#     source = "${var.aws_key_filename}"
+#     destination = "~/.ssh/${var.aws_key_filename}"
 
-    connection {
-      type = "ssh"
-      user = "ec2-user"
-      private_key = "${file(null_resource.pemfile.triggers.fileName)}"
-      agent = true
-    }
-  }
+#     connection {
+#       type = "ssh"
+#       user = "ec2-user"
+#       private_key = "${file(null_resource.pemfile.triggers.fileName)}"
+#       agent = true
+#     }
+#   }
 
-  associate_public_ip_address = true
-  source_dest_check = false
+#   associate_public_ip_address = true
+#   source_dest_check = false
 
-  tags = {
-    Name = "nat_${var.install_version}"
-  }
-}
+#   tags = {
+#     Name = "nat_${var.install_version}"
+#   }
+# }
 
-# Associate EIP, without this private SN wont work
-resource "aws_eip" "nat" {
-  instance = "${aws_instance.nat.id}"
-  vpc = true
-}
+# # Associate EIP, without this private SN wont work
+# resource "aws_eip" "nat" {
+#   instance = "${aws_instance.nat.id}"
+#   vpc = true
+# }
 
 # make this routing table the main one
 resource "aws_main_route_table_association" "rt_main_ship_install" {

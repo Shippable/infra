@@ -236,10 +236,10 @@ resource "null_resource" "pemfile" {
 # }
 
 # # Associate EIP, without this private SN wont work
-# resource "aws_eip" "nat" {
+ resource "aws_eip" "nat" {
 #   instance = "${aws_instance.nat.id}"
-#   vpc = true
-# }
+   vpc = true
+ }
 
 # make this routing table the main one
 resource "aws_main_route_table_association" "rt_main_ship_install" {

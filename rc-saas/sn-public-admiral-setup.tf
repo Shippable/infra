@@ -336,48 +336,25 @@ output "admiral_ric03uec_u1604" {
 # }
 
 ## bharath92:  x86/64 RHEL7 instance
-resource "aws_instance" "admiral_bharath92_rhel7" {
-  ami = "${var.ami_us_east_1_rhel7}"
-  availability_zone = "${var.avl-zone}"
-  instance_type = "${var.in_type_ms_x}"
-  key_name = "${var.aws_key_name}"
-  subnet_id = "${aws_subnet.sn_admiral_setup.id}"
-  count = 2
-  vpc_security_group_ids = [
-    "${aws_security_group.sg_public_admiral_setup.id}"]
-  root_block_device {
-    volume_type = "gp2"
-    volume_size = 100
-    delete_on_termination = true
-  }
-  tags = {
-    Name = "admiral_bharath92_rhel7_${count.index}_${var.install_version}"
-  }
-}
-
-output "admiral_bharath92_rhel7" {
-  value = "${formatlist("instance %v has private ip %v", aws_instance.admiral_bharath92_rhel7.*.id, aws_instance.admiral_bharath92_rhel7.*.private_ip)}"
-}
-
-resource "aws_instance" "admiral_bharath92_rhel7_test" {
-  ami = "${var.ami_us_east_1_rhel7}"
-  availability_zone = "${var.avl-zone}"
-  instance_type = "${var.in_type_ms_x}"
-  key_name = "${var.aws_key_name}"
-  subnet_id = "${aws_subnet.sn_admiral_setup.id}"
-  count = 2
-  vpc_security_group_ids = [
-    "${aws_security_group.sg_public_admiral_setup.id}"]
-  root_block_device {
-    volume_type = "gp2"
-    volume_size = 100
-    delete_on_termination = true
-  }
-  tags = {
-    Name = "admiral_bharath92_rhel7_test_${count.index}_${var.install_version}"
-  }
-}
-
-output "admiral_bharath92_rhel7_test" {
-  value = "${formatlist("instance %v has private ip %v", aws_instance.admiral_bharath92_rhel7_test.*.id, aws_instance.admiral_bharath92_rhel7_test.*.private_ip)}"
-}
+## resource "aws_instance" "admiral_bharath92_rhel7" {
+##   ami = "${var.ami_us_east_1_rhel7}"
+##   availability_zone = "${var.avl-zone}"
+##   instance_type = "${var.in_type_ms_x}"
+##   key_name = "${var.aws_key_name}"
+##   subnet_id = "${aws_subnet.sn_admiral_setup.id}"
+##   count = 2
+##   vpc_security_group_ids = [
+##     "${aws_security_group.sg_public_admiral_setup.id}"]
+##   root_block_device {
+##     volume_type = "gp2"
+##     volume_size = 100
+##     delete_on_termination = true
+##   }
+##   tags = {
+##     Name = "admiral_bharath92_rhel7_${count.index}_${var.install_version}"
+##   }
+## }
+## 
+## output "admiral_bharath92_rhel7" {
+##   value = "${formatlist("instance %v has private ip %v", aws_instance.admiral_bharath92_rhel7.*.id, aws_instance.admiral_bharath92_rhel7.*.private_ip)}"
+## }

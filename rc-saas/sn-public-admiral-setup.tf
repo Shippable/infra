@@ -281,7 +281,7 @@ resource "aws_security_group" "sg_public_admiral_setup" {
 ##   value = "${formatlist("instance %v has private ip %v", aws_instance.admiral_ric03uec_rhel7.*.id, aws_instance.admiral_ric03uec_rhel7.*.private_ip)}"
 ## }
 
-ric03uec:  x86/64 WindowsServer
+## ric03uec:  x86/64 WindowsServer
 resource "aws_instance" "admiral_ric03uec_win16" {
   ami = "${var.ami_us_east_1_win16}"
   availability_zone = "${var.avl-zone}"

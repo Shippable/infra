@@ -70,6 +70,11 @@ variable "cidr_private_ship_builds" {
   default = "80.0.200.0/24"
 }
 
+variable "cidr_private_nat_builds" {
+  description = "Private 250 block for nat builds"
+  default = "80.0.250.0/24"
+}
+
 variable "in_type_core" {
   //make sure it is compatible with AMI, not all AMIs allow all instance types "
   default = "t2.medium"

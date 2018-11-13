@@ -378,15 +378,15 @@ output "ms_g_1_ip" {
 # temporary ebs volume for migrating RC db
 # ---------------
 
-resource "aws_ebs_volume" "db_migration_volume" {
-  size = 30
-  type = "gp2"
-  availability_zone = "${var.avl-zone}"
-
-  tags = {
-    Name = "db_migration_volume_${var.install_version}"
-  }
-}
+#resource "aws_ebs_volume" "db_migration_volume" {
+#  size = 30
+#  type = "gp2"
+#  availability_zone = "${var.avl-zone}"
+#
+#  tags = {
+#    Name = "db_migration_volume_${var.install_version}"
+#  }
+#}
 
 # resource "aws_volume_attachment" "db_migration_att" {
 #   device_name = "/dev/sdh"

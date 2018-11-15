@@ -46,26 +46,26 @@ resource "aws_security_group_rule" "allow_nat_ssh" {
 }
 
 ## allow http traffic from lb on port 7990
-resource "aws_security_group_rule" "allow_lb_https_bbs" {
-  type            = "ingress"
-  from_port       = 7990
-  to_port         = 7990
-  protocol        = "tcp"
-
-  security_group_id = "${aws_security_group.sg_public_bbs.id}"
-  source_security_group_id = "${aws_security_group.sg_public_lb_bbs.id}"
-}
+#resource "aws_security_group_rule" "allow_lb_https_bbs" {
+#  type            = "ingress"
+#  from_port       = 7990
+#  to_port         = 7990
+#  protocol        = "tcp"
+#
+#  security_group_id = "${aws_security_group.sg_public_bbs.id}"
+#  source_security_group_id = "${aws_security_group.sg_public_lb_bbs.id}"
+#}
 
 ## allow ssh traffic from lb on port 7999
-resource "aws_security_group_rule" "allow_lb_ssh_bbs" {
-  type            = "ingress"
-  from_port       = 7999
-  to_port         = 7999
-  protocol        = "tcp"
-
-  security_group_id = "${aws_security_group.sg_public_bbs.id}"
-  source_security_group_id = "${aws_security_group.sg_public_lb_bbs.id}"
-}
+#resource "aws_security_group_rule" "allow_lb_ssh_bbs" {
+#  type            = "ingress"
+#  from_port       = 7999
+#  to_port         = 7999
+#  protocol        = "tcp"
+#
+#  security_group_id = "${aws_security_group.sg_public_bbs.id}"
+#  source_security_group_id = "${aws_security_group.sg_public_lb_bbs.id}"
+#}
 
 resource "aws_instance" "rcbbs-2" {
   ami = "${var.ami_us_east_1_ubuntu1604}"

@@ -13,7 +13,7 @@ resource "aws_nat_gateway" "nat_gateway" {
 resource "aws_subnet" "nat_builds" {
   vpc_id = "${var.vpc_id}"
   cidr_block = "${var.cidr_private_nat_builds}"
-  availability_zone = "${var.avl-zone}"
+  availability_zone = "${var.avl_zone}"
   tags {
     Name = "nat_builds_${var.install_version}"
   }

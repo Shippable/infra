@@ -12,6 +12,9 @@ resources:
   - name: prod_saas_state
     type: state
 
+  - name: prodci_saas_state
+    type: state
+
   # PEM key for AWS RC account
   - name: rc_aws_pem
     type: integration
@@ -31,6 +34,16 @@ resources:
   - name: prod_aws_pem
     type: integration
     integration: aws-prod-pem
+
+  # CREDS for AWS PROD CI account
+  - name: prodci_aws_key
+    type: integration
+    integration: aws_prod_ci_access
+
+  # PEM key for AWS PROD CI account
+  - name: prodci_aws_pem
+    type: integration
+    integration: aws_prod_ci_pem
 
 jobs:
   - name: rc_saas_inf_prov
@@ -80,3 +93,27 @@ jobs:
       - script: echo 'FAILURE!'
     always:
       - script: /build/IN/inf_repo/gitRepo/archiveProvisionState.sh prod saas
+
+  - name: prodci_saas_inf_prov
+    type: runSh
+    steps:
+      - IN: prodci_aws_pem
+        switch: off
+      - IN: prodci_aws_key
+        switch: off
+      - IN: prodci_saas_state
+        switch: off
+      - IN: inf_repo
+        switch: off
+      - TASK:
+          script:
+            - pushd $(shipctl get_resource_state "inf_repo")
+            - ./provision.sh prodci saas
+            - popd
+      - OUT: prodci_saas_state
+    on_success:
+      - script: echo 'SUCCESS!'
+    on_failure:
+      - script: echo 'FAILURE!'
+    always:
+      - script: /build/IN/inf_repo/gitRepo/archiveProvisionState.sh prodci saas

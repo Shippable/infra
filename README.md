@@ -11,7 +11,7 @@ correctly and can only be accessed with correct permissions.
 ## RC
 
 The directory `rc-saas` contains components needed to provision RC
-infrastructure. This provisions following components
+infrastructure. This provisions the following components:
 
 - VPC, subnets, internet gateway, NAT/jumpbox
 - instances for running Shippable services
@@ -22,7 +22,7 @@ infrastructure. This provisions following components
 ## Production
 
 The directory `prod-saas` contains components needed to provision RC
-infrastructure. This provisions following components
+infrastructure. This provisions the following components:
 
 - VPC, subnets, internet gateway, NAT/jumpbox
 - instances for running Shippable services
@@ -40,4 +40,4 @@ behind a static IP which helps in whitelisting IP addresses. Read the
 - Make sure the job runs `terraform plan` with expected results
 - Uncomment `terraform apply` in `provision.sh` script
 - Send PR, get it merged
-- The job should run `terraform apply` now by making expected changes
+- The job should run `terraform apply`, resulting in expected changes

@@ -48,6 +48,8 @@ resources:
 jobs:
   - name: rc_saas_inf_prov
     type: runSh
+    integrations:
+      - aws_rc_cloudwatch_lambda_kv
     steps:
       - IN: rc_aws_pem
         switch: off

@@ -58,7 +58,16 @@ resource "aws_security_group" "sg_public_lb" {
 # ----------
 # BLUE ELBS
 # ----------
-
+# # Local to hold the names of the _current_ set of ELBs
+# # This normalized list is used to set up the CloudWatch
+# # alarms
+# locals {
+#   lb_mktg_name = "${aws_elb.lb_b_mktg.name}"
+#   lb_api_name = "${aws_elb.lb_b_api.name}"
+#   lb_api_con_name = "${aws_elb.lb_b_api_con.name}"
+#   lb_api_int_name = "${aws_elb.lb_b_api_int.name}"
+#   lb_www_name = "${aws_elb.lb_b_www.name}"
+# }
 # # MKTG Load balancer
 # resource "aws_elb" "lb_b_mktg" {
 #   name = "lb-b-mktg-${var.install_version}"
@@ -217,6 +226,17 @@ resource "aws_security_group" "sg_public_lb" {
 # ----------
 # GREEN ELBS
 # ----------
+
+# Local to hold the names of the _current_ set of ELBs
+# This normalized list is used to set up the CloudWatch
+# alarms
+locals {
+  lb_mktg_name = "${aws_elb.lb_g_mktg.name}"
+  lb_api_name = "${aws_elb.lb_g_api.name}"
+  lb_api_con_name = "${aws_elb.lb_g_api_con.name}"
+  lb_api_int_name = "${aws_elb.lb_g_api_int.name}"
+  lb_www_name = "${aws_elb.lb_g_www.name}"
+}
 
 # MKTG Load balancer
 resource "aws_elb" "lb_g_mktg" {

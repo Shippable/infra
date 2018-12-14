@@ -182,3 +182,19 @@ variable "acm_cert_arn"{
   default = "arn:aws:acm:us-east-1:754160106182:certificate/463d13d5-8c80-4110-8bb1-092a8694658f"
   description = "acm cert arn"
 }
+
+variable "cloudwatch_slack_hook_url" {
+  description = "The hook URL that will be used to post CloudWatch alerts to Slack"
+}
+variable "cloudwatch_slack_channel" {
+  default = "general"
+}
+variable "cloudwatch_slack_lambda_s3_bucket" {
+  description = "The S3 bucket that contains the deployment package for the CloudWatch to Slack lambda function"
+}
+variable "cloudwatch_slack_lambda_s3_key" {
+  description = "The S3 object key for the CloudWatch to Slack lambda function"
+}
+variable "cloudwatch_slack_lambda_s3_object_version" {
+  description = "The S3 object version for the CloudWatch to Slack lambda function"
+}

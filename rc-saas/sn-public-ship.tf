@@ -231,11 +231,7 @@ resource "aws_security_group" "sg_public_lb" {
 # This normalized list is used to set up the CloudWatch
 # alarms
 locals {
-  lb_mktg_name = "${aws_elb.lb_g_mktg.name}"
-  lb_api_name = "${aws_elb.lb_g_api.name}"
-  lb_api_con_name = "${aws_elb.lb_g_api_con.name}"
-  lb_api_int_name = "${aws_elb.lb_g_api_int.name}"
-  lb_www_name = "${aws_elb.lb_g_www.name}"
+  api_lb_names = ["${aws_elb.lb_g_api.name}", "${aws_elb.lb_g_api_con.name}", "${aws_elb.lb_g_api_int.name}"]
 }
 
 # MKTG Load balancer

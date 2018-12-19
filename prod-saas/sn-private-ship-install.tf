@@ -133,28 +133,28 @@ output "ms_g_addresses" {
 # ---------------
 
 # MS-B-* Instance
-resource "aws_instance" "ms_b" {
- ami = "${var.ami_us_east_1_ubuntu1604}"
- availability_zone = "${var.avl-zone}"
- instance_type = "${var.in_type_ms_box}"
- key_name = "${var.aws_key_name}"
- subnet_id = "${var.sn_ship_install_id}"
- ebs_optimized = true
-
- count = 6
- vpc_security_group_ids = [
-   "${aws_security_group.sg_private_ship_install.id}"]
-
- root_block_device {
-   volume_type = "gp2"
-   volume_size = 30
-   delete_on_termination = true
- }
-
- tags = {
-   Name = "ms_b_${count.index}_${var.install_version}"
- }
-}
-output "ms_b_addresses" {
- value = "${formatlist("instance %v has private ip %v", aws_instance.ms_b.*.id, aws_instance.ms_b.*.private_ip)}"
-}
+# resource "aws_instance" "ms_b" {
+#  ami = "${var.ami_us_east_1_ubuntu1604}"
+#  availability_zone = "${var.avl-zone}"
+#  instance_type = "${var.in_type_ms_box}"
+#  key_name = "${var.aws_key_name}"
+#  subnet_id = "${var.sn_ship_install_id}"
+#  ebs_optimized = true
+#
+#  count = 6
+#  vpc_security_group_ids = [
+#    "${aws_security_group.sg_private_ship_install.id}"]
+#
+#  root_block_device {
+#    volume_type = "gp2"
+#    volume_size = 30
+#    delete_on_termination = true
+#  }
+#
+#  tags = {
+#    Name = "ms_b_${count.index}_${var.install_version}"
+#  }
+# }
+# output "ms_b_addresses" {
+#  value = "${formatlist("instance %v has private ip %v", aws_instance.ms_b.*.id, aws_instance.ms_b.*.private_ip)}"
+# }

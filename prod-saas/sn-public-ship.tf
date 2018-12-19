@@ -211,7 +211,9 @@ resource "aws_elb" "lb_rp_n" {
 # ----------
 
 # WWW ELB
-resource "aws_elb" "lb_g_www" { ##   name = "lb-g-www-${var.install_version}" ##   connection_draining = true
+resource "aws_elb" "lb_g_www" {
+  name = "lb-g-www-${var.install_version}"
+  connection_draining = true
   subnets = [
     "${var.sn_public_ship_id}"]
   security_groups = [

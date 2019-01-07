@@ -366,39 +366,51 @@ resource "aws_volume_attachment" "db_backup_attachment" {
 output "ms_g_1_ip" {
  value = "${aws_instance.ms_g_1.private_ip}"
 }
-#
-## instance MS-G-2
-#resource "aws_instance" "ms_g_2" {
-#  ami = "${var.ami_us_east_1_ubuntu1604}"
-#  availability_zone = "${var.avl-zone}"
-#  instance_type = "${var.in_type_ms}"
-#  key_name = "${var.aws_key_name}"
-#  subnet_id = "${aws_subnet.sn_ship_install.id}"
-#
-#  vpc_security_group_ids = [
-#    "${aws_security_group.sg_private_ship_install.id}"]
-#
-#  root_block_device {
-#    volume_type = "gp2"
-#    volume_size = 100
-#    delete_on_termination = true
-#  }
-#
-#  tags = {
-#    Name = "ms_g_2_${var.install_version}"
-#  }
-#}
-## Attach backup volume for DB. This should be commented when
-## moving to green machine
+
+# instance MS-G-2
+resource "aws_instance" "ms_g_2" {
+ ami = "${var.ami_us_east_1_ubuntu1604}"
+ availability_zone = "${var.avl-zone}"
+ instance_type = "${var.in_type_ms}"
+ key_name = "${var.aws_key_name}"
+ subnet_id = "${aws_subnet.sn_ship_install.id}"
+
+ vpc_security_group_ids = [
+   "${aws_security_group.sg_private_ship_install.id}"]
+
+ root_block_device {
+   volume_type = "gp2"
+   volume_size = 100
+   delete_on_termination = true
+ }
+
+ tags = {
+   Name = "ms_g_2_${var.install_version}"
+ }
+}
+# Attach backup volume for DB. This should be commented when
+# moving to green machine
 # resource "aws_volume_attachment" "db_backup_attachment" {
 #   device_name = "/dev/sdh"
 #   volume_id = "${aws_ebs_volume.db_backup_volume.id}"
 #   instance_id = "${aws_instance.ms_g_1.id}"
 # }
-#
-#output "ms_g_2_ip" {
-#  value = "${aws_instance.ms_g_2.private_ip}"
-#}
+
+  provisioner "file" {
+    source = "backupDb.sh"
+    destination = "~/backupDb.sh"
+
+    connection {
+      type = "ssh"
+      user = "ubuntu"
+      private_key = "${file(null_resource.pemfile.triggers.fileName)}"
+      agent = true
+    }
+  }
+
+output "ms_g_2_ip" {
+ value = "${aws_instance.ms_g_2.private_ip}"
+}
 
 # ---------------
 # temporary ebs volume for migrating RC db

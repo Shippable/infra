@@ -384,6 +384,18 @@ resource "aws_instance" "ms_g_2" {
    delete_on_termination = true
  }
 
+ provisioner "file" {
+    source = "backupDb.sh"
+    destination = "~/backupDb.sh"
+
+    connection {
+      type = "ssh"
+      user = "ubuntu"
+      private_key = "${file(null_resource.pemfile.triggers.fileName)}"
+      agent = true
+    }
+  }
+
  tags = {
    Name = "ms_g_2_${var.install_version}"
  }
@@ -395,18 +407,6 @@ resource "aws_instance" "ms_g_2" {
 #   volume_id = "${aws_ebs_volume.db_backup_volume.id}"
 #   instance_id = "${aws_instance.ms_g_1.id}"
 # }
-
-  provisioner "file" {
-    source = "backupDb.sh"
-    destination = "~/backupDb.sh"
-
-    connection {
-      type = "ssh"
-      user = "ubuntu"
-      private_key = "${file(null_resource.pemfile.triggers.fileName)}"
-      agent = true
-    }
-  }
 
 output "ms_g_2_ip" {
  value = "${aws_instance.ms_g_2.private_ip}"

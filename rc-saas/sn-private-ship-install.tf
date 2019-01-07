@@ -343,6 +343,13 @@ resource "aws_instance" "ms_g_1" {
    Name = "ms_g_1_${var.install_version}"
  }
 }
+# Attach backup volume for DB. This should be commented when
+# moving to blue machine
+resource "aws_volume_attachment" "db_backup_attachment" {
+  device_name = "/dev/sdh"
+  volume_id = "${aws_ebs_volume.db_backup_volume.id}"
+  instance_id = "${aws_instance.ms_g_1.id}"
+}
 
 output "ms_g_1_ip" {
  value = "${aws_instance.ms_g_1.private_ip}"
@@ -369,6 +376,13 @@ output "ms_g_1_ip" {
 #    Name = "ms_g_2_${var.install_version}"
 #  }
 #}
+## Attach backup volume for DB. This should be commented when
+## moving to green machine
+# resource "aws_volume_attachment" "db_backup_attachment" {
+#   device_name = "/dev/sdh"
+#   volume_id = "${aws_ebs_volume.db_backup_volume.id}"
+#   instance_id = "${aws_instance.ms_g_1.id}"
+# }
 #
 #output "ms_g_2_ip" {
 #  value = "${aws_instance.ms_g_2.private_ip}"
@@ -393,3 +407,16 @@ output "ms_g_1_ip" {
 #   volume_id = "${aws_ebs_volume.db_migration_volume.id}"
 #   instance_id = "${aws_instance.cs_2.id}"
 # }
+
+# ---
+# Volume to hold DB backups in RC
+# ---
+resource "aws_ebs_volume" "db_backup_volume" {
+ size = 1
+ type = "gp2"
+ availability_zone = "${var.avl-zone}"
+
+ tags = {
+   Name = "db_backup_volume_${var.install_version}"
+ }
+}

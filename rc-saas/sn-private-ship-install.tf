@@ -339,6 +339,18 @@ resource "aws_instance" "ms_g_1" {
    delete_on_termination = true
  }
 
+  provisioner "file" {
+    source = "backupDb.sh"
+    destination = "~/backupDb.sh"
+
+    connection {
+      type = "ssh"
+      user = "ubuntu"
+      private_key = "${file(null_resource.pemfile.triggers.fileName)}"
+      agent = true
+    }
+  }
+
  tags = {
    Name = "ms_g_1_${var.install_version}"
  }

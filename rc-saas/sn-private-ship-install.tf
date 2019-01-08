@@ -421,3 +421,7 @@ resource "aws_ebs_volume" "db_backup_volume" {
    Name = "db_backup_volume_${var.install_version}"
  }
 }
+
+output "db_backup_volume_id" {
+ value = "${aws_ebs_volume.db_backup_volume.id}"
+}

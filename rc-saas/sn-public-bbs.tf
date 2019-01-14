@@ -67,13 +67,6 @@ resource "aws_elb" "lb_bbs" {
    ssl_certificate_id = "${var.acm_cert_arn}"
  }
 
- listener {
-   lb_port = 80
-   lb_protocol = "http"
-   instance_port = 7990
-   instance_protocol = "http"
- }
-
  health_check {
    healthy_threshold = 2
    unhealthy_threshold = 2

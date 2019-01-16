@@ -35,15 +35,15 @@ resource "aws_security_group" "sg_public_bbs" {
 }
 
 ## allow ssh only traffic from nat security group
-resource "aws_security_group_rule" "allow_nat_ssh" {
-  type            = "ingress"
-  from_port       = 22
-  to_port         = 22
-  protocol        = "tcp"
-
-  security_group_id = "${aws_security_group.sg_public_bbs.id}"
-  source_security_group_id = "${aws_security_group.sg_public_nat.id}"
-}
+# resource "aws_security_group_rule" "allow_nat_ssh" {
+#  type            = "ingress"
+#  from_port       = 22
+#  to_port         = 22
+#  protocol        = "tcp"
+#
+#  security_group_id = "${aws_security_group.sg_public_bbs.id}"
+#  source_security_group_id = "${aws_security_group.sg_public_nat.id}"
+# }
 
 ## allow http traffic from lb on port 7990
 #resource "aws_security_group_rule" "allow_lb_https_bbs" {

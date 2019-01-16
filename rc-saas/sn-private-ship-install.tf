@@ -351,6 +351,14 @@ resource "aws_volume_attachment" "db_backup_attachment" {
   instance_id = "${aws_instance.ms_g_1.id}"
 }
 
+# Attach archivedJobs volume for DB. This should be commented when
+# moving to blue machine
+resource "aws_volume_attachment" "db_archivedJobs_attachment" {
+  device_name = "/dev/sdg"
+  volume_id = "${aws_ebs_volume.db_archivedJobs_volume.id}"
+  instance_id = "${aws_instance.ms_g_1.id}"
+}
+
 output "ms_g_1_ip" {
  value = "${aws_instance.ms_g_1.private_ip}"
 }
@@ -383,6 +391,14 @@ output "ms_g_1_ip" {
 #   device_name = "/dev/sdh"
 #   volume_id = "${aws_ebs_volume.db_backup_volume.id}"
 #   instance_id = "${aws_instance.ms_g_1.id}"
+# }
+
+# # Attach archivedJobs volume for DB. This should be commented when
+# # moving to green machine
+# resource "aws_volume_attachment" "db_archivedJobs_attachment" {
+#   device_name = "/dev/sdg"
+#   volume_id = "${aws_ebs_volume.db_archivedJobs_volume.id}"
+#   instance_id = "${aws_instance.ms_g_2.id}"
 # }
 
 # output "ms_g_2_ip" {
@@ -424,4 +440,21 @@ resource "aws_ebs_volume" "db_backup_volume" {
 
 output "db_backup_volume_id" {
  value = "${aws_ebs_volume.db_backup_volume.id}"
+}
+
+# ---
+# Volume to hold archivedJobs in RC
+# ---
+resource "aws_ebs_volume" "db_archivedJobs_volume" {
+  size = 2
+  type = "gp2"
+  availability_zone = "${var.avl-zone}"
+
+  tags = {
+    Name = "db_archivedJobs_volume_${var.install_version}"
+  }
+}
+
+output "db_archivedJobs_volume_id" {
+ value = "${aws_ebs_volume.db_archivedJobs_volume.id}"
 }

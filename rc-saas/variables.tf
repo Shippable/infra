@@ -177,9 +177,9 @@ variable "ami_us_east_1_nat"{
   description = "NAT AMI for us-east-1"
 }
 
-# this is a ACM certificate for domian *.shippable.com *.qhode.com
+# this is a ACM certificate for domain *.shippable.com
 variable "acm_cert_arn"{
-  default = "arn:aws:acm:us-east-1:754160106182:certificate/0f5767be-054c-4b3c-aa97-b88409439013"
+  default = "arn:aws:acm:us-east-1:754160106182:certificate/968b6262-926d-4f99-a429-03f329fadfa5"
   description = "acm cert arn"
 }
 

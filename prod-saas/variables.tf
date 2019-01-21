@@ -136,3 +136,19 @@ variable "in_type_rp" {
   default = "t2.small"
   description = "AWS Instance type for Reverse Proxy server"
 }
+
+variable "cloudwatch_slack_hook_url" {
+  description = "The hook URL that will be used to post CloudWatch alerts to Slack"
+}
+variable "cloudwatch_slack_channel" {
+  default = "general"
+}
+variable "cloudwatch_slack_lambda_s3_bucket" {
+  description = "The S3 bucket that contains the deployment package for the CloudWatch to Slack lambda function"
+}
+variable "cloudwatch_slack_lambda_s3_key" {
+  description = "The S3 object key for the CloudWatch to Slack lambda function"
+}
+variable "cloudwatch_slack_lambda_s3_object_version" {
+  description = "The S3 object version for the CloudWatch to Slack lambda function"
+}

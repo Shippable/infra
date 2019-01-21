@@ -74,6 +74,8 @@ jobs:
 
   - name: prod_saas_inf_prov
     type: runSh
+    integrations:
+      - aws_prod_cloudwatch_lambda_kv
     steps:
       - IN: prod_aws_pem
         switch: off

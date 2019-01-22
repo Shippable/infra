@@ -86,6 +86,10 @@ jobs:
       - IN: inf_repo
         switch: off
       - TASK:
+          runtime:
+            options:
+              env:
+                - TF_VAR_enable_green: false
           script:
             - pushd $(shipctl get_resource_state "inf_repo")
             - ./provision.sh prod saas

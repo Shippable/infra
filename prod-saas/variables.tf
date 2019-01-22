@@ -152,3 +152,7 @@ variable "cloudwatch_slack_lambda_s3_key" {
 variable "cloudwatch_slack_lambda_s3_object_version" {
   description = "The S3 object version for the CloudWatch to Slack lambda function"
 }
+
+variable "enable_green" {
+  description = "Controls the provisioning of GREEN infra"
+}

@@ -141,7 +141,7 @@ resource "aws_instance" "ms_b" {
  subnet_id = "${var.sn_ship_install_id}"
  ebs_optimized = true
 
- count = 6
+ count = "${var.enable_blue ? 6 : 0}"
  vpc_security_group_ids = [
    "${aws_security_group.sg_private_ship_install.id}"]
 

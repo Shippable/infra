@@ -156,3 +156,7 @@ variable "cloudwatch_slack_lambda_s3_object_version" {
 variable "enable_green" {
   description = "Controls the provisioning of GREEN infra"
 }
+
+variable "enable_blue" {
+  description = "Controls the provisioning of BLUE infra"
+}

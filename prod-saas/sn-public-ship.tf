@@ -370,6 +370,7 @@ resource "aws_elb" "lb_g_api_con" {
 # WWW ELB
 resource "aws_elb" "lb_b_www" {
  name = "lb-b-www-${var.install_version}"
+ count = "${var.enable_blue ? 1 : 0}"
  connection_draining = true
  subnets = [
    "${var.sn_public_ship_id}"]
@@ -405,6 +406,7 @@ resource "aws_elb" "lb_b_www" {
 # APP ELB
 resource "aws_elb" "lb_b_app" {
  name = "lb-b-app-${var.install_version}"
+ count = "${var.enable_blue ? 1 : 0}"
  connection_draining = true
  subnets = [
    "${var.sn_public_ship_id}"]
@@ -433,6 +435,7 @@ resource "aws_elb" "lb_b_app" {
 # API ELB
 resource "aws_elb" "lb_b_api" {
  name = "lb-b-api-${var.install_version}"
+ count = "${var.enable_blue ? 1 : 0}"
  connection_draining = true
  subnets = [
    "${var.sn_public_ship_id}"]
@@ -461,6 +464,7 @@ resource "aws_elb" "lb_b_api" {
 # API INT ELB
 resource "aws_elb" "lb_b_api_int" {
  name = "lb-b-api-int-${var.install_version}"
+ count = "${var.enable_blue ? 1 : 0}"
  connection_draining = true
  subnets = [
    "${var.sn_public_ship_id}"]
@@ -489,6 +493,7 @@ resource "aws_elb" "lb_b_api_int" {
 # API CON ELB
 resource "aws_elb" "lb_b_api_con" {
  name = "lb-b-api-con-${var.install_version}"
+ count = "${var.enable_blue ? 1 : 0}"
  connection_draining = true
  idle_timeout = 150
  subnets = [

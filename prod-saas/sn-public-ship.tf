@@ -519,3 +519,21 @@ resource "aws_elb" "lb_b_api_con" {
 
  instances = ["${aws_instance.ms_b.*.id}"]
 }
+
+# These locals are used to set up CloudWatch alerts
+locals {
+  all_con_api_elb_names = [
+    "${aws_elb.lb_b_api_con.*.name}",
+    "${aws_elb.lb_g_api_con.*.name}"
+  ]
+
+  all_pub_api_elb_names = [
+    "${aws_elb.lb_b_api.*.name}",
+    "${aws_elb.lb_g_api.*.name}",
+  ]
+
+  all_int_api_elb_names = [
+    "${aws_elb.lb_b_api_int.*.name}",
+    "${aws_elb.lb_g_api_int.*.name}"
+  ]
+}

@@ -1,5 +1,5 @@
 resource "aws_cloudwatch_metric_alarm" "alarm_avg_latency_api" {
-  count = "${local.all_pub_api_elb_names.count}"
+  count = "${length(local.all_pub_api_elb_names)}"
   alarm_name = "alarm_avg_latency_${element(local.all_pub_api_elb_names, count.index)}"
   metric_name = "Latency"
   comparison_operator = "GreaterThanThreshold"
@@ -20,7 +20,7 @@ resource "aws_cloudwatch_metric_alarm" "alarm_avg_latency_api" {
 
 
 resource "aws_cloudwatch_metric_alarm" "alarm_avg_latency_api_int" {
-  count = "${local.all_int_api_elb_names.count}"
+  count = "${length(local.all_int_api_elb_names)}"
   alarm_name = "alarm_avg_latency_${element(local.all_int_api_elb_names, count.index)}"
   metric_name = "Latency"
   comparison_operator = "GreaterThanThreshold"
@@ -41,7 +41,7 @@ resource "aws_cloudwatch_metric_alarm" "alarm_avg_latency_api_int" {
 
 
 resource "aws_cloudwatch_metric_alarm" "alarm_avg_latency_api_con" {
-  count = "${local.all_con_api_elb_names.count}"
+  count = "${length(local.all_con_api_elb_names)}"
   alarm_name = "alarm_avg_latency_${element(local.all_con_api_elb_names, count.index)}"
   metric_name = "Latency"
   comparison_operator = "GreaterThanThreshold"

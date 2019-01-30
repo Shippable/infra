@@ -208,7 +208,7 @@ resource "aws_instance" "admiral_ric03uec_u1404" {
   key_name = "${var.aws_key_name}"
   subnet_id = "${aws_subnet.sn_admiral_setup.id}"
 
-  count = 1
+  count = 2
   vpc_security_group_ids = [
     "${aws_security_group.sg_public_admiral_setup.id}"]
 

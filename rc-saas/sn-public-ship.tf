@@ -451,7 +451,7 @@ resource "aws_elb" "lb_mktg_test" {
    lb_port = 80
    lb_protocol = "http"
    instance_port = 50002
-   instance_protocol = "tcp"
+   instance_protocol = "http"
  }
 
  health_check {
@@ -480,7 +480,7 @@ resource "aws_elb" "lb_www_test" {
    lb_port = 80
    lb_protocol = "http"
    instance_port = 50001
-   instance_protocol = "tcp"
+   instance_protocol = "http"
  }
 
  health_check {
@@ -602,14 +602,14 @@ resource "aws_elb" "lb_msg_test" {
   }
 
   listener {
-    lb_port = 5671
-    lb_protocol = "http"
+    lb_port = 5672
+    lb_protocol = "tcp"
     instance_port = 5672
     instance_protocol = "tcp"
   }
 
   listener {
-    lb_port = 15671
+    lb_port = 15672
     lb_protocol = "http"
     instance_port = 15672
     instance_protocol = "http"

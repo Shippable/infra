@@ -53,6 +53,54 @@ resource "aws_security_group" "sg_public_lb" {
   }
 }
 
+# b/g deployment testing
+resource "aws_security_group" "sg_public_lb_test" {
+  name = "sg_public_lb_test_${var.install_version}"
+  description = "LB traffic security group"
+  vpc_id = "${aws_vpc.vpc.id}"
+
+  ingress {
+    from_port = 80
+    to_port = 80
+    protocol = "http"
+    cidr_blocks = [
+      "0.0.0.0/0"]
+  }
+  ingress {
+    from_port = 5672
+    to_port = 5672
+    protocol = "tcp"
+    cidr_blocks = [
+      "0.0.0.0/0"]
+  }
+  ingress {
+    from_port = 15672
+    to_port = 15672
+    protocol = "http"
+    cidr_blocks = [
+      "0.0.0.0/0"]
+  }
+  ingress {
+    from_port = -1
+    to_port = -1
+    protocol = "icmp"
+    cidr_blocks = [
+      "0.0.0.0/0"]
+  }
+
+  egress {
+    # allow all traffic to private SN
+    from_port = "0"
+    to_port = "0"
+    protocol = "-1"
+    cidr_blocks = [
+      "${var.cidr_private_ship_install}"]
+  }
+  tags {
+    Name = "sg_public_lb_test_${var.install_version}"
+  }
+}
+
 # ========================Load Balancers=======================
 
 # ----------
@@ -445,7 +493,7 @@ resource "aws_elb" "lb_mktg_test" {
  subnets = [
    "${aws_subnet.sn_public.id}"]
    security_groups = [
-   "${aws_security_group.sg_public_lb.id}"]
+   "${aws_security_group.sg_public_lb_test.id}"]
 
  listener {
    lb_port = 80
@@ -474,7 +522,7 @@ resource "aws_elb" "lb_www_test" {
  subnets = [
    "${aws_subnet.sn_public.id}"]
  security_groups = [
-   "${aws_security_group.sg_public_lb.id}"]
+   "${aws_security_group.sg_public_lb_test.id}"]
 
  listener {
    lb_port = 80
@@ -503,7 +551,7 @@ resource "aws_elb" "lb_api_test" {
  subnets = [
    "${aws_subnet.sn_public.id}"]
  security_groups = [
-   "${aws_security_group.sg_public_lb.id}"]
+   "${aws_security_group.sg_public_lb_test.id}"]
 
  listener {
    lb_port = 80
@@ -532,7 +580,7 @@ resource "aws_elb" "lb_api_int_test" {
  subnets = [
    "${aws_subnet.sn_public.id}"]
  security_groups = [
-   "${aws_security_group.sg_public_lb.id}"]
+   "${aws_security_group.sg_public_lb_test.id}"]
 
  listener {
    lb_port = 80
@@ -561,7 +609,7 @@ resource "aws_elb" "lb_api_con_test" {
  subnets = [
    "${aws_subnet.sn_public.id}"]
  security_groups = [
-   "${aws_security_group.sg_public_lb.id}"]
+   "${aws_security_group.sg_public_lb_test.id}"]
 
  listener {
    lb_port = 80
@@ -592,7 +640,7 @@ resource "aws_elb" "lb_msg_test" {
   subnets = [
     "${aws_subnet.sn_public.id}"]
   security_groups = [
-    "${aws_security_group.sg_public_lb.id}"]
+    "${aws_security_group.sg_public_lb_test.id}"]
 
   listener {
     lb_port = 80

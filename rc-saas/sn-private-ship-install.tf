@@ -247,7 +247,7 @@ resource "aws_instance" "cs_2" {
     "${aws_security_group.sg_private_ship_install.id}"]
   root_block_device {
     volume_type = "gp2"
-    volume_size = 30
+    volume_size = 60
     delete_on_termination = true
   }
   tags = {

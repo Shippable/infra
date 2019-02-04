@@ -95,12 +95,12 @@ apply_changes() {
   echo "initializing terraform"
   echo "-----------------------------------"
   terraform init
-  echo "planning changes"
-  echo "-----------------------------------"
-  terraform --version
-  terraform plan -var-file="$RES_AWS_CREDS_META/integration.env"
   echo "refreshing terraform state"
   terraform refresh --var-file="$RES_AWS_CREDS_META/integration.env"
+  terraform --version
+  echo "planning changes"
+  echo "-----------------------------------"
+  terraform plan -var-file="$RES_AWS_CREDS_META/integration.env"
   echo "apply changes"
   echo "-----------------------------------"
   terraform apply -auto-approve -var-file="$RES_AWS_CREDS_META/integration.env"

@@ -100,7 +100,7 @@ apply_changes() {
   terraform --version
   terraform plan -var-file="$RES_AWS_CREDS_META/integration.env"
   echo "refreshing terraform state"
-  terraform refresh
+  terraform refresh --var-file="$RES_AWS_CREDS_META/integration.env"
   echo "apply changes"
   echo "-----------------------------------"
   terraform apply -auto-approve -var-file="$RES_AWS_CREDS_META/integration.env"

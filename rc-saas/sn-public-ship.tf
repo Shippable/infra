@@ -493,7 +493,7 @@ resource "aws_elb" "lb_www_test" {
 
  instances = [
    "${aws_instance.ms_g_2.id}"
- ]3
+ ]
 }
 
 # API Load balancer
@@ -584,7 +584,7 @@ resource "aws_elb" "lb_api_con_test" {
 }
 
 # MSG Load balancer
-resource "aws_elb" "lb_msg" {
+resource "aws_elb" "lb_msg_test" {
   name = "lb-msg-test-${var.install_version}"
   idle_timeout = 3600
   connection_draining = true

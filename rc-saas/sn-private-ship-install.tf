@@ -262,7 +262,7 @@ output "cs_2_ip" {
 # BLUE INSTANCES
 # ---------------
 
-instance MS-B-1
+# # instance MS-B-1
 resource "aws_instance" "ms_b_1" {
   ami = "${var.ami_us_east_1_ubuntu1604}"
   availability_zone = "${var.avl-zone}"

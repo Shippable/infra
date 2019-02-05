@@ -511,7 +511,7 @@ resource "aws_elb" "lb_mktg_test" {
  }
 
  instances = [
-   "${aws_instance.ms_b_2.id}"
+   "${aws_instance.ms_b_1.id}"
  ]
 }
 
@@ -540,7 +540,7 @@ resource "aws_elb" "lb_www_test" {
  }
 
  instances = [
-   "${aws_instance.ms_b_2.id}"
+   "${aws_instance.ms_b_1.id}"
  ]
 }
 
@@ -569,7 +569,7 @@ resource "aws_elb" "lb_api_test" {
  }
 
  instances = [
-   "${aws_instance.ms_b_2.id}"
+   "${aws_instance.ms_b_1.id}"
  ]
 }
 
@@ -598,7 +598,7 @@ resource "aws_elb" "lb_api_int_test" {
  }
 
  instances = [
-   "${aws_instance.ms_b_2.id}"
+   "${aws_instance.ms_b_1.id}"
  ]
 }
 
@@ -627,7 +627,7 @@ resource "aws_elb" "lb_api_con_test" {
  }
 
  instances = [
-   "${aws_instance.ms_b_2.id}"
+   "${aws_instance.ms_b_1.id}"
  ]
 }
 

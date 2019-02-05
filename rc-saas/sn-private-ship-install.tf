@@ -262,31 +262,31 @@ output "cs_2_ip" {
 # BLUE INSTANCES
 # ---------------
 
-# instance MS-B-1
-# resource "aws_instance" "ms_b_1" {
-#   ami = "${var.ami_us_east_1_ubuntu1604}"
-#   availability_zone = "${var.avl-zone}"
-#   instance_type = "${var.in_type_core}"
-#   key_name = "${var.aws_key_name}"
-#   subnet_id = "${aws_subnet.sn_ship_install.id}"
+instance MS-B-1
+resource "aws_instance" "ms_b_1" {
+  ami = "${var.ami_us_east_1_ubuntu1604}"
+  availability_zone = "${var.avl-zone}"
+  instance_type = "${var.in_type_core}"
+  key_name = "${var.aws_key_name}"
+  subnet_id = "${aws_subnet.sn_ship_install.id}"
 
-#   vpc_security_group_ids = [
-#     "${aws_security_group.sg_private_ship_install.id}"]
+  vpc_security_group_ids = [
+    "${aws_security_group.sg_private_ship_install.id}"]
 
-#   root_block_device {
-#     volume_type = "gp2"
-#     volume_size = 100
-#     delete_on_termination = true
-#   }
+  root_block_device {
+    volume_type = "gp2"
+    volume_size = 100
+    delete_on_termination = true
+  }
 
-#   tags = {
-#     Name = "ms_b_1_${var.install_version}"
-#   }
-# }
+  tags = {
+    Name = "ms_b_1_${var.install_version}"
+  }
+}
 
-# output "ms_b_1_ip" {
-#   value = "${aws_instance.ms_b_1.private_ip}"
-# }
+output "ms_b_1_ip" {
+  value = "${aws_instance.ms_b_1.private_ip}"
+}
 
 # # instance MS-B-2
 # resource "aws_instance" "ms_b_2" {

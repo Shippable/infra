@@ -92,12 +92,10 @@ apply_changes() {
   pushd "$RES_REPO_STATE/$TF_FOLDER"
   echo "-----------------------------------"
   which ssh-agent
+  terraform --version
   echo "initializing terraform"
   echo "-----------------------------------"
   terraform init
-  echo "refreshing terraform state"
-  terraform refresh --var-file="$RES_AWS_CREDS_META/integration.env"
-  terraform --version
   echo "planning changes"
   echo "-----------------------------------"
   terraform plan -var-file="$RES_AWS_CREDS_META/integration.env"

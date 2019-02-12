@@ -90,7 +90,7 @@ jobs:
             options:
               env:
                 - TF_VAR_enable_green: true
-                - TF_VAR_enable_blue: true
+                - TF_VAR_enable_blue: false
           script:
             - pushd $(shipctl get_resource_state "inf_repo")
             - ./provision.sh prod saas

@@ -45,10 +45,10 @@ resource "aws_cloudwatch_metric_alarm" "alarm_avg_latency_api_con" {
   alarm_name = "alarm_avg_latency_${element(local.all_con_api_elb_names, count.index)}"
   metric_name = "Latency"
   comparison_operator = "GreaterThanThreshold"
-  threshold = "2000"
+  threshold = "0.200"
   evaluation_periods = "4"
   namespace = "AWS/ELB"
-  period = "900"
+  period = "60"
   statistic = "Average"
 
   dimensions {

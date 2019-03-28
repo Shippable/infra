@@ -89,7 +89,7 @@ jobs:
           runtime:
             options:
               env:
-                - TF_VAR_enable_green: false
+                - TF_VAR_enable_green: true
                 - TF_VAR_enable_blue: true
           script:
             - pushd $(shipctl get_resource_state "inf_repo")

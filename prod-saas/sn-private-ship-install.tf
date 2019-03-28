@@ -109,7 +109,7 @@ resource "aws_instance" "ms_g" {
   subnet_id = "${var.sn_ship_install_id}"
   ebs_optimized = true
 
-  count = "${var.enable_green ? 6 : 0}"
+  count = "${var.enable_green ? 8 : 0}"
   vpc_security_group_ids = [
     "${aws_security_group.sg_private_ship_install.id}"]
 

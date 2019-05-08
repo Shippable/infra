@@ -55,6 +55,16 @@ variable "cidr_public_admiral_setup" {
   default = "80.0.50.0/24"
 }
 
+variable "cidr_public_proxy" {
+  description = "Public .60.0 block for proxy machines"
+  default = "80.0.60.0/24"
+}
+
+variable "cidr_private_proxy_install" {
+  description = "Public .70.0 block for shippable machines using proxy only"
+  default = "80.0.70.0/24"
+}
+
 variable "cidr_private_ship_install" {
   description = "Private 0.2 block for shippable services"
   default = "80.0.100.0/24"

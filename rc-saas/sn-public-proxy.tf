@@ -35,13 +35,22 @@ resource "aws_security_group" "sg_public_proxy" {
       "0.0.0.0/0"]
   }
 
+  # allow ssh only from jumpbox
   ingress {
     from_port = "22"
     to_port = "22"
     protocol = "tcp"
     cidr_blocks = [
-      "0.0.0.0/0",
       "${var.cidr_public_ship}"]
+  }
+
+  # allow traffic on proxy port
+  ingress {
+    from_port = "8080"
+    to_port = "8080"
+    protocol = "tcp"
+    cidr_blocks = [
+      "${var.cidr_private_proxy_install}"]
   }
 
   # api
@@ -121,27 +130,27 @@ resource "aws_security_group" "sg_public_proxy" {
 }
 
 ##################### Proxy Instances #########################
-resource "aws_instance" "artifactory_proxy" {
-  ami = "${var.ami_us_east_1_ubuntu1604}"
-  availability_zone = "${var.avl-zone}"
-  instance_type = "${var.in_type_small}"
-  key_name = "${var.aws_key_name}"
-  subnet_id = "${aws_subnet.sn_proxy_setup.id}"
-
-  vpc_security_group_ids = [
-    "${aws_security_group.sg_public_proxy.id}"]
-
-  root_block_device {
-    volume_type = "gp2"
-    volume_size = 10
-    delete_on_termination = true
-  }
-
-  tags = {
-    Name = "artifactory_proxy_${var.install_version}"
-  }
-}
-
-output "artifactory_proxy_ip" {
-  value = "${aws_instance.artifactory_proxy.private_ip}"
-}
+# resource "aws_instance" "artifactory_proxy" {
+#   ami = "${var.ami_us_east_1_ubuntu1604}"
+#   availability_zone = "${var.avl-zone}"
+#   instance_type = "${var.in_type_small}"
+#   key_name = "${var.aws_key_name}"
+#   subnet_id = "${aws_subnet.sn_proxy_setup.id}"
+#
+#   vpc_security_group_ids = [
+#     "${aws_security_group.sg_public_proxy.id}"]
+#
+#   root_block_device {
+#     volume_type = "gp2"
+#     volume_size = 10
+#     delete_on_termination = true
+#   }
+#
+#   tags = {
+#     Name = "artifactory_proxy_${var.install_version}"
+#   }
+# }
+#
+# output "artifactory_proxy_ip" {
+#   value = "${aws_instance.artifactory_proxy.private_ip}"
+# }

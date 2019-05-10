@@ -48,52 +48,52 @@ resource "aws_security_group" "sg_private_proxy_install" {
 }
 
 ##################### Proxy Instances #########################
-resource "aws_instance" "proxy_onebox" {
-  ami = "${var.ami_us_east_1_ubuntu1604}"
-  availability_zone = "${var.avl-zone}"
-  instance_type = "${var.in_type_ms_x}"
-  key_name = "${var.aws_key_name}"
-  subnet_id = "${aws_subnet.sn_proxy_install.id}"
-
-  vpc_security_group_ids = [
-    "${aws_security_group.sg_private_proxy_install.id}"]
-
-  root_block_device {
-    volume_type = "gp2"
-    volume_size = 20
-    delete_on_termination = true
-  }
-
-  tags = {
-    Name = "proxy_onebox_${var.install_version}"
-  }
-}
-
-output "proxy_onebox_ip" {
-  value = "${aws_instance.proxy_onebox.private_ip}"
-}
-
-resource "aws_instance" "proxy_build" {
-  ami = "${var.ami_us_east_1_ubuntu1604}"
-  availability_zone = "${var.avl-zone}"
-  instance_type = "${var.in_type_ms_x}"
-  key_name = "${var.aws_key_name}"
-  subnet_id = "${aws_subnet.sn_proxy_install.id}"
-
-  vpc_security_group_ids = [
-    "${aws_security_group.sg_private_proxy_install.id}"]
-
-  root_block_device {
-    volume_type = "gp2"
-    volume_size = 20
-    delete_on_termination = true
-  }
-
-  tags = {
-    Name = "proxy_build_${var.install_version}"
-  }
-}
-
-output "proxy_build_ip" {
-  value = "${aws_instance.proxy_build.private_ip}"
-}
+# resource "aws_instance" "proxy_onebox" {
+#   ami = "${var.ami_us_east_1_ubuntu1604}"
+#   availability_zone = "${var.avl-zone}"
+#   instance_type = "${var.in_type_ms_x}"
+#   key_name = "${var.aws_key_name}"
+#   subnet_id = "${aws_subnet.sn_proxy_install.id}"
+#
+#   vpc_security_group_ids = [
+#     "${aws_security_group.sg_private_proxy_install.id}"]
+#
+#   root_block_device {
+#     volume_type = "gp2"
+#     volume_size = 20
+#     delete_on_termination = true
+#   }
+#
+#   tags = {
+#     Name = "proxy_onebox_${var.install_version}"
+#   }
+# }
+#
+# output "proxy_onebox_ip" {
+#   value = "${aws_instance.proxy_onebox.private_ip}"
+# }
+#
+# resource "aws_instance" "proxy_build" {
+#   ami = "${var.ami_us_east_1_ubuntu1604}"
+#   availability_zone = "${var.avl-zone}"
+#   instance_type = "${var.in_type_ms_x}"
+#   key_name = "${var.aws_key_name}"
+#   subnet_id = "${aws_subnet.sn_proxy_install.id}"
+#
+#   vpc_security_group_ids = [
+#     "${aws_security_group.sg_private_proxy_install.id}"]
+#
+#   root_block_device {
+#     volume_type = "gp2"
+#     volume_size = 20
+#     delete_on_termination = true
+#   }
+#
+#   tags = {
+#     Name = "proxy_build_${var.install_version}"
+#   }
+# }
+#
+# output "proxy_build_ip" {
+#   value = "${aws_instance.proxy_build.private_ip}"
+# }

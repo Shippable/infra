@@ -162,7 +162,7 @@ variable "ami_us_east_1_ubuntu1604"{
 }
 
 variable "ami_us_east_1_centos7"{
-  default = "i-0fbde2cac1a7ed92f"
+  default = "ami-02eac2c0129f6376b"
   description = "AWS AMI for us-east-1 CentOS 7"
 }
 

@@ -374,3 +374,26 @@ output "admiral_ric03uec_centos7" {
 ## output "admiral_bharath92_rhel7" {
 ##   value = "${formatlist("instance %v has private ip %v", aws_instance.admiral_bharath92_rhel7.*.id, aws_instance.admiral_bharath92_rhel7.*.private_ip)}"
 ## }
+
+vijayreddy1991:  x86/64 WindowsServer
+resource "aws_instance" "admiral_vijayreddy1991_win19" {
+ ami = "${var.ami_us_east_1_win19}"
+ availability_zone = "${var.avl-zone}"
+ instance_type = "${var.in_type_bld}"
+ key_name = "${var.aws_key_name}"
+ subnet_id = "${aws_subnet.sn_admiral_setup.id}"
+ count = 1
+ vpc_security_group_ids = [
+   "${aws_security_group.sg_public_admiral_setup.id}"]
+ root_block_device {
+   volume_type = "gp2"
+   volume_size = 100
+   delete_on_termination = true
+ }
+ tags = {
+   Name = "admiral_vijayreddy1991_win19_${count.index}_${var.install_version}"
+ }
+}
+output "admiral_vijayreddy1991_win19" {
+ value = "${formatlist("instance %v has private ip %v", aws_instance.admiral_vijayreddy1991_win19.*.id, aws_instance.admiral_vijayreddy1991_win19.*.private_ip)}"
+}

@@ -176,6 +176,11 @@ variable "ami_us_east_1_win16" {
   description = "AWS AMI for us-east-1 Windows_Server-2016"
 }
 
+variable "ami_us_east_1_win19" {
+  default = "ami-0204606704df03e7e"
+  description = "AWS AMI for us-east-1 Windows_Server-2019"
+}
+
 variable "ami_us_east_1_rancheros"{
   default = "ami-03482379"
   description = "AWS AMI for us-east-1 Rancher OS 1.1.1"

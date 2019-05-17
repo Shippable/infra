@@ -375,7 +375,7 @@ output "admiral_ric03uec_centos7" {
 ##   value = "${formatlist("instance %v has private ip %v", aws_instance.admiral_bharath92_rhel7.*.id, aws_instance.admiral_bharath92_rhel7.*.private_ip)}"
 ## }
 
-vijayreddy1991:  x86/64 WindowsServer
+## vijayreddy1991:  x86/64 WindowsServer
 resource "aws_instance" "admiral_vijayreddy1991_win19" {
  ami = "${var.ami_us_east_1_win19}"
  availability_zone = "${var.avl-zone}"

@@ -213,7 +213,7 @@ resource "aws_instance" "admiral_ric03uec_u1604" {
   vpc_security_group_ids = [
     "${aws_security_group.sg_public_admiral_setup.id}"]
 
-  count = 2
+  count = 3
   root_block_device {
     volume_type = "gp2"
     volume_size = 50

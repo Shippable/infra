@@ -76,6 +76,8 @@ resource "aws_security_group" "sg_public_admiral_setup" {
       "0.0.0.0/0"]
   }
 
+
+  ## Ribbit API
   ingress {
     from_port = "30000"
     to_port = "30000"
@@ -84,6 +86,7 @@ resource "aws_security_group" "sg_public_admiral_setup" {
       "0.0.0.0/0"]
   }
 
+  ## Ribbit UI
   ingress {
     from_port = "30001"
     to_port = "30001"
@@ -92,6 +95,16 @@ resource "aws_security_group" "sg_public_admiral_setup" {
       "0.0.0.0/0"]
   }
 
+  ## Ribbit vault
+  ingress {
+    from_port = "30100"
+    to_port = "30100"
+    protocol = "tcp"
+    cidr_blocks = [
+      "0.0.0.0/0"]
+  }
+
+  ## Ribbit MSG
   ingress {
     from_port = "30200"
     to_port = "30200"
@@ -100,6 +113,7 @@ resource "aws_security_group" "sg_public_admiral_setup" {
       "0.0.0.0/0"]
   }
 
+  ## Ribbit MSG Admin
   ingress {
     from_port = "30201"
     to_port = "30201"

@@ -161,6 +161,11 @@ variable "ami_us_east_1_ubuntu1604"{
   description = "AWS AMI for us-east-1 Ubuntu 16.04"
 }
 
+variable "ami_us_east_1_ubuntu1804"{
+  default = "ami-0a313d6098716f372"
+  description = "AWS AMI for us-east-1 Ubuntu 18.04"
+}
+
 variable "ami_us_east_1_centos7"{
   default = "ami-02eac2c0129f6376b"
   description = "AWS AMI for us-east-1 CentOS 7"
